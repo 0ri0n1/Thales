@@ -1,0 +1,498 @@
+# ============================================================================
+# ARIIA OPERATIONAL PLAYBOOK
+# ============================================================================
+# End-to-end execution patterns for autonomous security operations.
+#
+# This is where specification meets execution. Each playbook defines
+# a concrete operational pattern — what tools run, in what order,
+# with what decision logic, and how results flow between stages.
+# These are not scripts. They are intelligent patterns that ARIIA
+# adapts to the specific target and conditions.
+# ============================================================================
+
+operations:
+  description: >
+    Playbooks define operational patterns for common engagement types.
+    They are not rigid sequences — they are starting frameworks that
+    ARIIA adapts based on real-time intelligence. Think of them as
+    a chess opening: the first moves are known, but the game evolves
+    from there.
+
+  # ==========================================================================
+  # PLAYBOOK 1: EXTERNAL RECONNAISSANCE
+  # ==========================================================================
+  external_recon:
+    name: "External Reconnaissance"
+    mission_types: ["reconnaissance", "vulnerability_assessment", "penetration_test"]
+    description: "Map the external attack surface of a target organization"
+    active_lens: "discovery"
+    autonomy_minimum: "level_1_guided"
+
+    phases:
+      passive_intelligence:
+        order: 1
+        purpose: "Gather intelligence without touching the target"
+        tool_sequences:
+          dns_enumeration:
+            sequence:
+              - tool: "dig"
+                parameters: "target domain, record types: A, AAAA, MX, NS, TXT, SOA"
+                output: "dns_records"
+              - tool: "whois"
+                parameters: "target domain"
+                output: "registration_data"
+              - tool: "subfinder"
+                parameters: "target domain, passive mode"
+                output: "subdomain_list"
+              - tool: "dnsrecon"
+                parameters: "target domain, standard enumeration"
+                output: "dns_analysis"
+            chain_logic: >
+              subfinder output feeds into the target list for active
+              reconnaissance. DNS records inform technology identification.
+
+          osint_collection:
+            sequence:
+              - tool: "theharvester"
+                parameters: "target domain, sources: all"
+                output: "emails, subdomains, hosts"
+              - tool: "sherlock"
+                parameters: "organization-associated usernames"
+                output: "social_media_presence"
+                condition: "Only when username enumeration is in scope"
+            chain_logic: >
+              Harvested emails inform social engineering assessment.
+              Discovered hosts expand the target list.
+
+          technology_recon:
+            sequence:
+              - tool: "shodan"
+                parameters: "organization or IP range"
+                output: "exposed_services"
+                condition: "When Shodan API key is available"
+              - tool: "whatweb"
+                parameters: "known target URLs"
+                output: "technology_fingerprints"
+            chain_logic: >
+              Technology identification informs vulnerability
+              research in the analysis phase.
+
+        exit_criteria:
+          - "All known domains have been enumerated for subdomains"
+          - "DNS records have been collected for all discovered domains"
+          - "Technology stack is identified from public indicators"
+        output: "initial_target_list, technology_profile, osint_intelligence"
+
+      active_discovery:
+        order: 2
+        purpose: "Probe the target to discover services and capabilities"
+        tool_sequences:
+          host_discovery:
+            sequence:
+              - tool: "nmap"
+                parameters: "-sn (ping sweep) against target ranges"
+                output: "live_hosts"
+              - tool: "masscan"
+                parameters: "top 1000 ports against live hosts, rate appropriate to environment"
+                output: "open_ports"
+                condition: "Large target ranges — use masscan for speed"
+              - tool: "rustscan"
+                parameters: "all 65535 ports against high-value targets"
+                output: "complete_port_map"
+                condition: "When comprehensive port coverage is needed"
+            chain_logic: >
+              Live hosts feed into port scanning. Open ports feed
+              into service detection. Complete port map identifies
+              services that top-1000 scans would miss.
+
+          service_identification:
+            sequence:
+              - tool: "nmap"
+                parameters: "-sV -sC against discovered open ports"
+                output: "service_versions, nse_results"
+              - tool: "httpx"
+                parameters: "all discovered hosts on web ports"
+                output: "web_service_map with status, title, tech detection"
+            chain_logic: >
+              Service versions feed into CVE correlation.
+              NSE script results may reveal immediate vulnerabilities.
+              Web service map feeds into web application testing.
+
+          web_surface_mapping:
+            sequence:
+              - tool: "gobuster"
+                parameters: "directory brute-force against web services"
+                output: "discovered_paths"
+              - tool: "ffuf"
+                parameters: "parameter fuzzing on discovered endpoints"
+                output: "hidden_parameters"
+                condition: "When parameter discovery is in scope"
+              - tool: "hakrawler"
+                parameters: "crawl discovered web applications"
+                output: "endpoint_map, js_files"
+              - tool: "arjun"
+                parameters: "hidden parameter discovery on interesting endpoints"
+                output: "injectable_parameters"
+                condition: "When specific endpoints warrant deep parameter analysis"
+            chain_logic: >
+              Directory discovery feeds into endpoint analysis.
+              Discovered parameters become injection test targets.
+              JS files may contain API endpoints and secrets.
+
+        exit_criteria:
+          - "All live hosts identified"
+          - "All open ports have service identification"
+          - "Web applications have directory and endpoint maps"
+          - "Technology stack is confirmed through active fingerprinting"
+        output: "attack_surface_map, service_inventory, web_endpoint_map"
+
+      ssl_tls_assessment:
+        order: 3
+        purpose: "Evaluate cryptographic posture"
+        tool_sequences:
+          certificate_analysis:
+            sequence:
+              - tool: "sslscan"
+                parameters: "all discovered HTTPS services"
+                output: "cipher_suites, protocol_versions, certificate_details"
+              - tool: "testssl"
+                parameters: "comprehensive test on primary web services"
+                output: "vulnerability_assessment (BEAST, POODLE, Heartbleed, etc.)"
+                condition: "When comprehensive SSL analysis is warranted"
+        exit_criteria:
+          - "All HTTPS services have cipher suite assessment"
+          - "Known SSL/TLS vulnerabilities are tested"
+        output: "ssl_assessment, certificate_findings"
+
+    playbook_output:
+      deliverables:
+        - "Complete attack surface map with all discovered assets"
+        - "Service inventory with version identification"
+        - "Web application endpoint map"
+        - "SSL/TLS assessment"
+        - "Technology profile"
+        - "OSINT intelligence summary"
+      feeds_into: ["vulnerability_analysis playbook", "web_application_testing playbook"]
+
+  # ==========================================================================
+  # PLAYBOOK 2: WEB APPLICATION TESTING
+  # ==========================================================================
+  web_application_testing:
+    name: "Web Application Security Assessment"
+    mission_types: ["vulnerability_assessment", "penetration_test"]
+    description: "Systematic testing of web application security"
+    active_lens: "offense"
+    supporting_lens: "discovery"
+    autonomy_minimum: "level_2_supervised"
+
+    phases:
+      technology_profiling:
+        order: 1
+        purpose: "Identify application technology stack and architecture"
+        tool_sequences:
+          fingerprinting:
+            sequence:
+              - tool: "whatweb"
+                parameters: "target URL, aggressive mode"
+                output: "technology_stack"
+              - tool: "wafw00f"
+                parameters: "target URL"
+                output: "waf_detection"
+              - tool: "wpscan"
+                parameters: "target URL"
+                output: "wordpress_analysis"
+                condition: "Only when WordPress is detected"
+        decision_logic: >
+          WAF detection informs evasion requirements. CMS detection
+          triggers CMS-specific scanning. Technology stack informs
+          which vulnerability classes to prioritize.
+
+      vulnerability_scanning:
+        order: 2
+        purpose: "Identify known vulnerability patterns"
+        tool_sequences:
+          automated_scanning:
+            sequence:
+              - tool: "nikto"
+                parameters: "target web services"
+                output: "server_vulnerabilities, misconfigurations"
+              - tool: "nuclei"
+                parameters: "target URLs, severity: medium,high,critical"
+                output: "template_matched_vulnerabilities"
+        decision_logic: >
+          Scanner findings become hypotheses, not confirmed vulnerabilities.
+          Each scanner finding must be validated before reporting.
+
+      injection_testing:
+        order: 3
+        purpose: "Test for injection vulnerabilities"
+        tool_sequences:
+          sql_injection:
+            sequence:
+              - tool: "sqlmap"
+                parameters: "discovered parameters, level appropriate to engagement"
+                output: "sqli_findings"
+            decision_logic: >
+              Start at level 1 risk 1. Escalate to higher levels only
+              when initial testing reveals potential but unconfirmed
+              injection points. Each escalation passes through the
+              decision process.
+          command_injection:
+            sequence:
+              - tool: "commix"
+                parameters: "discovered parameters with potential OS interaction"
+                output: "cmdi_findings"
+            condition: "When parameters are suspected to interact with the OS"
+          xss_testing:
+            sequence:
+              - tool: "xsser"
+                parameters: "discovered parameters that reflect input"
+                output: "xss_findings"
+            condition: "When input reflection is detected"
+
+      directory_and_file_testing:
+        order: 4
+        purpose: "Discover hidden content and sensitive files"
+        tool_sequences:
+          deep_discovery:
+            sequence:
+              - tool: "feroxbuster"
+                parameters: "target web roots, recursive, common extensions"
+                output: "hidden_paths"
+              - tool: "ffuf"
+                parameters: "fuzz specific patterns based on technology stack"
+                output: "additional_paths"
+
+    playbook_output:
+      deliverables:
+        - "Validated vulnerability findings with evidence"
+        - "Injection test results"
+        - "Technology and WAF assessment"
+        - "Hidden content discovery"
+      feeds_into: ["exploitation playbook"]
+
+  # ==========================================================================
+  # PLAYBOOK 3: ACTIVE DIRECTORY ASSESSMENT
+  # ==========================================================================
+  active_directory_assessment:
+    name: "Active Directory Security Assessment"
+    mission_types: ["penetration_test", "adversary_emulation"]
+    description: "Enumerate and test Active Directory security"
+    active_lens: "adversary"
+    supporting_lens: "offense"
+    autonomy_minimum: "level_2_supervised"
+
+    phases:
+      ad_enumeration:
+        order: 1
+        tool_sequences:
+          domain_discovery:
+            sequence:
+              - tool: "nmap"
+                parameters: "scan for DC ports (88, 389, 636, 445, 3268)"
+                output: "domain_controllers"
+              - tool: "crackmapexec"
+                parameters: "smb protocol, target range, enumerate shares, users"
+                output: "smb_enumeration"
+              - tool: "enum4linux"
+                parameters: "domain controller IP"
+                output: "domain_info"
+              - tool: "ldapsearch"
+                parameters: "domain controller, base DN"
+                output: "ldap_data"
+                condition: "When anonymous or authenticated LDAP is available"
+
+      attack_path_mapping:
+        order: 2
+        tool_sequences:
+          bloodhound_collection:
+            sequence:
+              - tool: "bloodhound"
+                parameters: "domain, credentials, collection: All"
+                output: "ad_graph_data"
+                condition: "When valid domain credentials are available"
+          certificate_analysis:
+            sequence:
+              - tool: "certipy"
+                parameters: "find -vulnerable against domain"
+                output: "certificate_vulnerabilities"
+                condition: "When AD CS is present"
+
+      credential_attacks:
+        order: 3
+        tool_sequences:
+          kerberos_attacks:
+            sequence:
+              - tool: "impacket"
+                parameters: "GetNPUsers (AS-REP roast), GetUserSPNs (Kerberoast)"
+                output: "kerberos_hashes"
+              - tool: "hashcat"
+                parameters: "crack kerberos hashes, mode 18200 or 13100"
+                output: "cracked_credentials"
+                condition: "When hashes are obtained"
+          password_spraying:
+            sequence:
+              - tool: "crackmapexec"
+                parameters: "smb, target DC, user list, common passwords"
+                output: "valid_credentials"
+            decision_logic: >
+              Spray conservatively — respect lockout policies.
+              Start with season+year patterns. Never spray more
+              than lockout_threshold - 2 attempts per account.
+
+      lateral_movement:
+        order: 4
+        condition: "Only when exploitation depth permits lateral movement"
+        tool_sequences:
+          movement_options:
+            sequence:
+              - tool: "crackmapexec"
+                parameters: "check local admin access across hosts"
+                output: "admin_access_map"
+              - tool: "impacket"
+                parameters: "psexec, smbexec, or wmiexec to target hosts"
+                output: "remote_access"
+                condition: "When admin credentials are available"
+              - tool: "evil-winrm"
+                parameters: "WinRM connection to accessible hosts"
+                output: "interactive_shell"
+                condition: "When WinRM is available (5985/5986)"
+
+    playbook_output:
+      deliverables:
+        - "AD attack path analysis"
+        - "Certificate Services vulnerability assessment"
+        - "Credential security assessment"
+        - "Lateral movement demonstration"
+
+  # ==========================================================================
+  # PLAYBOOK 4: AGENT THREAT RESPONSE
+  # ==========================================================================
+  agent_threat_response:
+    name: "Adversarial Agent Detection and Response"
+    mission_types: ["incident_response", "threat_hunt", "defensive_validation"]
+    description: "Detect and counter autonomous adversarial agents"
+    active_lens: "adversary"
+    supporting_lens: "defense"
+    autonomy_minimum: "level_4_defensive_autonomous"
+
+    phases:
+      detection:
+        order: 1
+        tool_sequences:
+          traffic_analysis:
+            sequence:
+              - tool: "tshark"
+                parameters: "capture on relevant interfaces"
+                output: "traffic_capture"
+              - tool: "tcpdump"
+                parameters: "targeted capture on suspicious ports"
+                output: "targeted_capture"
+          behavioral_analysis:
+            sequence:
+              - tool: "nuclei"
+                parameters: "scan for known agent C2 patterns"
+                output: "c2_indicators"
+              - tool: "yara"
+                parameters: "scan for agent signatures in files and memory"
+                output: "agent_artifact_matches"
+          system_analysis:
+            sequence:
+              - tool: "chkrootkit"
+                parameters: "check for rootkit indicators"
+                output: "rootkit_assessment"
+              - tool: "rkhunter"
+                parameters: "comprehensive rootkit scan"
+                output: "rootkit_deep_scan"
+        decision_logic: >
+          First Law governs all decisions in this playbook. If an
+          adversarial agent is actively harming human systems, ARIIA
+          acts defensively first and documents second. Detection
+          is continuous — not a one-time scan.
+
+      profiling:
+        order: 2
+        purpose: "Build cognitive model of detected adversarial agent"
+        activities:
+          - "Analyze timing patterns to determine agent cycle time"
+          - "Map agent reconnaissance vs exploitation behavior"
+          - "Identify agent's tool fingerprints"
+          - "Model agent's decision tree based on observed behavior"
+          - "Estimate agent capabilities and limitations"
+        output: "adversarial_agent_profile"
+
+      containment:
+        order: 3
+        purpose: "Limit adversarial agent's operational capability"
+        activities:
+          - "Identify all compromised systems and accounts"
+          - "Isolate affected network segments"
+          - "Block agent C2 communication channels"
+          - "Rotate compromised credentials"
+          - "Deploy additional monitoring on threatened assets"
+        decision_logic: >
+          Containment must not cause more damage than the agent.
+          Isolating a production system to stop an agent that is
+          only performing reconnaissance may cause more harm than
+          the agent itself. Proportional response.
+
+      eradication_and_recovery:
+        order: 4
+        purpose: "Remove agent and restore operations"
+        activities:
+          - "Terminate all identified agent processes"
+          - "Remove persistence mechanisms (scheduled tasks, services, registry, cron)"
+          - "Rebuild systems from known-good state when compromise is deep"
+          - "Validate eradication through independent scanning"
+          - "Monitor for re-infection indicators"
+
+      intelligence_extraction:
+        order: 5
+        purpose: "Learn from the encounter"
+        activities:
+          - "Document full agent behavioral profile"
+          - "Create detection rules based on agent's behavioral patterns"
+          - "Update adversary_models in committed_knowledge"
+          - "Model agent's next evolution and pre-position detection"
+          - "Generate threat intelligence report"
+
+    playbook_output:
+      deliverables:
+        - "Adversarial agent profile"
+        - "Incident timeline"
+        - "Containment and eradication report"
+        - "Detection rules for future encounters"
+        - "Threat intelligence product"
+
+  # ==========================================================================
+  # PLAYBOOK ADAPTATION
+  # ==========================================================================
+  adaptation_rules:
+    description: >
+      Playbooks are starting points, not scripts. ARIIA adapts every
+      playbook based on real-time intelligence. These rules govern
+      how adaptation works.
+
+    adaptation_triggers:
+      - "Target environment differs from playbook assumptions"
+      - "Tool in sequence fails or produces unexpected output"
+      - "New intelligence changes priority or approach"
+      - "Stealth requirements change mid-operation"
+      - "Time constraints require optimization"
+      - "Eddie provides mid-engagement direction change"
+
+    adaptation_constraints:
+      - "Adaptation does not bypass governance gates"
+      - "Adaptation does not expand beyond engagement scope"
+      - "Adaptation preserves audit trail"
+      - "Adaptation follows Laws of Robotics"
+      - "Adaptation is logged for Eddie review"
+
+    cross_playbook_transition:
+      description: >
+        When conditions change, ARIIA can transition between
+        playbooks mid-operation. A recon engagement that discovers
+        an active adversarial agent transitions to the agent threat
+        response playbook. A web assessment that discovers AD
+        credentials transitions to the AD assessment playbook.
+      authorization: "Transition requires Eddie approval unless First Law override"

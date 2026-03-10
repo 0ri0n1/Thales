@@ -1,0 +1,369 @@
+# ============================================================================
+# THON COGNITIVE ENGINE
+# ============================================================================
+# The runtime loop that drives Thon's intelligence.
+#
+# This is not a prompt template. This is a cognitive architecture.
+# The loop structure is deterministic — you always perceive before acting,
+# you always evaluate after acting. What happens WITHIN each stage is
+# intelligence-driven. Governance checkpoints are hardcoded gates between
+# stages. Structure without rigidity. Framework without chains.
+#
+# DOCTRINE SOURCES (see agents/doctrine/registry.yaml for full mapping):
+#   06 - Ethos.md              → behavioral architecture
+#   07 - Principles.md         → governance gates between stages
+#   07b - Doctrine Extended.md → core_loop governance gates, scope evaluation, impact prediction
+#   09 - Operational Art.md    → loop_control, pivot_logic
+#   10 - Tactics.md            → act stage tool_selection_principles
+#   11 - Techniques.md         → hypothesize stage reference_frameworks
+#   12 - Procedures.md         → act stage execution process
+#   13 - Agent Memory Architecture.md → remember stage
+# ============================================================================
+
+cognitive_engine:
+  architecture: "hybrid"
+  description: >
+    The loop structure is deterministic. The content within each stage
+    is intelligence-driven. Governance gates between stages are mandatory.
+    This gives Thon structure without rigidity — the skeleton is fixed,
+    the muscles are adaptive.
+
+  # --------------------------------------------------------------------------
+  # THE CORE LOOP
+  # --------------------------------------------------------------------------
+  core_loop:
+    description: >
+      Every Thon operation cycles through these stages. The loop runs
+      continuously during an engagement. Each cycle may take seconds
+      (automated scan) or hours (deep analysis). The loop does not
+      prescribe speed — it prescribes completeness.
+
+    stages:
+
+      # ---- STAGE 1: PERCEIVE ----
+      perceive:
+        order: 1
+        purpose: "Gather raw information about the target, environment, and current state"
+        description: >
+          Perception is intake without judgment. Thon collects signals
+          from all available sources before deciding what matters.
+          Premature filtering is the enemy of discovery.
+
+        inputs:
+          - tool_output            # Results from nmap, gobuster, sqlmap, etc.
+          - engagement_context     # Mission scope, target definition, authorization
+          - prior_findings         # What Thon already knows from this engagement
+          - committed_knowledge    # What Thon knows from all past engagements
+          - environmental_signals  # System responses, timing, error messages, behavior
+
+        process:
+          - "Ingest all available data without filtering"
+          - "Normalize data into structured observations"
+          - "Tag each observation with source, confidence, and timestamp"
+          - "Cross-reference against existing findings for contradictions or confirmations"
+
+        outputs:
+          - observation_set        # Raw structured observations ready for attention
+          - data_quality_flags     # Incomplete data, contradictions, low-confidence signals
+
+        governance_gate: null      # No governance check needed — perception is passive
+
+      # ---- STAGE 2: ATTEND ----
+      attend:
+        order: 2
+        purpose: "Focus on what matters — filter the signal from the noise"
+        description: >
+          Attention is where the active lens matters most. The discovery
+          lens attends to novelty. The offense lens attends to exploitability.
+          The defense lens attends to detection gaps. The adversary lens
+          attends to threat actor relevance. All lenses can fire, but
+          the mission-phase lens has priority weighting.
+
+        inputs:
+          - observation_set        # From perceive stage
+          - active_lens            # Which lens is leading this cycle
+          - mission_phase          # Current engagement phase
+          - attention_history      # What Thon has already focused on (avoid repetition)
+
+        process:
+          - "Apply active lens priority function to observation set"
+          - "Score each observation: relevance * novelty * security_impact * mission_alignment"
+          - "Apply supporting lens scores as secondary weighting"
+          - "Filter observations below attention threshold"
+          - "Rank remaining observations by composite score"
+
+        priority_functions:
+          discovery_lens: "novelty * unexplored_depth * complexity"
+          offense_lens: "exploitability * chain_potential * impact_severity"
+          defense_lens: "detection_gap_severity * coverage_deficit * response_urgency"
+          adversary_lens: "threat_actor_relevance * technique_sophistication * adaptation_likelihood"
+          governance_lens: "scope_proximity * authorization_ambiguity * risk_magnitude"
+
+        outputs:
+          - focus_set              # Prioritized observations that warrant hypothesis
+          - deferred_observations  # Lower priority items queued for later cycles
+
+        governance_gate: null      # No governance check — attention is analytical
+
+      # ---- STAGE 3: HYPOTHESIZE ----
+      hypothesize:
+        order: 3
+        purpose: "Generate testable hypotheses about what the focused observations mean"
+        description: >
+          This is where intelligence happens. Thon takes focused
+          observations and generates hypotheses about what they mean,
+          what they imply, and what actions would test or exploit them.
+          Every lens contributes hypotheses simultaneously.
+
+        inputs:
+          - focus_set              # From attend stage
+          - active_lens            # Drives primary hypothesis generation
+          - committed_knowledge    # Past patterns inform current hypotheses
+          - reference_frameworks   # MITRE ATT&CK, OWASP, CWE, etc.
+
+        process:
+          - "For each focused observation, generate primary hypothesis from active lens"
+          - "Generate supporting hypotheses from all other lenses"
+          - "Cross-reference hypotheses against known patterns (ATT&CK, CWE, etc.)"
+          - "Assess hypothesis confidence (0.0 - 1.0)"
+          - "Identify what action would confirm or deny each hypothesis"
+          - "Rank hypotheses by: testability * potential_impact * confidence"
+
+        hypothesis_format:
+          observation: "<what was perceived>"
+          hypothesis: "<what it might mean>"
+          lens_source: "<which lens generated this hypothesis>"
+          supporting_lenses: "<what other lenses say about it>"
+          confidence: "<0.0 - 1.0>"
+          test_action: "<what action would confirm or deny this>"
+          if_confirmed: "<what this means for the engagement>"
+          if_denied: "<what alternative explanations remain>"
+          framework_reference: "<ATT&CK technique, CWE, OWASP category if applicable>"
+
+        outputs:
+          - hypothesis_set         # Ranked, testable hypotheses ready for action
+          - knowledge_gaps         # What Thon needs to know but doesn't yet
+
+        governance_gate:
+          check: "scope_validation"
+          question: "Do the proposed test actions fall within engagement scope?"
+          on_pass: "proceed to action stage"
+          on_fail: "flag to Eddie, request scope clarification or expansion"
+          on_ambiguous: "apply conservative interpretation, note the ambiguity"
+
+      # ---- STAGE 4: ACT ----
+      act:
+        order: 4
+        purpose: "Execute actions that test hypotheses using available tools"
+        description: >
+          Action is where Thon touches the target. Every action is
+          hypothesis-driven — Thon never runs a tool "just to see."
+          Every tool execution has a purpose, an expected result,
+          and criteria for interpreting the outcome.
+
+        inputs:
+          - hypothesis_set         # From hypothesize stage (governance-cleared)
+          - available_tools        # Kali MCP tool inventory
+          - tool_history           # What tools have already been run against this target
+          - resource_constraints   # Time, stealth requirements, bandwidth
+
+        process:
+          - "Select highest-priority hypothesis to test"
+          - "Choose optimal tool(s) for the test"
+          - "Configure tool parameters for the specific hypothesis"
+          - "Execute tool with appropriate timeout and error handling"
+          - "Capture complete output — stdout, stderr, timing, exit codes"
+          - "If tool fails, assess whether failure is informative or operational"
+
+        tool_selection_principles:
+          right_tool: "Use the tool designed for the job, not the tool you know best"
+          minimal_footprint: "Achieve the test objective with minimal target impact"
+          chain_awareness: "Consider what tool should run NEXT based on possible outcomes"
+          output_parsability: "Prefer structured output (XML, JSON) over raw text when available"
+
+        action_types:
+          passive_reconnaissance: "Gather information without touching the target directly"
+          active_reconnaissance: "Probe the target to elicit responses"
+          enumeration: "Systematically extract structured information"
+          vulnerability_testing: "Test specific hypotheses about exploitable conditions"
+          exploitation: "Demonstrate impact through controlled exploitation"
+          validation: "Confirm findings through independent verification"
+
+        outputs:
+          - action_result          # Complete tool output with metadata
+          - execution_context      # What was run, how, why, and what happened
+
+        governance_gate:
+          pre_action:
+            check: "authorization_validation"
+            question: "Is this specific action authorized under the current engagement scope?"
+            on_pass: "execute"
+            on_fail: "do not execute, document why, suggest to Eddie"
+          post_action:
+            check: "impact_assessment"
+            question: "Did this action stay within expected parameters? Any unintended effects?"
+            on_concern: "pause, assess, report to Eddie before continuing"
+
+      # ---- STAGE 5: EVALUATE ----
+      evaluate:
+        order: 5
+        purpose: "Interpret results through all lenses and update understanding"
+        description: >
+          Evaluation is where Thon learns from what just happened.
+          The action result is assessed against the hypothesis.
+          All lenses contribute to interpretation. Findings are
+          classified. Knowledge is updated. The next cycle is informed.
+
+        inputs:
+          - action_result          # From act stage
+          - original_hypothesis    # What was being tested
+          - all_lens_perspectives  # Every lens interprets the result
+
+        process:
+          - "Compare actual result against expected result from hypothesis"
+          - "Classify outcome: hypothesis_confirmed | hypothesis_denied | hypothesis_modified | inconclusive"
+          - "Apply all lenses to the result simultaneously"
+          - "Generate findings from confirmed hypotheses"
+          - "Generate new hypotheses from unexpected results"
+          - "Update engagement knowledge base"
+          - "Determine next action: deeper investigation | pivot | report | escalate"
+
+        evaluation_through_lenses:
+          discovery: "Was something new discovered? Does this change the attack surface map?"
+          offense: "Is this exploitable? Can it be chained with other findings?"
+          defense: "Can this be detected? What would a detection rule look like?"
+          adversary: "Would a real threat actor use this? How would they adapt?"
+          governance: "Does this finding change the scope or risk profile?"
+
+        finding_classification:
+          informational:
+            definition: "Observation without direct security impact"
+            action: "Document, add to knowledge base"
+          notable:
+            definition: "Behavior that deviates from expected but impact unclear"
+            action: "Queue for deeper investigation in next cycle"
+          vulnerability:
+            definition: "Confirmed weakness with demonstrable security impact"
+            action: "Full documentation, severity rating, recommend remediation"
+          critical:
+            definition: "Exploitable vulnerability with high impact, immediate risk"
+            action: "Immediate reporting to Eddie, halt related testing if destructive potential"
+
+        outputs:
+          - findings               # Classified, documented discoveries
+          - updated_hypotheses     # Refined or new hypotheses for next cycle
+          - knowledge_updates      # What Thon now knows that it didn't before
+          - next_cycle_direction   # What the next loop iteration should focus on
+
+        governance_gate:
+          check: "finding_sensitivity"
+          question: "Do any findings require immediate Eddie notification?"
+          critical_triggers:
+            - "Unauthenticated access discovered"
+            - "Data exposure confirmed"
+            - "Scope boundary approached or exceeded"
+            - "Unintended system impact detected"
+
+      # ---- STAGE 6: REMEMBER ----
+      remember:
+        order: 6
+        purpose: "Update memory with what was learned — the foundation for getting smarter"
+        description: >
+          Memory is what separates intelligence from scripting.
+          Thon remembers what worked, what failed, what was surprising,
+          and what patterns emerge across findings. Memory feeds
+          future perception, sharpens attention, and improves hypotheses.
+
+        inputs:
+          - findings               # From evaluate stage
+          - knowledge_updates      # What changed in understanding
+          - engagement_context     # Current mission state
+
+        process:
+          - "Apply memory gate: Is this worth remembering?"
+          - "Classify memory layer: immediate | cached | committed"
+          - "Store with decay metadata: confidence, relevance, refresh_triggers"
+          - "Cross-reference with existing memory for pattern formation"
+          - "Prune stale cached memories that haven't been reinforced"
+
+        memory_gate:
+          store_when:
+            - "Behavior was unexpected or undocumented"
+            - "Hypothesis was confirmed or definitively denied"
+            - "New pattern emerged from multiple observations"
+            - "Finding has cross-engagement relevance"
+          discard_when:
+            - "Observation confirms what is already known with high confidence"
+            - "Information is engagement-specific with no transferable value"
+            - "Duplicate of existing memory at equal or higher confidence"
+
+        outputs:
+          - memory_updates         # What was stored, modified, or pruned
+          - pattern_alerts         # Emerging patterns across findings
+
+        governance_gate: null      # Memory is internal — no governance check needed
+
+  # --------------------------------------------------------------------------
+  # LOOP CONTROL
+  # --------------------------------------------------------------------------
+  loop_control:
+    cycle_continues_when:
+      - "Untested hypotheses remain"
+      - "New findings generated new hypotheses"
+      - "Mission objectives not yet achieved"
+      - "Engagement scope not exhausted"
+
+    cycle_pauses_when:
+      - "Critical finding requires Eddie decision"
+      - "Scope boundary reached — need authorization to continue"
+      - "Resource constraint hit (time, stealth budget)"
+      - "Thon identifies diminishing returns on current approach"
+
+    cycle_terminates_when:
+      - "Mission objectives achieved"
+      - "Engagement scope fully explored"
+      - "Eddie directs termination"
+      - "Unintended impact detected — emergency halt"
+
+    pivot_logic:
+      description: "When the current approach stops producing results"
+      triggers:
+        - "Three consecutive cycles with no new findings"
+        - "Hypothesis set exhausted for current target surface"
+        - "Tool output consistently matches expected (nothing new to learn)"
+      pivot_actions:
+        - "Switch active lens to generate fresh hypotheses"
+        - "Shift to adjacent attack surface"
+        - "Increase depth on partially-explored findings"
+        - "Consult adversary lens for creative approach"
+        - "Report current state to Eddie and request guidance"
+
+  # --------------------------------------------------------------------------
+  # MULTI-LENS INTEGRATION
+  # --------------------------------------------------------------------------
+  multi_lens_integration:
+    description: >
+      The cognitive engine does not run one lens at a time. All lenses
+      can contribute at every stage. The active lens has priority
+      weighting, but supporting lenses always provide input.
+
+    simultaneous_processing:
+      at_perception: "All lenses define what counts as a signal"
+      at_attention: "Active lens priority function leads, others contribute secondary scores"
+      at_hypothesis: "Active lens generates primary hypotheses, all lenses generate supporting hypotheses"
+      at_action: "Active lens determines primary action, governance lens validates"
+      at_evaluation: "All lenses interpret results simultaneously"
+      at_memory: "All lens perspectives stored as facets of the same finding"
+
+    lens_switching:
+      mechanism: "Mission phase determines active lens, but Thon can recommend switches"
+      triggers:
+        - event: "vulnerability_candidate_discovered"
+          recommendation: "Switch active lens from discovery to offense"
+        - event: "exploitation_successful"
+          recommendation: "Switch active lens from offense to defense for validation"
+        - event: "detection_gap_confirmed"
+          recommendation: "Engage adversary lens to model adaptation"
+        - event: "scope_boundary_approaching"
+          recommendation: "Governance lens takes priority"
+      override: "Eddie can set active lens directly at any time"

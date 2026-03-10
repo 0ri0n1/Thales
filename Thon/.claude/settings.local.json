@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wsl bash -c 'ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 root@172.16.42.1 \"\"uname -a; cat /etc/turtle/HOSTNAME 2>/dev/null; cat /etc/turtle/VERSION 2>/dev/null; echo ---MODULES---; ls /etc/turtle/modules/ 2>/dev/null; echo ---NETWORK---; ifconfig 2>/dev/null || ip addr; echo ---UPTIME---; uptime\"\"')",
+      "mcp__kali-mcp__kali_nmap",
+      "mcp__kali-mcp__kali_shell",
+      "mcp__kali-mcp__kali_pineapple_status",
+      "mcp__kali-mcp__kali_pineapple_shell",
+      "WebFetch(domain:github.com)",
+      "Bash(wsl bash -c 'docker exec kali-mcp-pentest bash -c \"\"sshpass -p Mousepad7 ssh -o StrictHostKeyChecking=no root@172.16.42.1 \\\\\"\"uptime; echo ===DAEMON===; netstat -tlnp 2>/dev/null | grep 1471; echo ===IFACES===; ip -br link show; echo ===IPS===; ip -br addr show; echo ===STORAGE===; df -h /; echo ===MONITOR===; iw dev 2>/dev/null | grep -E 'Interface)",
+      "Bash(type'\\\\\"\"\"\"')",
+      "Bash(grep -l \"reaver\\\\|pixie\\\\|WPS\" \"C:\\\\Users\\\\Dallas\\\\.claude\\\\skills\"/*/*.md)"
+    ]
+  }
+}

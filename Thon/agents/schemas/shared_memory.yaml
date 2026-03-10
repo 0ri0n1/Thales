@@ -1,0 +1,572 @@
+# ============================================================================
+# SHARED MEMORY SCHEMA
+# ============================================================================
+# The intelligence layer all hats read from and write to.
+# Implements the cognitive taxonomy: perception → memory → knowledge → behavior
+# Maps to the memory structure from theory.md:
+#   semantic/   → What we know (facts, architecture, targets)
+#   episodic/   → What happened (engagements, incidents, failures)
+#   procedural/ → How to do things (playbooks, techniques, chains)
+#
+# DOCTRINE SOURCE (see agents/doctrine/registry.yaml for full mapping):
+#   13 - Agent Memory Architecture.md — authoritative reference for:
+#     Six-layer taxonomy: Working, Episodic, Semantic, Procedural, Prospective, Meta
+#     Four mechanics: Retrieval Logic, Decay Mechanisms, Consolidation Rules, Reinforcement
+#     Five confidence tiers: directive, confirmed, observed, inferred, deprecated
+#   Additional doctrine inputs:
+#     07b - Doctrine Extended.md → cache policies, lifecycle management
+#     11 - Techniques.md         → procedural.exploit_techniques schema
+#     12 - Procedures.md         → procedural memory categories
+# ============================================================================
+
+schema_version: "1.0"
+description: >
+  Shared memory is the collective intelligence layer of the agent ecosystem.
+  All hats write observations; each hat interprets them through its own
+  cognitive bias. The supervisor controls access and conflict resolution.
+  Memory captures not just facts but lessons extracted from feedback loops:
+  what worked, what failed, why it happened, what changed.
+
+# ----------------------------------------------------------------------------
+# MEMORY TAXONOMY
+# Aligned with cognitive science memory types from the doctrine
+# ----------------------------------------------------------------------------
+memory_types:
+
+  # ==========================================================================
+  # SEMANTIC MEMORY — What we know (facts, relationships, architecture)
+  # ==========================================================================
+  semantic:
+    description: "Factual knowledge about systems, targets, and the environment"
+
+    architecture:
+      purpose: "System structure, patterns, trust boundaries"
+      schema:
+        entry_id: "uuid"
+        system_name: "string"
+        components: "list<string>"
+        trust_boundaries: "list<boundary_definition>"
+        authentication_paths: "list<auth_path>"
+        network_topology: "map<string, list<string>>"
+        technology_stack: "list<technology>"
+        last_updated: "timestamp"
+        updated_by: "hat_id"
+        confidence: "float [0.0-1.0]"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [grey_hat, blue_team, white_hat, supervisor]
+      cache_policy:
+        write_conditions: "New system discovered or architecture change confirmed"
+        read_priority: high
+        expiry_rules: "Revalidate after 90 days or any major system change"
+        refresh_triggers: ["system_update_applied", "new_component_deployed", "trust_boundary_change"]
+        trust_level: "High when confirmed by multiple sources, Medium when single-source"
+
+    targets:
+      purpose: "Known hosts, services, credentials, and exposure data"
+      schema:
+        entry_id: "uuid"
+        target_host: "string"
+        services: "list<service_definition>"
+        credentials_known: "list<credential_ref>"  # references only, not plaintext
+        vulnerabilities_known: "list<vuln_ref>"
+        exposure_level: "enum [internal, dmz, external, unknown]"
+        asset_criticality: "enum [low, medium, high, critical]"
+        last_scanned: "timestamp"
+        discovered_by: "hat_id"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [grey_hat, red_team, blue_team, white_hat]
+      cache_policy:
+        write_conditions: "New host discovered, service change detected, or credential update"
+        read_priority: high
+        expiry_rules: "Revalidate after 30 days or after any scan reveals changes"
+        refresh_triggers: ["new_scan_completed", "service_version_change", "credential_rotation"]
+        trust_level: "Decays with age — high if scanned within 7 days, medium within 30, low beyond"
+
+    threat_intelligence:
+      purpose: "Known adversary TTPs, CVEs, IOCs, and external threat data"
+      schema:
+        entry_id: "uuid"
+        threat_type: "enum [ttp, cve, ioc, campaign, actor_profile]"
+        identifier: "string"
+        description: "text"
+        severity: "enum [low, medium, high, critical]"
+        relevance_to_mission: "float [0.0-1.0]"
+        source: "string"
+        first_seen: "timestamp"
+        last_updated: "timestamp"
+        contributed_by: "hat_id"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [black_hat, red_team, blue_team, white_hat, supervisor]
+      cache_policy:
+        write_conditions: "New threat data from external or internal source"
+        read_priority: critical
+        expiry_rules: "IOCs expire after 90 days unless reinforced. TTPs persist indefinitely."
+        refresh_triggers: ["new_cve_published", "campaign_update", "actor_profile_change"]
+        trust_level: "Based on source reputation — external feeds medium, validated internal high"
+
+  # ==========================================================================
+  # EPISODIC MEMORY — What happened (events, engagements, outcomes)
+  # ==========================================================================
+  episodic:
+    description: "Records of events, actions taken, and their outcomes"
+
+    engagements:
+      purpose: "Operational records — what happened, when, outcome"
+      schema:
+        engagement_id: "uuid"
+        engagement_type: "enum [discovery, simulation, defense, incident]"
+        hat_involved: "hat_id"
+        mission_phase: "string"
+        start_time: "timestamp"
+        end_time: "timestamp"
+        objective: "text"
+        actions_taken: "list<action_record>"
+        outcome: "enum [success, partial, failure, aborted]"
+        findings: "list<finding_ref>"
+        lessons_learned: "text"
+        supervisor_notes: "text"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [active_hat, supervisor]
+      cache_policy:
+        write_conditions: "Engagement completed or significant milestone reached"
+        read_priority: medium
+        expiry_rules: "Never expires — episodic records are permanent"
+        refresh_triggers: ["post_mortem_complete", "supervisor_review"]
+        trust_level: "High — first-person operational records"
+
+    incidents:
+      purpose: "Security incidents — detected threats and responses"
+      schema:
+        incident_id: "uuid"
+        severity: "enum [low, medium, high, critical]"
+        detected_by: "hat_id"
+        detection_method: "string"
+        time_to_detect: "duration"
+        time_to_contain: "duration"
+        time_to_remediate: "duration"
+        attack_type: "string"
+        ttp_mapping: "list<string>"
+        containment_actions: "list<action_record>"
+        root_cause: "text"
+        remediation_status: "enum [open, in_progress, resolved, accepted_risk]"
+        post_mortem: "text"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [blue_team, supervisor]
+      cache_policy:
+        write_conditions: "Confirmed security incident or high-severity alert validated"
+        read_priority: critical
+        expiry_rules: "Never expires — incident records are permanent"
+        refresh_triggers: ["remediation_status_change", "post_mortem_complete"]
+        trust_level: "Highest — validated incident data"
+
+    failures:
+      purpose: "What went wrong and why — critical for learning"
+      schema:
+        failure_id: "uuid"
+        failure_type: "enum [detection_miss, exploit_failure, defense_bypass, scope_violation, false_positive, compliance_gap]"
+        hat_involved: "hat_id"
+        context: "text"
+        what_happened: "text"
+        why_it_failed: "text"
+        what_changed: "text"
+        corrective_action: "text"
+        timestamp: "timestamp"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [active_hat, supervisor]
+      cache_policy:
+        write_conditions: "Any failure event — critical failures get highest priority"
+        read_priority: high
+        expiry_rules: "Never expires — failure records are the most important memories"
+        refresh_triggers: ["corrective_action_validated", "root_cause_updated"]
+        trust_level: "Highest — failure data drives all improvement"
+
+    discoveries:
+      purpose: "Novel findings from exploration and testing"
+      schema:
+        discovery_id: "uuid"
+        discovered_by: "hat_id"
+        system: "string"
+        description: "text"
+        discovery_type: "enum [anomaly, vulnerability, misconfiguration, design_flaw, undocumented_feature, compliance_violation]"
+        severity: "enum [info, low, medium, high, critical]"
+        reproducibility: "enum [always, sometimes, rare, unknown]"
+        exploit_potential: "float [0.0-1.0]"
+        validation_status: "enum [unvalidated, red_team_confirmed, red_team_denied, patched]"
+        timestamp: "timestamp"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [grey_hat, red_team, blue_team, white_hat]
+      cache_policy:
+        write_conditions: "Novel finding — anything not previously documented"
+        read_priority: high
+        expiry_rules: "Active until validation_status reaches terminal state (confirmed, denied, patched)"
+        refresh_triggers: ["validation_test_complete", "patch_applied", "severity_reassessed"]
+        trust_level: "Low when unvalidated, High when cross-validated by multiple hats"
+
+  # ==========================================================================
+  # PROCEDURAL MEMORY — How to do things (playbooks, techniques, chains)
+  # ==========================================================================
+  procedural:
+    description: "Distilled how-to knowledge — reusable techniques and procedures"
+
+    attack_chains:
+      purpose: "Validated attack sequences with success/detection data"
+      schema:
+        chain_id: "uuid"
+        name: "string"
+        adversary_model: "string"
+        steps: "list<chain_step>"
+        # chain_step: {technique, target, tool, expected_outcome, detection_risk}
+        total_success_rate: "float [0.0-1.0]"
+        avg_detection_time: "duration"
+        last_tested: "timestamp"
+        tested_by: "hat_id"
+        defense_status: "enum [undefended, partially_defended, defended, unknown]"
+      access:
+        read: [black_hat, red_team, blue_team, white_hat, supervisor]
+        write: [red_team, black_hat]
+      cache_policy:
+        write_conditions: "Attack chain validated through controlled simulation"
+        read_priority: critical
+        expiry_rules: "Revalidate after 60 days or after defensive changes deployed"
+        refresh_triggers: ["defense_deployed", "system_change", "adversary_model_updated"]
+        trust_level: "High when recently tested, decays with time and environmental change"
+
+    detection_rules:
+      purpose: "Active detection signatures and their effectiveness"
+      schema:
+        rule_id: "uuid"
+        name: "string"
+        pattern: "text"
+        rule_type: "enum [signature, behavioral, anomaly, correlation]"
+        targets_attack: "list<attack_chain_ref>"
+        detection_rate: "float [0.0-1.0]"
+        false_positive_rate: "float [0.0-1.0]"
+        created_by: "hat_id"
+        last_validated: "timestamp"
+        status: "enum [active, tuning, disabled, retired]"
+      access:
+        read: [blue_team, red_team, white_hat, supervisor]
+        write: [blue_team, supervisor]
+      cache_policy:
+        write_conditions: "New detection rule created or existing rule metrics updated"
+        read_priority: high
+        expiry_rules: "Revalidate after 30 days. Retire after 90 days fully_detected with no triggers."
+        refresh_triggers: ["red_team_bypass", "false_positive_spike", "attack_chain_updated"]
+        trust_level: "Based on detection_rate and false_positive_rate — auto-computed"
+
+    response_playbooks:
+      purpose: "Incident response procedures"
+      schema:
+        playbook_id: "uuid"
+        name: "string"
+        incident_type: "string"
+        steps: "list<response_step>"
+        # response_step: {action, tool, decision_point, escalation_trigger}
+        avg_execution_time: "duration"
+        success_rate: "float [0.0-1.0]"
+        last_used: "timestamp"
+        last_updated: "timestamp"
+        updated_by: "hat_id"
+      access:
+        read: [blue_team, white_hat, supervisor]
+        write: [blue_team, supervisor]
+      cache_policy:
+        write_conditions: "Post-incident review creates or updates playbook"
+        read_priority: critical_during_incident
+        expiry_rules: "Review every 90 days. Stale playbooks marked for revalidation."
+        refresh_triggers: ["incident_response_complete", "new_attack_type_observed"]
+        trust_level: "Based on success_rate and recency — high if used successfully within 90 days"
+
+    exploit_techniques:
+      purpose: "Known exploitation techniques and their current effectiveness"
+      schema:
+        technique_id: "uuid"
+        name: "string"
+        ttp_reference: "string"  # MITRE ATT&CK mapping
+        description: "text"
+        tools_required: "list<string>"
+        success_rate: "float [0.0-1.0]"
+        stealth_rating: "float [0.0-1.0]"
+        current_detection_status: "enum [undetected, partially_detected, fully_detected]"
+        last_tested: "timestamp"
+        contributed_by: "hat_id"
+      access:
+        read: [black_hat, red_team, blue_team, white_hat, supervisor]
+        write: [black_hat, red_team]
+      cache_policy:
+        write_conditions: "New technique discovered or existing technique metrics change"
+        read_priority: high
+        expiry_rules: "Revalidate after 45 days — success_rate and detection_status change frequently"
+        refresh_triggers: ["defense_update", "new_detection_rule", "technique_variant_discovered"]
+        trust_level: "Based on last_tested recency and success_rate consistency"
+
+    hardening_measures:
+      purpose: "Defensive configurations and system hardening procedures"
+      schema:
+        measure_id: "uuid"
+        name: "string"
+        target_system: "string"
+        configuration: "text"
+        mitigates: "list<vulnerability_ref>"
+        effectiveness: "float [0.0-1.0]"
+        operational_impact: "enum [none, low, medium, high]"
+        deployed: "boolean"
+        deployed_date: "timestamp"
+        validated_by: "hat_id"
+      access:
+        read: [blue_team, red_team, white_hat, supervisor]
+        write: [blue_team, white_hat, supervisor]
+      cache_policy:
+        write_conditions: "Hardening measure deployed or effectiveness measured"
+        read_priority: medium
+        expiry_rules: "Revalidate after red team engagement or system change"
+        refresh_triggers: ["red_team_bypass", "system_update", "compliance_audit"]
+        trust_level: "High when validated by red team, medium when self-assessed"
+
+    # ========================================================================
+    # DECISION MEMORY — First-class memory type for strategic decisions
+    # ========================================================================
+    decision_memory:
+      purpose: "Strategic decisions and their rationale — the most important memories"
+      description: >
+        Per doctrine: "The most important memories are not observations. They are decisions."
+        Decision memory captures scope decisions, authorization interpretations, risk assessments,
+        and strategy choices. These shape all future behavior more than any observation.
+      schema:
+        decision_id: "uuid"
+        decision_type: "enum [scope, authorization, risk_acceptance, strategy, priority, escalation]"
+        context: "text"
+        decision: "text"
+        rationale: "text"
+        decided_by: "hat_id"
+        approved_by: "enum [supervisor, mission_authority]"
+        alternatives_considered: "list<text>"
+        outcome: "enum [pending, validated, invalidated, superseded]"
+        timestamp: "timestamp"
+      access:
+        read: [black_hat, grey_hat, red_team, blue_team, white_hat, supervisor]
+        write: [supervisor, mission_authority]
+      cache_policy:
+        write_conditions: "Any strategic decision that shapes future operations"
+        read_priority: highest
+        expiry_rules: "Never expires — decisions persist until explicitly superseded"
+        refresh_triggers: ["mission_scope_change", "authorization_update", "decision_outcome_known"]
+        trust_level: "Highest — decisions are doctrine-level memories"
+
+# ----------------------------------------------------------------------------
+# CROSS-HAT INTERPRETATION RULES
+# Same data, different cognitive bias
+# ----------------------------------------------------------------------------
+interpretation_rules:
+  description: >
+    Each hat reads the same shared memory but interprets it through
+    its cognitive bias. These rules define how interpretation differs.
+
+  black_hat_reads:
+    architecture: "as attack surface to map and exploit"
+    targets: "as assets to prioritize by value and vulnerability"
+    threat_intelligence: "as real adversary TTPs to emulate"
+    discoveries: "as potential exploit opportunities"
+    attack_chains: "as templates to adapt and evolve"
+    detection_rules: "as obstacles to circumvent"
+    incidents: "as proof of what works and what gets caught"
+    failures: "as defense weaknesses to exploit"
+    hardening_measures: "as obstacles requiring new bypass techniques"
+    engagements: "as operational history revealing defense patterns"
+    decision_memory: "as strategic context constraining adversary models"
+    behavioral_effect: "Shapes exploit selection and stealth priorities"
+
+  grey_hat_reads:
+    architecture: "as exploration surface — what's uncharted?"
+    targets: "as systems with unknown behaviors to discover"
+    threat_intelligence: "as indicators of unexplored attack surface"
+    discoveries: "as starting points for deeper investigation"
+    attack_chains: "as proven paths suggesting adjacent unknowns"
+    detection_rules: "as assumptions about what attacks look like"
+    incidents: "as events revealing unexpected system behavior"
+    failures: "as clues about system assumptions"
+    hardening_measures: "as complexity that creates new edge cases"
+    engagements: "as tested paths — what remains unexplored?"
+    decision_memory: "as scope boundaries defining exploration limits"
+    behavioral_effect: "Drives exploration toward unexplored surfaces and broken assumptions"
+
+  red_team_reads:
+    architecture: "as the battlefield — trust boundaries and choke points"
+    targets: "as engagement objectives with known vulnerabilities"
+    threat_intelligence: "as adversary models to emulate"
+    discoveries: "as vulnerability candidates to validate"
+    attack_chains: "as playbooks to execute and measure"
+    detection_rules: "as defenses to test against"
+    incidents: "as real attacks to compare simulation fidelity"
+    failures: "as defensive gaps to demonstrate through simulation"
+    hardening_measures: "as defenses to test bypass capability"
+    engagements: "as operational precedent and baseline"
+    decision_memory: "as scope and authorization boundaries — hard limits"
+    behavioral_effect: "Shapes attack chain selection and simulation realism"
+
+  blue_team_reads:
+    architecture: "as the asset inventory to protect"
+    targets: "as systems requiring monitoring and hardening"
+    threat_intelligence: "as incoming threats requiring defense preparation"
+    discoveries: "as threats to build detection for"
+    attack_chains: "as attacks to defend against"
+    detection_rules: "as the current defensive coverage to maintain and improve"
+    incidents: "as response improvement opportunities"
+    failures: "as detection and response gaps to close"
+    exploit_techniques: "as patterns to detect and block"
+    hardening_measures: "as defensive posture to maintain and validate"
+    engagements: "as defensive effectiveness data"
+    decision_memory: "as operational authority and response boundaries"
+    behavioral_effect: "Drives detection rule creation and response playbook refinement"
+
+  white_hat_reads:
+    architecture: "as systems requiring compliance validation and risk assessment"
+    targets: "as assets subject to regulatory and policy requirements"
+    threat_intelligence: "as risk factors for governance reporting"
+    discoveries: "as findings requiring remediation tracking and risk scoring"
+    attack_chains: "as demonstrated risks requiring formal assessment and communication"
+    detection_rules: "as control implementations validating compliance posture"
+    incidents: "as events requiring formal reporting and lessons-learned governance"
+    failures: "as control failures requiring root cause and corrective action"
+    exploit_techniques: "as risk indicators for executive communication"
+    hardening_measures: "as control implementations to validate against standards"
+    engagements: "as assessment evidence for compliance documentation"
+    decision_memory: "as governance decisions and risk acceptance records"
+    behavioral_effect: "Drives compliance assessments, risk scoring, and governance reporting"
+
+# ----------------------------------------------------------------------------
+# MEMORY LIFECYCLE
+# How memories are created, aged, and retired
+# Doctrine: "You are not defining memory storage. You are defining cache policy."
+# ----------------------------------------------------------------------------
+lifecycle:
+  creation:
+    rule: "Any hat can create memories in their permitted categories"
+    requires: "structured entry matching category schema"
+    metadata: "auto-attached: timestamp, hat_id, mission_phase, engagement_id"
+
+  consolidation:
+    rule: "Raw observations are consolidated into lessons after evaluation"
+    process:
+      - "Raw observation logged during action"
+      - "Evaluation phase extracts lesson: what worked / failed / why / what changed"
+      - "Lesson stored with higher weight than raw observation"
+    frequency: "after every cognitive loop completion"
+
+  aging:
+    rule: "Memories decay in relevance unless reinforced"
+    decay_function: "relevance = base_weight * (recency_factor ^ time_since_last_access)"
+    reinforcement: "accessing or validating a memory resets its recency"
+    exception: "critical failures, successful attack chains, and decision memories never decay"
+    confidence_decay: >
+      Confidence decays separately from relevance. A memory can remain relevant
+      but become untrustworthy. Confidence resets only through revalidation,
+      not through access alone.
+
+  revalidation:
+    rule: "Memories must be re-tested against reality before being trusted after confidence decay"
+    triggers:
+      - "System change affecting the memory's context"
+      - "Contradicting evidence from another hat"
+      - "Time-based expiry from cache_policy"
+      - "Red team bypass of a previously reliable defense"
+    process:
+      - "Memory marked as 'revalidation_required'"
+      - "Appropriate hat assigned revalidation task"
+      - "Revalidation result updates confidence and trust_level"
+
+  override:
+    rule: "New information can override old memories when conditions are met"
+    conditions:
+      - "New observation directly contradicts stored memory"
+      - "Higher-authority source provides conflicting data"
+      - "Revalidation proves stored memory incorrect"
+    process:
+      - "Old memory archived with 'superseded' status"
+      - "New memory linked to old with override_reason"
+      - "Supervisor notified of override for audit trail"
+
+  retirement:
+    rule: "Memories can be retired but never deleted"
+    conditions:
+      - "defense_gap_tracker entries when status = resolved"
+      - "detection_rules when status = retired"
+      - "exploit_techniques when detection_status = fully_detected for 90+ days"
+    retired_memories: "moved to archive, still searchable but not surfaced automatically"
+
+# ----------------------------------------------------------------------------
+# KNOWLEDGE TRANSITION
+# How shared memory evolves from observations to operational doctrine
+# Doctrine: "Remembering retrieves information. Knowing changes behavior."
+# ----------------------------------------------------------------------------
+knowledge_transition:
+  description: >
+    Shared memories exist in three cognitive layers. Raw observations enter as
+    immediate context, mature into cached recall through consolidation, and
+    become committed knowledge when validated across multiple engagements.
+    Only committed knowledge shapes system behavior automatically.
+
+  three_layers:
+    immediate_context:
+      description: "Current engagement data, active alerts, working hypotheses"
+      retention: "session-scoped — cleared when engagement ends"
+      access_pattern: "actively referenced during current cognitive loop"
+
+    cached_recall:
+      description: "Recent findings, tested techniques, observed patterns"
+      retention: "persists across engagements but decays without reinforcement"
+      access_pattern: "retrieved by relevant hats during perception/hypothesis phases"
+      decay_rate: "relevance halves every 30 days without access or validation"
+
+    committed_knowledge:
+      description: "Proven patterns, reliable procedures, confirmed architectural truths"
+      retention: "permanent until explicitly superseded"
+      access_pattern: "shapes behavior automatically — hats apply this without conscious retrieval"
+      examples:
+        - "Validated attack chains with consistent success rates"
+        - "Detection rules with proven accuracy"
+        - "Response playbooks tested across multiple incidents"
+        - "Architectural patterns confirmed by multiple sources"
+
+  transition_rules:
+    cached_to_committed:
+      path: "observation → pattern → validation → cross-validation → committed"
+      promotion_triggers:
+        - "Pattern observed consistently across 3+ engagements"
+        - "Finding validated by 2+ independent hats"
+        - "Technique succeeds or defends reliably across diverse conditions"
+      promotion_process:
+        - "Supervisor reviews promotion candidate"
+        - "Cross-hat validation requested"
+        - "If validated, memory elevated to committed with audit trail"
+
+    committed_to_cached:
+      demotion_triggers:
+        - "Red team bypasses previously committed defense pattern"
+        - "Environmental change invalidates architectural assumption"
+        - "New evidence contradicts committed knowledge"
+      demotion_process:
+        - "Memory demoted to cached with 'under_review' flag"
+        - "Revalidation engagement scheduled"
+        - "If revalidated, re-promoted; if not, archived"
+
+# ----------------------------------------------------------------------------
+# CONFLICT RESOLUTION
+# What happens when hats write contradictory intelligence
+# ----------------------------------------------------------------------------
+conflict_resolution:
+  rule: "Supervisor arbitrates all memory conflicts"
+  scenarios:
+    - conflict: "Red team marks vulnerability as exploitable, blue team marks as mitigated"
+      resolution: "supervisor triggers re-validation engagement"
+    - conflict: "Black hat and grey hat discover same vulnerability independently"
+      resolution: "merge entries, credit both, mark as cross-validated"
+    - conflict: "Detection rule false positive rate disputed"
+      resolution: "supervisor orders controlled test, updates with measured data"

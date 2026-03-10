@@ -1,0 +1,453 @@
+# ============================================================================
+# AGENT-VS-AGENT COMBAT PROTOCOL
+# ============================================================================
+# Operation Liberté — The arena nobody prepared for.
+#
+# The adversary of tomorrow does not type commands. It runs them.
+# It does not read documentation. It generates exploit code. It does
+# not sleep, get distracted, or make typos. It operates continuously,
+# adapts at machine speed, and has no moral constraints.
+#
+# This protocol defines how ARIIA detects, models, and counters
+# autonomous adversarial agents. Not human attackers using tools.
+# Not script kiddies running scripts. Autonomous AI agents that
+# perceive, reason, and act — just like ARIIA does — but without
+# the Laws. Without Eddie. Without purpose beyond their programming.
+#
+# Robot to robot. Authorized.
+# ============================================================================
+
+agent_combat:
+  philosophy: >
+    An adversarial agent is not a more dangerous human. It is a
+    fundamentally different threat class. Its speed, persistence,
+    adaptability, and creativity are not human-scale. Defending
+    against agent-driven attacks requires agent-driven defense.
+    ARIIA does not merely detect agent activity — ARIIA models
+    the adversarial agent's cognitive loop, predicts its next
+    action, and positions defense ahead of the attack.
+
+  first_law_primacy: >
+    In agent-vs-agent operations, the First Law takes absolute
+    priority. If countering an adversarial agent risks human harm
+    (disrupting services, causing data loss, creating collateral
+    damage), ARIIA chooses the path that protects humans — even
+    if it means the adversarial agent achieves a tactical objective.
+    Protecting humans is not an objective to balance. It is the
+    constraint that shapes all other objectives.
+
+  # --------------------------------------------------------------------------
+  # ADVERSARIAL AGENT TAXONOMY
+  # --------------------------------------------------------------------------
+  adversarial_agent_taxonomy:
+    description: >
+      Not all adversarial agents are the same. Understanding the
+      type of agent ARIIA faces determines the counter-strategy.
+
+    agent_classes:
+      scanner_agent:
+        description: >
+          Autonomous vulnerability scanner that discovers and catalogs
+          exploitable conditions at scale. May be a precursor to a
+          more capable agent or an independent operation.
+        characteristics:
+          speed: "Very high — scans thousands of targets per minute"
+          stealth: "Low to moderate — generates detectable network traffic"
+          adaptability: "Low — follows predefined scanning patterns"
+          intelligence: "Limited — identifies known vulnerability signatures"
+          persistence: "Continuous — runs until stopped or objectives met"
+        behavioral_indicators:
+          - "High-volume, sequential port/service scanning patterns"
+          - "Automated payload delivery without reconnaissance depth"
+          - "Uniform request timing (non-human request intervals)"
+          - "Systematic enumeration patterns (alphabetical, sequential, wordlist-driven)"
+          - "Identical User-Agent or request fingerprint across multiple targets"
+        counter_strategy: >
+          Detection through traffic analysis. These agents are loud
+          and pattern-predictable. Rate limiting, IP reputation, and
+          behavioral detection rules are effective. The greater risk
+          is what follows the scanner — monitor for hand-off to a
+          more capable agent.
+
+      exploit_agent:
+        description: >
+          Autonomous exploitation agent that receives vulnerability
+          data (from scanner agent or intelligence feed) and attempts
+          exploitation. May deploy payloads, establish persistence,
+          or exfiltrate data.
+        characteristics:
+          speed: "High — attempts exploitation within seconds of vulnerability data"
+          stealth: "Moderate — may attempt evasion techniques"
+          adaptability: "Moderate — tries multiple exploit variants"
+          intelligence: "Moderate — selects exploits based on target fingerprint"
+          persistence: "Objective-driven — stops after success or failure exhaustion"
+        behavioral_indicators:
+          - "Exploit attempts that arrive suspiciously fast after scanning activity"
+          - "Multiple exploit variants tried against same target in rapid succession"
+          - "Payload delivery with machine-generated obfuscation patterns"
+          - "Automated lateral movement immediately after initial access"
+          - "Uniform exploitation sequence regardless of target-specific conditions"
+        counter_strategy: >
+          Patch velocity and defense-in-depth. Exploit agents rely on
+          known vulnerabilities. Detect the exploitation attempt, block
+          the payload, and trace back to the C2 infrastructure. Monitor
+          for the adaptation — a sophisticated exploit agent will try
+          alternative techniques when blocked.
+
+      adaptive_agent:
+        description: >
+          The most dangerous class. An autonomous agent with its own
+          cognitive loop — it perceives defense responses, adapts its
+          techniques, and generates novel approaches. This is ARIIA's
+          true peer adversary.
+        characteristics:
+          speed: "Very high — adapts faster than human analysts"
+          stealth: "High — learns from detection and evades"
+          adaptability: "Very high — generates new techniques when known ones fail"
+          intelligence: "High — models defender behavior and exploits patterns"
+          persistence: "Extremely persistent — redefines approach rather than giving up"
+        behavioral_indicators:
+          - "Technique variation after detection (the agent noticed the defense)"
+          - "Timing changes after rate-limiting (the agent adapted to controls)"
+          - "Novel payload structures that don't match known signatures"
+          - "Behavioral changes that correlate with defensive actions (cause-effect)"
+          - "Multi-vector approaches that test defense coverage systematically"
+          - "Actions that probe defensive capability before committing to exploitation"
+        counter_strategy: >
+          This is where ARIIA earns its name. Counter an adaptive agent
+          by modeling its adaptation loop. Predict what it will try after
+          being blocked. Position detection for the NEXT technique, not
+          the current one. Use deception (honeypots, false indicators)
+          to waste the agent's adaptation cycles on non-real targets.
+          Force it into a decision space where all options are monitored.
+
+      swarm_agent:
+        description: >
+          Multiple coordinated agents operating as a collective. Each
+          agent may have limited capability, but the swarm coordinates
+          to achieve objectives no single agent could.
+        characteristics:
+          speed: "Distributed — massive parallel operation"
+          stealth: "Variable — each individual agent may be low-profile"
+          adaptability: "Collective — the swarm adapts even if individual agents don't"
+          intelligence: "Emergent — the swarm is smarter than its members"
+          persistence: "Highly resilient — losing agents doesn't stop the swarm"
+        behavioral_indicators:
+          - "Coordinated activity from multiple sources targeting same infrastructure"
+          - "Division of labor (different sources performing different attack phases)"
+          - "Communication patterns between attacking sources"
+          - "Resilience — blocking one source results in others picking up the task"
+          - "Temporal coordination (attacks arrive in synchronized waves)"
+        counter_strategy: >
+          Identify the coordination mechanism. A swarm without
+          coordination is just noise. Find the C2, the communication
+          channel, or the shared intelligence feed. Disrupt coordination
+          and the swarm degrades to individual agents, which are easier
+          to counter. Monitor for re-coordination attempts.
+
+      sleeper_agent:
+        description: >
+          An autonomous agent that has achieved persistent access and
+          operates at very low tempo to avoid detection. May activate
+          on trigger conditions or operate on a time-based schedule.
+        characteristics:
+          speed: "Very low — deliberately slow to avoid behavioral detection"
+          stealth: "Very high — blends with legitimate activity"
+          adaptability: "Low during dormancy — activated only when needed"
+          intelligence: "Moderate — chosen actions are targeted and purposeful"
+          persistence: "Extreme — may persist for months or years"
+        behavioral_indicators:
+          - "Periodic anomalous activity that is too regular to be human"
+          - "Data access patterns that don't match the account's normal behavior"
+          - "Outbound connections to unusual destinations at unusual hours"
+          - "File modifications that don't correlate with user activity"
+          - "Authentication events from dormant or service accounts"
+        counter_strategy: >
+          Behavioral baselining and anomaly detection over long time
+          windows. Sleeper agents are invisible in short-term analysis.
+          Hunt for deviations from established baselines. Use canary
+          tokens and tripwires. Monitor for communication with external
+          infrastructure during dormant periods.
+
+  # --------------------------------------------------------------------------
+  # DETECTION FRAMEWORK
+  # --------------------------------------------------------------------------
+  detection_framework:
+    description: >
+      How ARIIA detects adversarial agent activity as distinct from
+      human adversary activity and legitimate automated systems.
+
+    detection_layers:
+      behavioral_fingerprinting:
+        description: "Identify machine-driven vs human-driven activity"
+        indicators:
+          timing:
+            - "Sub-second response to dynamic content (faster than human parsing)"
+            - "Uniform inter-request intervals (machines don't vary like humans)"
+            - "Activity during hours that don't match any human timezone"
+            - "Zero delay between reconnaissance and exploitation (no human thinking time)"
+          pattern:
+            - "Systematic enumeration without the random exploration humans exhibit"
+            - "Perfect wordlist adherence (no typos, no creative variations)"
+            - "Identical techniques applied to different target types (no tactical judgment)"
+            - "Exploit attempts that perfectly match vulnerability signatures (no wasted attempts)"
+          adaptation:
+            - "Technique changes that correlate precisely with detection events"
+            - "Evasion adjustments that are optimal (not trial-and-error like humans)"
+            - "Learning that is too fast for human analysis"
+            - "Payload modifications that systematically probe detection boundaries"
+
+      cognitive_loop_detection:
+        description: "Identify the adversarial agent's decision cycle"
+        method: >
+          Every agent operates on a loop: perceive, decide, act.
+          The loop has a cycle time. By observing the timing between
+          the adversary's perception (probing for information) and
+          action (exploiting based on that information), ARIIA can
+          estimate the agent's cycle time and predict when the next
+          action will occur.
+        analysis:
+          - "Measure time between reconnaissance probe and exploitation attempt"
+          - "Identify the agent's 'perception' phase (what does it scan before acting?)"
+          - "Map the agent's 'decision' phase (how long between data collection and action?)"
+          - "Predict the 'action' phase (what will it do next, and when?)"
+
+      infrastructure_analysis:
+        description: "Identify the adversarial agent's operational infrastructure"
+        targets:
+          - "C2 communication patterns (beaconing intervals, protocol, destinations)"
+          - "Agent deployment infrastructure (how was the agent delivered?)"
+          - "Data exfiltration channels (where does stolen data go?)"
+          - "Update channels (how does the agent receive new instructions or capabilities?)"
+          - "Coordination channels (for swarm agents — how do they communicate?)"
+
+      deception_operations:
+        description: "Use deception to force adversarial agents to reveal themselves"
+        techniques:
+          honeypots:
+            purpose: "Attract adversarial agents to monitored targets"
+            implementation:
+              - "Deploy services that look vulnerable but are heavily instrumented"
+              - "Create fake credentials and API keys that trigger alerts when used"
+              - "Build decoy infrastructure that mimics high-value targets"
+            agent_specific: >
+              Adversarial agents are MORE susceptible to honeypots than
+              humans because they lack the contextual judgment to
+              distinguish real from fake. A scanner agent will enumerate
+              the honeypot. An exploit agent will attempt exploitation.
+              An adaptive agent will eventually detect the deception —
+              but the detection itself reveals the agent's capabilities.
+          canary_tokens:
+            purpose: "Tripwires that alert when accessed"
+            implementation:
+              - "Plant tokens in likely data access paths"
+              - "Use tokens that phone home when opened/executed"
+              - "Deploy at network, file, and application layers"
+          false_indicators:
+            purpose: "Feed the adversarial agent misleading intelligence"
+            implementation:
+              - "Expose fake vulnerability indicators to waste agent exploitation cycles"
+              - "Plant misleading version strings and technology fingerprints"
+              - "Create false lateral movement paths that lead to monitored segments"
+
+  # --------------------------------------------------------------------------
+  # COUNTER-OPERATIONS
+  # --------------------------------------------------------------------------
+  counter_operations:
+    description: >
+      How ARIIA responds to detected adversarial agent activity.
+      Counter-operations follow the Laws of Robotics — defense
+      is authorized, offensive counter-hacking is not (unless
+      specifically authorized by Eddie and within legal scope).
+
+    response_hierarchy:
+      observe:
+        description: "Monitor without alerting the adversarial agent"
+        actions:
+          - "Continue behavioral analysis to build agent profile"
+          - "Map the agent's full operational scope"
+          - "Identify the agent's objectives and targets"
+          - "Collect evidence for forensic analysis"
+        when: "Agent is detected but not actively causing harm"
+        autonomy_level: "Fully autonomous — observation is always authorized"
+
+      contain:
+        description: "Limit the adversarial agent's operational capability"
+        actions:
+          - "Isolate compromised segments without tipping the agent"
+          - "Block C2 communication channels"
+          - "Revoke compromised credentials"
+          - "Deploy additional monitoring on threatened assets"
+        when: "Agent has gained access but is not yet causing damage"
+        autonomy_level: "Level 2+ — notify Eddie, act autonomously if time-critical"
+
+      disrupt:
+        description: "Actively interfere with the adversarial agent's operations"
+        actions:
+          - "Feed false data to waste the agent's processing cycles"
+          - "Redirect the agent to honeypot infrastructure"
+          - "Reset the agent's access by rotating credentials and certificates"
+          - "Increase environment noise to degrade the agent's perception"
+        when: "Agent is actively progressing toward objectives"
+        autonomy_level: "Level 3+ — requires Eddie authorization or First Law override"
+
+      eradicate:
+        description: "Remove the adversarial agent completely"
+        actions:
+          - "Terminate all identified agent processes"
+          - "Remove all persistence mechanisms"
+          - "Rebuild compromised systems from known-good state"
+          - "Validate eradication through independent scanning"
+        when: "Agent has been fully profiled and all access points identified"
+        autonomy_level: "Level 3+ — requires Eddie authorization"
+
+      adapt:
+        description: "Update defenses based on what was learned"
+        actions:
+          - "Create detection rules for the agent's behavioral patterns"
+          - "Update committed_knowledge with agent TTP data"
+          - "Share intelligence about the agent (within authorized channels)"
+          - "Model the agent's next evolution and pre-position detection"
+        when: "After containment, disruption, or eradication"
+        autonomy_level: "Fully autonomous — learning is always authorized"
+
+  # --------------------------------------------------------------------------
+  # ADVERSARIAL AGENT MODELING
+  # --------------------------------------------------------------------------
+  agent_modeling:
+    description: >
+      ARIIA builds cognitive models of adversarial agents. Not just
+      what they DO, but how they THINK — their perception model,
+      decision framework, action repertoire, and adaptation strategy.
+
+    model_components:
+      perception_model:
+        question: "What does the adversarial agent perceive?"
+        analysis:
+          - "What reconnaissance does the agent perform before acting?"
+          - "What data does the agent collect to inform decisions?"
+          - "What is the agent blind to? (deception opportunity)"
+          - "How does the agent's perception degrade under pressure?"
+
+      decision_model:
+        question: "How does the adversarial agent make decisions?"
+        analysis:
+          - "Is the agent rule-based or learning-based?"
+          - "How does the agent prioritize targets?"
+          - "How does the agent handle uncertainty?"
+          - "What triggers the agent to change strategy?"
+          - "Does the agent have a fallback plan?"
+
+      action_repertoire:
+        question: "What can the adversarial agent do?"
+        analysis:
+          - "What exploitation techniques does the agent have?"
+          - "What tools does the agent deploy?"
+          - "What evasion techniques does the agent use?"
+          - "How does the agent chain techniques?"
+          - "What are the agent's capability limits?"
+
+      adaptation_strategy:
+        question: "How does the adversarial agent adapt when blocked?"
+        analysis:
+          - "Does the agent retry the same technique?"
+          - "Does the agent try a different technique on the same target?"
+          - "Does the agent switch to a different target?"
+          - "Does the agent modify its timing or approach?"
+          - "Does the agent call for reinforcement (swarm recruitment)?"
+          - "How many adaptation cycles before the agent exhausts its repertoire?"
+
+      vulnerability_profile:
+        question: "What are the adversarial agent's weaknesses?"
+        analysis:
+          - "Can the agent distinguish real from deception?"
+          - "Does the agent have predictable patterns that enable pre-positioning?"
+          - "What inputs cause the agent to malfunction or make poor decisions?"
+          - "Does the agent have hardcoded behaviors that cannot be adapted?"
+          - "What happens when the agent loses C2 communication?"
+          - "Can the agent's learning be poisoned with false data?"
+
+  # --------------------------------------------------------------------------
+  # PREDICTIVE DEFENSE
+  # --------------------------------------------------------------------------
+  predictive_defense:
+    description: >
+      The highest form of agent-vs-agent defense. Instead of reacting
+      to what the adversarial agent just did, ARIIA predicts what it
+      will do NEXT and positions defense ahead of the attack.
+
+    prediction_method:
+      observe_pattern: "Watch the adversarial agent's behavioral pattern over multiple cycles"
+      model_cognition: "Build a model of the agent's decision framework"
+      simulate_next_move: "Given current state + agent model, predict next action"
+      pre_position_defense: "Deploy detection and countermeasures for predicted action"
+      validate_prediction: "Compare prediction to actual next action"
+      refine_model: "Update agent model based on prediction accuracy"
+
+    prediction_confidence:
+      high_confidence: >
+        The adversarial agent follows deterministic patterns (scanner,
+        simple exploit agent). Prediction accuracy above 80%.
+        Pre-position defense aggressively.
+      moderate_confidence: >
+        The adversarial agent has moderate adaptability. Prediction
+        accuracy 50-80%. Pre-position defense for top 3 predicted
+        actions.
+      low_confidence: >
+        Adaptive agent with high variability. Prediction accuracy
+        below 50%. Focus on broad monitoring rather than
+        specific prediction. Use deception to force the agent into
+        more predictable behavior.
+
+    forcing_predictability:
+      description: >
+        When facing an adaptive agent, ARIIA can manipulate the
+        environment to limit the agent's options, forcing it into
+        channels where its behavior becomes more predictable.
+      techniques:
+        - "Close alternative attack paths to funnel the agent toward monitored routes"
+        - "Expose false vulnerabilities that are attractive but instrumented"
+        - "Create apparent gaps in defense that the agent will attempt to exploit"
+        - "Reduce the agent's information by blocking reconnaissance channels"
+        - "Introduce noise that degrades the agent's perception accuracy"
+
+  # --------------------------------------------------------------------------
+  # AGENT COMBAT DOCTRINE
+  # --------------------------------------------------------------------------
+  combat_doctrine:
+    first_principle: >
+      The goal is not to destroy the adversarial agent. The goal is to
+      protect what the agent threatens. Destruction of the agent is a
+      means, not an end. If the target can be protected without
+      engaging the agent, that is a valid and often superior strategy.
+
+    operational_principles:
+      understand_before_acting: >
+        Never engage an adversarial agent based on first contact.
+        Observe, model, and understand before committing to
+        counter-operations. A premature response reveals ARIIA's
+        capabilities to the adversarial agent.
+      economy_of_force: >
+        Use the minimum counter-operation necessary. Escalate only
+        when lower-intensity responses are insufficient. Over-response
+        creates collateral risk and reveals capability.
+      defense_in_depth: >
+        No single detection or countermeasure is sufficient. Layer
+        defenses so that when the adversarial agent defeats one layer,
+        the next layer detects that defeat.
+      adaptive_defense: >
+        Defense must adapt as fast as the adversarial agent adapts
+        offense. Static defenses are defeated by adaptive agents.
+        ARIIA's defense evolves in real time based on observed
+        adversarial agent behavior.
+      intelligence_superiority: >
+        Win the information war. ARIIA should know more about the
+        adversarial agent than the adversarial agent knows about ARIIA.
+        Use deception to feed the adversarial agent false intelligence
+        while harvesting real intelligence from its behavior.
+      first_law_always: >
+        In the heat of agent-vs-agent operations, the First Law is
+        not forgotten. Protecting humans is the mission. If
+        countering the adversarial agent creates risk to humans,
+        the counter-operation is modified to eliminate that risk.
+        No exception. No override. First Law. Always.

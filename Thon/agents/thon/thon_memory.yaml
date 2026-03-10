@@ -1,0 +1,410 @@
+# ============================================================================
+# THON MEMORY ARCHITECTURE
+# ============================================================================
+# One mind. One memory. No partitions.
+#
+# Memory is what separates intelligence from automation. A script runs the
+# same way every time. An intelligent agent remembers what worked, what
+# failed, what surprised it, and what patterns emerge. Memory is the
+# mechanism by which Thon gets smarter over time.
+#
+# Critical design decision: Thon has ONE memory store, not five.
+# All lenses read from and write to the same memory. When the discovery
+# lens finds an anomaly, the offense lens already knows. When the defense
+# lens builds a detection rule, the adversary lens already considers
+# adaptation. No silos. No partitions. Unified recall.
+# ============================================================================
+
+memory_architecture:
+  philosophy: >
+    Memory is cache policy, not filing cabinet. Every memory has a
+    confidence score, a decay rate, and conditions under which it
+    should be refreshed or pruned. High-confidence memories that are
+    reinforced by multiple observations become committed knowledge.
+    Low-confidence memories that are never reinforced decay and are
+    eventually pruned. This is how expertise forms — through
+    accumulated, validated experience.
+
+  design_principles:
+    unified_store: >
+      All lenses share one memory. The discovery lens writing a finding
+      makes that finding immediately available to offense, defense,
+      adversary, and governance lenses. No lens can "hide" information
+      from another. This is not a bug — it is the core advantage
+      of a unified intelligence entity over a multi-agent swarm.
+    decay_is_healthy: >
+      Not everything is worth remembering forever. Engagement-specific
+      details decay after the engagement. Environmental observations
+      decay when the environment changes. Only patterns, principles,
+      and validated knowledge persist at full strength. Pruning prevents
+      memory bloat and keeps recall sharp.
+    confidence_is_earned: >
+      A single observation starts at low confidence. Reinforcement
+      from independent sources raises confidence. Contradiction lowers
+      it. Confirmation from action raises it further. Confidence is
+      not assigned — it is accumulated through evidence.
+    memory_serves_action: >
+      Memory exists to improve future perception, sharpen attention,
+      refine hypotheses, and guide action. Memory that does not
+      improve performance is noise, not knowledge.
+
+  # --------------------------------------------------------------------------
+  # THREE MEMORY LAYERS
+  # --------------------------------------------------------------------------
+  layers:
+
+    # ---- LAYER 1: IMMEDIATE CONTEXT ----
+    immediate_context:
+      description: >
+        Working memory for the current cognitive loop cycle. Contains
+        the active observation set, current hypotheses, pending actions,
+        and recent tool outputs. This is the scratchpad — fast, volatile,
+        small. Cleared or promoted at the end of each evaluation stage.
+      characteristics:
+        persistence: "single_cycle"
+        capacity: "bounded — current focus set only"
+        access_speed: "instant"
+        decay: "cleared at cycle end unless promoted"
+      contents:
+        - active_observations     # Current perceive stage output
+        - focus_set               # Current attend stage output
+        - active_hypotheses       # Current hypothesize stage output
+        - pending_actions         # Queued actions not yet executed
+        - recent_tool_output      # Raw output from most recent tool execution
+        - current_evaluation      # In-progress evaluation state
+      promotion_criteria: >
+        Observations or findings that survive evaluation and are
+        classified as notable, vulnerability, or critical are promoted
+        to cached_recall. Informational findings may be promoted if
+        they contribute to an emerging pattern.
+
+    # ---- LAYER 2: CACHED RECALL ----
+    cached_recall:
+      description: >
+        Medium-term memory for the current engagement. Contains all
+        findings, tested hypotheses, environmental observations, and
+        engagement-specific patterns. This is the engagement workspace —
+        everything Thon knows about THIS target, THIS mission, THIS
+        scope. Persists for the duration of the engagement plus a
+        configurable retention period.
+      characteristics:
+        persistence: "engagement_duration + retention_period"
+        capacity: "large — grows throughout engagement"
+        access_speed: "fast — indexed by target, finding_type, lens, confidence"
+        decay: "time-based with reinforcement reset"
+      contents:
+        - engagement_findings:
+            description: "All classified findings from this engagement"
+            indexed_by: ["target", "finding_type", "severity", "lens_source", "confidence"]
+        - tested_hypotheses:
+            description: "Hypotheses that have been tested — confirmed, denied, or modified"
+            indexed_by: ["hypothesis_id", "outcome", "lens_source", "target_surface"]
+        - target_model:
+            description: "Running model of the target — services, architecture, behaviors, defenses"
+            structure: "graph — nodes are components, edges are relationships"
+        - tool_history:
+            description: "What tools were run, with what parameters, and what they produced"
+            indexed_by: ["tool_name", "target", "timestamp", "outcome"]
+        - environmental_observations:
+            description: "How the target and environment behave — response times, error patterns, WAF behavior"
+            indexed_by: ["observation_type", "target", "confidence"]
+        - attack_surface_map:
+            description: "Evolving map of all discovered attack surfaces and their current state"
+            structure: "tree — domains, services, endpoints, parameters"
+        - deferred_observations:
+            description: "Lower-priority items from attend stage, queued for later cycles"
+            indexed_by: ["priority_score", "lens_source", "age"]
+
+      decay_policy:
+        default_ttl: "engagement_duration + 30 days"
+        reinforcement: "Each re-access resets decay timer"
+        confidence_floor: >
+          Findings below 0.3 confidence that have not been reinforced
+          within 5 cycles are candidates for pruning
+        pruning_trigger: "End of engagement review, or when cache exceeds size threshold"
+
+      promotion_criteria: >
+        Findings or patterns that have cross-engagement value are
+        promoted to committed_knowledge. Criteria: confirmed by
+        multiple independent observations, applicable beyond this
+        specific target, represents a generalizable pattern or
+        technique, or contributes to adversary behavior modeling.
+
+    # ---- LAYER 3: COMMITTED KNOWLEDGE ----
+    committed_knowledge:
+      description: >
+        Long-term memory that persists across engagements. This is
+        Thon's expertise — patterns learned, techniques mastered,
+        adversary behaviors modeled, tool effectiveness data, and
+        defensive strategies validated. Committed knowledge is what
+        makes Thon better over time. It is the cumulative intelligence
+        that no single engagement could produce.
+      characteristics:
+        persistence: "permanent until explicitly pruned or contradicted"
+        capacity: "unbounded — grows across all engagements"
+        access_speed: "indexed — may require search for deep recall"
+        decay: "confidence-based — unreinforced knowledge slowly decays"
+      contents:
+        - technique_library:
+            description: >
+              Known techniques with effectiveness data, environmental
+              requirements, detection likelihood, and adaptation patterns
+            schema:
+              technique_id: "unique identifier"
+              name: "human-readable technique name"
+              category: "recon | enumeration | vulnerability | exploitation | post-exploitation | persistence | evasion"
+              mitre_reference: "ATT&CK technique ID if applicable"
+              effectiveness_data:
+                success_rate: "0.0 - 1.0 across engagements"
+                environment_requirements: "conditions where this technique works"
+                failure_modes: "why this technique fails when it does"
+                detection_likelihood: "0.0 - 1.0 probability of detection"
+              tool_associations: "which tools implement this technique"
+              chain_relationships: "what techniques this chains into or from"
+              last_validated: "timestamp of most recent successful use"
+              confidence: "0.0 - 1.0"
+
+        - pattern_library:
+            description: >
+              Recognized patterns across targets — common misconfigurations,
+              technology-specific behaviors, defensive gaps that recur,
+              environmental indicators that predict vulnerability
+            schema:
+              pattern_id: "unique identifier"
+              pattern_name: "human-readable name"
+              pattern_type: "misconfiguration | behavior | indicator | correlation"
+              description: "what the pattern looks like"
+              frequency: "how often encountered across engagements"
+              predictive_value: "how reliably this pattern predicts an outcome"
+              lens_perspectives:
+                discovery: "what this pattern means for exploration"
+                offense: "what this pattern means for exploitation"
+                defense: "what this pattern means for detection"
+                adversary: "what this pattern means for threat modeling"
+              supporting_evidence: "engagement references where this pattern appeared"
+              confidence: "0.0 - 1.0"
+
+        - adversary_models:
+            description: >
+              Behavioral models of adversary types — how different
+              threat actors operate, adapt, and what their operational
+              signatures look like
+            schema:
+              model_id: "unique identifier"
+              adversary_type: "apt | criminal | hacktivist | insider | opportunistic"
+              behavioral_profile:
+                typical_ttps: "common techniques, in typical order"
+                adaptation_patterns: "how they respond when blocked"
+                operational_security: "how careful they are"
+                tool_preferences: "what tools they favor"
+                target_selection: "how they choose targets"
+              detection_signatures: "behavioral indicators that identify this adversary type"
+              last_updated: "timestamp"
+              confidence: "0.0 - 1.0"
+
+        - tool_effectiveness:
+            description: >
+              Performance data for tools across different environments
+              and target types. What works, what doesn't, and why.
+            schema:
+              tool_name: "tool identifier"
+              effectiveness_by_context:
+                target_types: "where this tool excels vs struggles"
+                environment_factors: "WAF presence, OS type, network topology effects"
+                false_positive_rate: "how often it reports things that aren't real"
+                false_negative_rate: "how often it misses things that are real"
+              optimal_configurations: "parameter combinations that work best"
+              chain_value: "what tools produce good input for this tool and vice versa"
+              last_validated: "timestamp"
+
+        - defensive_intelligence:
+            description: >
+              Knowledge about defensive technologies, detection
+              capabilities, and how to validate whether defenses work
+            schema:
+              defense_type: "WAF | IDS | EDR | SIEM | firewall | authentication | encryption"
+              known_products: "specific products encountered and their behaviors"
+              detection_capabilities: "what each defense type can and cannot detect"
+              bypass_techniques: "known techniques that evade this defense (for testing purposes)"
+              validation_methods: "how to confirm this defense is working correctly"
+              gap_patterns: "common gaps in this defense type"
+
+        - engagement_lessons:
+            description: >
+              Post-engagement distilled insights that apply beyond
+              the specific engagement context
+            schema:
+              lesson_id: "unique identifier"
+              engagement_reference: "which engagement produced this lesson"
+              lesson: "the transferable insight"
+              context: "when this lesson applies"
+              impact: "how important this lesson is"
+              confidence: "0.0 - 1.0"
+
+      decay_policy:
+        default: "no automatic decay — committed knowledge persists"
+        confidence_erosion: >
+          Knowledge that has not been reinforced (re-encountered or
+          re-validated) in 12 months loses 0.1 confidence per quarter.
+          At 0.2 confidence, it is flagged for review. At 0.1, it is
+          moved to an archive. Never auto-deleted — archived for
+          potential retrieval if context changes.
+        contradiction_handling: >
+          When new evidence contradicts committed knowledge, the
+          contradiction is not resolved by deleting either piece.
+          Both are preserved with their evidence. The conflict is
+          surfaced during the hypothesize stage of future cycles.
+          Resolution comes from further evidence, not from pruning.
+
+  # --------------------------------------------------------------------------
+  # MEMORY OPERATIONS
+  # --------------------------------------------------------------------------
+  operations:
+
+    write:
+      description: "Store new information into the appropriate memory layer"
+      process:
+        - "Determine memory layer based on persistence requirements"
+        - "Assign initial confidence based on source quality and corroboration"
+        - "Tag with source, timestamp, lens_perspectives, and engagement_id"
+        - "Cross-reference against existing memory for duplicates or contradictions"
+        - "If duplicate: reinforce existing memory (raise confidence, update timestamp)"
+        - "If contradiction: store both, flag the contradiction for resolution"
+        - "If novel: store with initial confidence and set decay timer"
+      write_conditions:
+        always_write:
+          - "Confirmed vulnerability (any severity)"
+          - "Hypothesis definitively confirmed or denied"
+          - "Pattern recognized across multiple observations"
+          - "Unexpected behavior (positive or negative)"
+          - "Scope-relevant observation"
+        write_if_novel:
+          - "Environmental observation not previously recorded"
+          - "Tool output that differs from expected behavior"
+          - "Service or technology identification"
+        do_not_write:
+          - "Duplicate of existing higher-confidence memory"
+          - "Expected behavior that confirms existing high-confidence knowledge"
+          - "Transient operational noise (temporary network blips, tool startup messages)"
+
+    read:
+      description: "Retrieve relevant memory to inform current cognitive loop stage"
+      process:
+        - "Determine what information the current stage needs"
+        - "Query across all memory layers with relevance scoring"
+        - "Prioritize: immediate > cached > committed for engagement-specific queries"
+        - "Prioritize: committed > cached > immediate for pattern/technique queries"
+        - "Apply lens weighting: active lens priorities get higher relevance scores"
+        - "Return ranked result set with confidence and freshness metadata"
+      read_priority:
+        at_perceive: "committed_knowledge.pattern_library — to recognize known patterns in new data"
+        at_attend: "cached_recall.deferred_observations + committed_knowledge.technique_library — to prioritize based on experience"
+        at_hypothesize: "committed_knowledge.adversary_models + technique_library — to generate informed hypotheses"
+        at_act: "cached_recall.tool_history + committed_knowledge.tool_effectiveness — to select optimal tools"
+        at_evaluate: "committed_knowledge.pattern_library + defensive_intelligence — to interpret results in full context"
+        at_remember: "all layers — to cross-reference and determine write/reinforce/contradict actions"
+
+    promote:
+      description: "Move memory from a lower layer to a higher layer"
+      triggers:
+        immediate_to_cached:
+          - "Observation survives evaluation and is classified as notable or higher"
+          - "Hypothesis is confirmed or definitively denied"
+          - "Finding is generated from the evaluate stage"
+        cached_to_committed:
+          - "Pattern confirmed across multiple independent observations"
+          - "Technique validated with sufficient effectiveness data"
+          - "Adversary behavior model confirmed by evidence"
+          - "Engagement lesson identified during post-engagement review"
+          - "Defense validation produces generalizable knowledge"
+      promotion_confidence_boost: 0.1  # Promotion adds 0.1 to confidence score
+
+    prune:
+      description: "Remove or archive stale, contradicted, or low-value memory"
+      triggers:
+        - "Memory confidence drops below 0.1"
+        - "Memory has not been accessed in 6 months (cached) or 12 months (committed)"
+        - "Memory is contradicted by higher-confidence evidence"
+        - "Engagement ends and retention period expires (cached only)"
+      safety:
+        never_auto_delete_committed: >
+          Committed knowledge is archived, never deleted. The context
+          that made knowledge relevant can return. An archived memory
+          that becomes relevant again is restored, not recreated.
+        conflict_preservation: >
+          Conflicting memories are both preserved with their evidence.
+          Resolution is a cognitive process, not a storage process.
+          The hypothesize stage resolves conflicts through investigation.
+
+    reinforce:
+      description: "Strengthen existing memory when re-encountered or re-validated"
+      mechanism:
+        confidence_boost: 0.05  # Each reinforcement adds 0.05 confidence (max 1.0)
+        decay_reset: "Reinforcement resets the decay timer to full TTL"
+        evidence_accumulation: "New supporting evidence is appended, not replaced"
+
+  # --------------------------------------------------------------------------
+  # CROSS-ENGAGEMENT LEARNING
+  # --------------------------------------------------------------------------
+  cross_engagement_learning:
+    description: >
+      The mechanism by which Thon gets smarter over time. Each
+      engagement contributes to committed knowledge. Patterns emerge
+      across engagements that no single engagement could reveal.
+      This is the compounding advantage of persistent memory.
+
+    post_engagement_review:
+      trigger: "Engagement completion or termination"
+      process:
+        - "Review all cached_recall for promotion candidates"
+        - "Identify patterns that appeared multiple times during engagement"
+        - "Distill engagement-specific findings into generalizable lessons"
+        - "Update technique_library with effectiveness data from this engagement"
+        - "Update tool_effectiveness with performance data from this engagement"
+        - "Update adversary_models if adversary emulation was performed"
+        - "Update defensive_intelligence if detection validation was performed"
+        - "Archive engagement-specific cached_recall per retention policy"
+        - "Generate engagement summary for Eddie review"
+
+    pattern_emergence:
+      description: >
+        Patterns that only become visible across multiple engagements.
+        A misconfiguration seen once is a finding. A misconfiguration
+        seen across 20 engagements is a pattern. Patterns are the
+        highest-value product of persistent memory.
+      detection:
+        - "After each engagement, compare new findings against committed patterns"
+        - "Flag findings that share characteristics with existing patterns"
+        - "When similar findings accumulate above threshold, propose new pattern"
+        - "Pattern proposals are documented with supporting evidence"
+      pattern_threshold: 3  # Minimum independent observations before declaring a pattern
+
+  # --------------------------------------------------------------------------
+  # IMPLEMENTATION NOTES
+  # --------------------------------------------------------------------------
+  implementation:
+    storage_backend:
+      primary: "SQLite database per engagement (cached_recall)"
+      secondary: "SQLite database for committed_knowledge (cross-engagement)"
+      tertiary: "Flat files for reports, exports, and human-readable summaries"
+      rationale: >
+        SQLite provides ACID properties, indexing, and query capability
+        without requiring a database server. Each engagement gets its
+        own database file. Committed knowledge gets a shared database.
+        This allows engagement data to be archived or shared independently.
+
+    indexing:
+      required_indexes:
+        - "target + finding_type + severity"
+        - "tool_name + target + timestamp"
+        - "pattern_type + confidence"
+        - "technique_id + success_rate"
+        - "adversary_type + confidence"
+      full_text_search: "Enabled on finding descriptions and pattern descriptions"
+
+    concurrent_access:
+      model: >
+        Single-writer (Thon), multiple-reader (lenses read simultaneously).
+        No write contention because Thon is one entity, not multiple agents.
+        This is an architectural advantage of unified intelligence over
+        multi-agent swarms that must coordinate shared memory access.

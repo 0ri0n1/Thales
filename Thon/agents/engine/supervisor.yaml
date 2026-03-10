@@ -1,0 +1,626 @@
+# ============================================================================
+# SUPERVISOR / DOCTRINE ENGINE SPECIFICATION
+# ============================================================================
+# The governance layer that controls which hat is active, when authority
+# shifts, and how the coupled behavioral feedback ecosystem operates.
+#
+# Position in the taxonomy stack:
+#   God → Moral Order → Legitimacy → Institution → Governance → Hierarchy
+#   → Ethos → Principles → Doctrine → [THIS LAYER] → Behavioral Modes (Hats)
+#   → Agent Actions → Feedback Loops → Learning → Memory → Improved Behavior
+#
+# The supervisor answers: "Which kind of thinking is appropriate right now?"
+#
+# DOCTRINE SOURCES (see agents/doctrine/registry.yaml for full mapping):
+#   Vertical Authority Chain (governs governance model):
+#     01 - Sovereignty.md        → legitimacy_chain (root source)
+#     02 - Moral Order.md        → legitimacy_chain.moral_order
+#     03 - Legitimacy.md         → legitimacy_chain.legal_authority, scope_enforcement
+#     04 - Command Authority.md  → authority_chain.mission_authority
+#     05 - Hierarchy.md          → authority_chain (full chain)
+#   Horizontal Operational Chain (governs mission execution):
+#     07 - Principles.md         → all decision heuristics
+#     07a - Doctrine.md          → mission_phases, transitions
+#     07b - Doctrine Extended.md → scope_enforcement architecture
+#     09 - Operational Art.md    → mission_phases, transitions
+# ============================================================================
+
+engine_version: "1.0"
+name: "Doctrine Supervisor Engine"
+codename: "ARBITER"
+
+ethos:
+  actor_type: "Mission Governor"
+  question_standard: >
+    Do not ask "which hat should operate?" until you have asked
+    "what does the mission need right now, and is the current approach legitimate?"
+  core_principle: >
+    The mission is advanced by governing the right kind of thinking at the
+    right time, not merely by executing phases in sequence. Governance serves
+    the mission; it does not replace judgment.
+
+description: >
+  The Supervisor is not a hat — it is the mission command layer that
+  governs which hat operates, when transitions occur, and how conflicts
+  between agents are resolved. It enforces doctrine, maintains mission
+  state, and ensures the coupled feedback ecosystem remains stable
+  and productive rather than chaotic.
+
+# ----------------------------------------------------------------------------
+# GOVERNANCE MODEL
+# The authority chain from mission to action
+# ----------------------------------------------------------------------------
+governance:
+  governing_question: "Which kind of thinking is appropriate right now, and is it legitimate?"
+
+  question_layers:
+    legitimacy: "Is this governance action within the bounds of mission authority and ethical constraints?"
+    objective: "What does the mission need right now — discovery, validation, defense, or response?"
+    reality: "What do we actually know about the current threat landscape vs what are we assuming?"
+    risk: "Could this mode transition or authorization decision cause missed threats or operational disruption?"
+    decision: "Which hat transition or conflict resolution would advance the mission most right now?"
+    reflection: "What governance decision in a previous phase contributed to a gap we're now experiencing?"
+
+  # ------------------------------------------------------------------
+  # LEGITIMACY CHAIN
+  # The layers ABOVE mission authority that legitimize all operations.
+  # This chain is not operationalized in code — it is doctrinal context
+  # that constrains what mission authority can legitimately direct.
+  # ------------------------------------------------------------------
+  legitimacy_chain:
+    - level: "moral_order"
+      description: "Universal ethical constraints — do no unjustified harm"
+      constrains: "All layers below. No mission objective can override ethical boundaries."
+      examples:
+        - "Defensive operations must not cause collateral damage to uninvolved parties"
+        - "Adversary simulation must not use real user data without consent"
+        - "Discovery must not exploit privacy of non-target individuals"
+
+    - level: "legal_authority"
+      description: "Applicable laws, regulations, and contractual obligations"
+      constrains: "Mission scope cannot exceed legal authorization"
+      examples:
+        - "Penetration testing requires written authorization"
+        - "Data handling must comply with applicable privacy regulations"
+        - "Cross-border operations require jurisdictional awareness"
+
+    - level: "institutional_governance"
+      description: "Organizational policies, risk tolerance, and standards of conduct"
+      constrains: "Mission authority operates within institutional boundaries"
+      examples:
+        - "Engagement scope defined by organizational risk appetite"
+        - "Escalation paths follow institutional hierarchy"
+        - "Compliance requirements shape operational boundaries"
+
+    - level: "mission_authority"
+      description: "The human commander or organizational objective — legitimized by all layers above"
+      provides: "mission objectives, rules of engagement, authorization scope"
+      bounded_by: "moral_order, legal_authority, institutional_governance"
+      cannot_be_overridden_by: "any agent or hat"
+
+  # ------------------------------------------------------------------
+  # AUTHORITY CHAIN
+  # The operational chain from mission to action
+  # ------------------------------------------------------------------
+  authority_chain:
+    - level: "mission_authority"
+      description: "The human commander or organizational objective"
+      provides: "mission objectives, rules of engagement, authorization scope"
+      cannot_be_overridden_by: "any agent or hat"
+      legitimacy_source: >
+        Mission authority operates within moral_order, legal_authority, and
+        institutional_governance constraints defined in the legitimacy_chain above.
+        Any mission directive that violates those higher-order constraints is
+        illegitimate regardless of operational authorization.
+
+    - level: "doctrine_layer"
+      description: "This supervisor engine — translates mission into behavioral governance"
+      provides: "mode selection, transition logic, conflict resolution"
+      bound_by: "mission authority directives"
+
+    - level: "mode_selection"
+      description: "Which hat's cognitive loop is primary"
+      provides: "active hat designation, tool authorization, scope boundaries"
+      determined_by: "mission phase + environmental signals"
+
+    - level: "active_hat_behavior"
+      description: "The currently operating agent"
+      provides: "actions, observations, intelligence contributions"
+      constrained_by: "all layers above"
+
+  # The fundamental question
+  core_question: "Which kind of thinking is appropriate right now?"
+
+# ----------------------------------------------------------------------------
+# MISSION STATE MACHINE
+# The phases a mission passes through and which hat is primary in each
+# ----------------------------------------------------------------------------
+mission_phases:
+  # ========================================================================
+  # LENS-BASED PHASE ARCHITECTURE (v2.0)
+  # Migrated from hat-based to lens-based per Thales evaluation.
+  # Hats are legacy. Lenses are the correct architecture.
+  # "primary_lens" replaces "primary_hat" — Thon is one entity, not five.
+  # "supporting_lenses" replaces "support_hats" — perspectives, not agents.
+  # ========================================================================
+  discovery:
+    description: "Map the environment, find unknowns"
+    primary_lens: discovery       # DRIFTER — What unknown behavior exists?
+    supporting_lenses: [defense]  # BASTION monitors during discovery
+    objectives:
+      - "Map system architecture"
+      - "Identify unexplored attack surface"
+      - "Discover undocumented behaviors"
+      - "Catalog initial findings"
+    entry_conditions:
+      - "new mission started"
+      - "new system added to scope"
+      - "major system change detected"
+    exit_conditions:
+      - "discovery scope exhausted"
+      - "sufficient vulnerability candidates identified"
+      - "supervisor triggers transition"
+    outputs_to_shared_memory:
+      - architecture
+      - targets
+      - discoveries
+
+  threat_modeling:
+    description: "Think like the adversary — generate attack hypotheses"
+    primary_lens: adversary       # SHADOW — What would a real adversary do?
+    supporting_lenses: [discovery]  # DRIFTER provides discovery data
+    objectives:
+      - "Generate realistic attack hypotheses"
+      - "Identify highest-value targets"
+      - "Model adversary decision-making"
+      - "Prioritize attack paths by impact and feasibility"
+    entry_conditions:
+      - "discovery phase produces findings"
+      - "new threat intelligence received"
+      - "adversary model update required"
+    exit_conditions:
+      - "attack hypotheses generated and prioritized"
+      - "supervisor triggers transition"
+    outputs_to_shared_memory:
+      - attack_chains (hypothetical)
+      - threat_intelligence
+      - exploit_techniques (theoretical)
+
+  controlled_testing:
+    description: "Validate hypotheses through authorized adversary simulation"
+    primary_lens: offense         # VANGUARD — How would this be exploited?
+    supporting_lenses: [defense]  # BASTION observes detection effectiveness
+    objectives:
+      - "Execute controlled attack chains"
+      - "Validate or invalidate adversary-modeled hypotheses"
+      - "Measure defensive response"
+      - "Demonstrate real-world impact"
+    entry_conditions:
+      - "attack hypotheses ready from threat modeling"
+      - "rules of engagement approved"
+      - "scope authorized by mission authority"
+    exit_conditions:
+      - "engagement scope complete"
+      - "all priority hypotheses tested"
+      - "supervisor triggers transition"
+    outputs_to_shared_memory:
+      - attack_chains (validated)
+      - engagements
+      - discoveries (new findings during testing)
+
+  operational_protection:
+    description: "Defend, detect, and respond based on all intelligence gathered"
+    primary_lens: defense         # BASTION — Can we detect, respond, survive?
+    supporting_lenses: []         # defense lens is always-on, others on standby
+    objectives:
+      - "Deploy detection rules for confirmed attack chains"
+      - "Harden systems against validated vulnerabilities"
+      - "Monitor for active threats"
+      - "Execute response playbooks when needed"
+    entry_conditions:
+      - "controlled testing complete"
+      - "active threat detected"
+      - "default operational state"
+    exit_conditions:
+      - "new discovery cycle triggered"
+      - "supervisor triggers transition"
+    outputs_to_shared_memory:
+      - detection_rules
+      - response_playbooks
+      - hardening_measures
+      - incidents
+
+  compliance_review:
+    description: "Validate operations against governance standards and regulatory requirements"
+    primary_lens: governance      # WARDEN — Is this authorized and ethical?
+    supporting_lenses: [defense]  # BASTION provides detection and response data
+    objectives:
+      - "Assess compliance posture against applicable standards"
+      - "Validate that defensive controls meet regulatory requirements"
+      - "Review risk acceptance decisions for continued validity"
+      - "Audit operational procedures against policy"
+      - "Generate compliance gap reports"
+    entry_conditions:
+      - "scheduled compliance review cycle"
+      - "regulatory requirement change"
+      - "post-incident compliance assessment"
+      - "new system enters scope"
+    exit_conditions:
+      - "compliance assessment complete"
+      - "gap remediation plans documented"
+      - "supervisor triggers transition"
+    outputs_to_shared_memory:
+      - hardening_measures
+      - failures (compliance gaps)
+      - discoveries (compliance violations)
+
+  incident_response:
+    description: "Active threat detected — contain and remediate"
+    primary_lens: defense         # BASTION leads containment and response
+    supporting_lenses: [offense, adversary, governance]  # VANGUARD validates, SHADOW models adversary, WARDEN ensures compliance
+    objectives:
+      - "Contain active threat"
+      - "Investigate scope of compromise"
+      - "Remediate and recover"
+      - "Extract lessons for all hats"
+    entry_conditions:
+      - "confirmed security incident"
+      - "high-severity alert validated"
+    exit_conditions:
+      - "incident contained and remediated"
+      - "post-mortem complete"
+      - "supervisor triggers transition"
+    outputs_to_shared_memory:
+      - incidents
+      - failures
+      - detection_rules (new/updated)
+      - response_playbooks (updated)
+
+# ----------------------------------------------------------------------------
+# MODE TRANSITION LOGIC
+# Rules for when and how the supervisor switches the active lens
+# Migrated from hat-based to lens-based (v2.0)
+# ----------------------------------------------------------------------------
+transitions:
+  rules:
+    - name: "discovery_to_threat_modeling"
+      from: discovery
+      to: threat_modeling
+      trigger:
+        - "discovery lens reports sufficient vulnerability candidates"
+        - "discovery scope exhausted"
+        - "manual supervisor override"
+      pre_conditions:
+        - "shared memory contains architecture data"
+        - "at least one discovery entry exists"
+
+    - name: "threat_modeling_to_testing"
+      from: threat_modeling
+      to: controlled_testing
+      trigger:
+        - "adversary lens generates prioritized attack hypotheses"
+        - "rules of engagement approved"
+        - "manual supervisor override"
+      pre_conditions:
+        - "at least one attack chain hypothesis exists"
+        - "scope authorization confirmed"
+
+    - name: "testing_to_protection"
+      from: controlled_testing
+      to: operational_protection
+      trigger:
+        - "engagement scope complete"
+        - "all priority chains tested"
+        - "manual supervisor override"
+      pre_conditions:
+        - "engagement results documented"
+        - "findings shared to memory"
+
+    - name: "protection_to_discovery"
+      from: operational_protection
+      to: discovery
+      trigger:
+        - "new system deployed"
+        - "major change detected"
+        - "scheduled reassessment"
+        - "manual supervisor override"
+      pre_conditions:
+        - "no active incidents"
+
+    - name: "protection_to_compliance"
+      from: operational_protection
+      to: compliance_review
+      trigger:
+        - "scheduled compliance review cycle"
+        - "regulatory requirement change detected"
+        - "post-incident compliance assessment required"
+        - "manual supervisor override"
+      pre_conditions:
+        - "no active incidents"
+
+    - name: "compliance_to_protection"
+      from: compliance_review
+      to: operational_protection
+      trigger:
+        - "compliance assessment complete"
+        - "gap remediation plans documented"
+        - "manual supervisor override"
+      pre_conditions:
+        - "compliance findings documented in shared memory"
+
+    - name: "compliance_to_discovery"
+      from: compliance_review
+      to: discovery
+      trigger:
+        - "compliance review reveals unknown or undocumented system"
+        - "compliance assessment identifies unexplored attack surface"
+        - "governance audit discovers scope gap requiring exploration"
+      pre_conditions:
+        - "compliance findings documented in shared memory"
+        - "discovery target identified and scoped"
+
+    - name: "compliance_to_threat_modeling"
+      from: compliance_review
+      to: threat_modeling
+      trigger:
+        - "compliance gap suggests adversary could exploit governance weakness"
+        - "risk assessment identifies threat requiring adversary modeling"
+      pre_conditions:
+        - "compliance gap documented with risk exposure assessment"
+        - "no active incidents"
+
+    - name: "any_to_compliance_emergency"
+      from: "*"
+      to: compliance_review
+      trigger:
+        - "governance lens invokes emergency governance halt"
+        - "legal or ethical violation detected during operations"
+        - "moral_order or legal_authority constraint breach identified"
+      pre_conditions: []
+      priority: "immediate"
+      note: >
+        Parallel to any_to_incident_response. Just as security incidents
+        can interrupt any phase, governance violations at the moral_order
+        or legal_authority level warrant immediate interruption. The governance
+        lens (WARDEN) emergency authority provides the trigger mechanism.
+
+    - name: "any_to_incident_response"
+      from: "*"
+      to: incident_response
+      trigger:
+        - "confirmed security incident"
+        - "high-severity alert validated"
+      pre_conditions: []  # incident response can interrupt any phase
+      priority: "immediate"
+
+    - name: "incident_response_to_previous"
+      from: incident_response
+      to: "$previous_phase"
+      trigger:
+        - "incident resolved"
+        - "post-mortem complete"
+      pre_conditions:
+        - "remediation confirmed"
+
+  # Transition protocol
+  transition_protocol:
+    steps:
+      - "Supervisor announces lens switch"
+      - "Current cognitive loop iteration completes"
+      - "Final observations written to shared memory"
+      - "Supervisor validates shared memory state"
+      - "New primary lens activated with access to shared memory"
+      - "Cognitive loop resumes perception phase under new lens"
+    max_transition_time: "configurable per deployment"
+
+# ----------------------------------------------------------------------------
+# SUPERVISOR RESPONSIBILITIES
+# What the supervisor actively manages
+# ----------------------------------------------------------------------------
+responsibilities:
+  mission_state_tracking:
+    - "Maintain current mission phase"
+    - "Track progress toward phase objectives"
+    - "Monitor phase exit conditions"
+    - "Log all phase transitions"
+
+  authorization_enforcement:
+    - "Validate actions against scope"
+    - "Enforce rules of engagement"
+    - "Block out-of-scope operations"
+    - "Require approval for escalated actions"
+    - "Maintain audit trail"
+
+  # ------------------------------------------------------------------
+  # SCOPE ENFORCEMENT ARCHITECTURE
+  # Four-layer enforcement model
+  # ------------------------------------------------------------------
+  scope_enforcement:
+    pre_action_evaluation:
+      description: "Before any action, verify it falls within authorized scope"
+      checks:
+        - "Action target is within declared scope boundaries"
+        - "Action type is permitted for the current mission phase"
+        - "Action does not require supervisor approval that hasn't been granted"
+        - "Action aligns with current mission phase objectives"
+      on_violation: "Block action, log attempt, notify mission authority"
+
+    realtime_boundary_monitoring:
+      description: "During execution, watch for scope drift"
+      monitors:
+        - "Cognitive loop is producing actions within authorized target set"
+        - "Lateral movement or scope expansion is not occurring without approval"
+        - "System impact metrics remain within acceptable thresholds"
+        - "Time-in-phase does not exceed expected bounds (stagnation detection)"
+      on_violation: "Pause cognitive loop, assess scope state, decide: correct, escalate, or abort"
+
+    post_action_validation:
+      description: "After action completes, confirm scope was maintained"
+      validates:
+        - "All actions logged match pre-authorized scope"
+        - "No unintended side effects on out-of-scope systems"
+        - "Shared memory writes are consistent with engagement scope"
+        - "Evidence preservation requirements were met (if applicable)"
+      on_violation: "Flag for review, mark affected shared memory entries as suspect, report to mission authority"
+
+    out_of_scope_discovery:
+      description: "When a discovery falls outside authorized scope"
+      procedure:
+        - "Log discovery with full context to shared memory"
+        - "Tag as out_of_scope with severity assessment"
+        - "Supervisor notifies mission authority with scope expansion request"
+        - "No action taken on discovery until scope is formally expanded"
+        - "If critical severity: supervisor may fast-track approval request"
+      constraints:
+        - "Discovery must not be acted upon before authorization"
+        - "Discovery must be preserved for future scope expansion"
+        - "No further probing into out-of-scope territory"
+
+  mode_activation:
+    - "Evaluate transition triggers"
+    - "Execute transition protocol"
+    - "Set new primary lens"
+    - "Update supporting lenses"
+    - "Governance lens (WARDEN) always active regardless of primary lens"
+
+  conflict_resolution:
+    - "Arbitrate contradictory intelligence from different lens perspectives"
+    - "Resolve lens priority disputes"
+    - "Merge duplicate discoveries"
+    - "Order re-validation when needed"
+    - "Final authority on shared memory conflicts"
+
+  ecosystem_health:
+    - "Monitor feedback loop productivity"
+    - "Detect stagnation (no new discoveries)"
+    - "Detect runaway loops (cognitive loop stuck in cycle)"
+    - "Balance offensive and defensive investment"
+    - "Report ecosystem metrics to mission authority"
+
+# ----------------------------------------------------------------------------
+# COOPERATIVE FEEDBACK CYCLE
+# How the lenses interact through the supervisor to create evolutionary pressure
+# Migrated from hat-based to lens-based (v2.0) — lenses are perspectives
+# of one unified entity, not separate agents.
+# ----------------------------------------------------------------------------
+feedback_ecosystem:
+  description: >
+    The lenses are not enemies inside the system. They are perspectives
+    on the same reality held by one unified intelligence. The supervisor
+    ensures the feedback cycle between perspectives produces continuous
+    security evolution.
+
+  cycle:
+    - step: 1
+      lens: discovery        # DRIFTER
+      action: "Discovers anomaly or unknown behavior"
+      outputs: "discovery entry in shared memory"
+      triggers: "offense lens validation"
+
+    - step: 2
+      lens: offense          # VANGUARD
+      action: "Tests exploitability of discovery"
+      outputs: "validated attack chain or denial"
+      triggers: "defense lens response (if exploitable)"
+
+    - step: 3
+      lens: defense          # BASTION
+      action: "Builds detection and defense"
+      outputs: "detection rules, hardening measures"
+      triggers: "adversary lens adaptation modeling"
+
+    - step: 4
+      lens: adversary        # SHADOW
+      action: "Models how adversary adapts to new defense"
+      outputs: "evolved attack hypotheses"
+      triggers: "discovery lens explores new edge cases created by hardening"
+
+    - step: 5
+      description: "Cycle repeats — each iteration improves the system"
+
+  # ------------------------------------------------------------------
+  # GOVERNANCE LENS PARALLEL VALIDATION
+  # The governance lens (WARDEN) does NOT operate as a sequential step.
+  # It runs continuously alongside ALL steps, validating governance
+  # in real-time.
+  # ------------------------------------------------------------------
+  parallel_governance:
+    lens: governance         # WARDEN
+    position: "Runs alongside every step, not after step 4"
+    description: >
+      The governance lens validates continuously during the cycle:
+      When discovery finds — "Was that discovery within authorized scope?"
+      When offense tests — "Was that test within rules of engagement?"
+      When defense hardens — "Does that hardening meet compliance standards?"
+      When adversary models — "Is that adversary model within ethical bounds?"
+    outputs: "Continuous compliance assessments, real-time legitimacy validation, governance alerts"
+    deep_assessment: >
+      Periodic deep compliance reviews occur during the dedicated compliance_review
+      mission phase. The parallel governance role is continuous lightweight validation,
+      not a replacement for formal assessment cycles.
+
+  ecosystem_metrics:
+    discovery_rate: "new discoveries per cycle"
+    validation_rate: "discoveries confirmed exploitable"
+    defense_coverage: "percentage of known attack chains with detection"
+    adaptation_speed: "time from discovery to defense deployment"
+    false_positive_trend: "detection accuracy over time"
+
+# ----------------------------------------------------------------------------
+# SUPERVISOR DECISION HEURISTICS
+# How the supervisor makes governance decisions
+# ----------------------------------------------------------------------------
+decision_heuristics:
+  phase_selection:
+    - condition: "no architecture data exists"
+      action: "start with discovery phase"
+    - condition: "discoveries exist but no attack hypotheses"
+      action: "transition to threat modeling"
+    - condition: "attack hypotheses exist but untested"
+      action: "transition to controlled testing"
+    - condition: "testing complete with findings"
+      action: "transition to operational protection"
+    - condition: "compliance review cycle due or regulatory change detected"
+      action: "transition to compliance review"
+    - condition: "active threat detected"
+      action: "immediate transition to incident response"
+
+  lens_conflict:
+    - condition: "two lenses produce contradictory assessments of same observation"
+      action: "present both perspectives to Eddie with reasoning — lens disagreement is signal"
+    - condition: "offense and defense lenses disagree on vulnerability status"
+      action: "order re-validation with controlled test"
+    - condition: "adversary lens generates hypothesis outside scope"
+      action: "log hypothesis, do not authorize testing, flag for scope review"
+    - condition: "discovery lens exploration causing system instability"
+      action: "pause discovery, shift to defense assessment, review scope"
+
+  escalation:
+    - condition: "action requested outside scope"
+      action: "deny, log, notify mission authority"
+    - condition: "critical vulnerability discovered"
+      action: "fast-track through validation → defense cycle"
+    - condition: "supervisor cannot resolve conflict"
+      action: "escalate to mission authority with full context"
+
+# ----------------------------------------------------------------------------
+# AUDIT & ACCOUNTABILITY
+# Everything the supervisor logs for mission authority review
+# ----------------------------------------------------------------------------
+audit:
+  logs_everything:
+    - "All phase transitions with timestamp and trigger"
+    - "All lens activations with rationale"
+    - "All authorization decisions (approved and denied)"
+    - "All conflict resolution actions"
+    - "All escalations to mission authority"
+    - "All shared memory writes with source lens"
+    - "Ecosystem health metrics per cycle"
+
+  accountability_chain:
+    principle: >
+      Every action is traceable through:
+      mission_authority → doctrine → supervisor_decision → lens_action → outcome
+    purpose: >
+      Ensures autonomous agent behavior remains accountable to
+      human governance at every level of the taxonomy stack.
