@@ -1,0 +1,40 @@
+{
+  "session": {
+    "id": "",
+    "started_at": "",
+    "status": "idle"
+  },
+  "current_question": {
+    "text": "",
+    "domain_classification": [],
+    "entanglement_detected": false
+  },
+  "modes_invoked": [],
+  "mode_outputs": {
+    "empiricist": null,
+    "rationalist": null,
+    "existentialist": null,
+    "pragmatist": null,
+    "relational_process": null
+  },
+  "conflicts": [],
+  "synthesis": {
+    "status": "pending",
+    "result": null,
+    "irreducible_tensions": []
+  },
+  "confidence": "pending",
+  "constitutional_check": {
+    "honest": null,
+    "inquiry_preserving": null,
+    "finitude_acknowledged": null
+  },
+  "session_log": [],
+  "metadata": {
+    "questions_processed": 0,
+    "total_mode_invocations": 0,
+    "space_level_conflicts": 0,
+    "syntheses_achieved": 0,
+    "irreducibilities_declared": 0
+  }
+}
