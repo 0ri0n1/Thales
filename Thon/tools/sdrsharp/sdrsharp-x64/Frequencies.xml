@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMemoryEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!-- ==================== AVIATION AIRBAND (AM) ==================== -->
+
+  <MemoryEntry>
+    <Name>EMERGENCY / Guard</Name>
+    <Frequency>121500000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>UNICOM / CTAF (common rural)</Name>
+    <Frequency>122800000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Air-to-Air (chat)</Name>
+    <Frequency>122750000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>MULTICOM (uncontrolled)</Name>
+    <Frequency>122900000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>ATIS (common freq)</Name>
+    <Frequency>127000000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Edmonton Center 132.850</Name>
+    <Frequency>132850000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Edmonton Center 126.700</Name>
+    <Frequency>126700000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Lloydminster CTAF 122.800</Name>
+    <Frequency>122800000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation - Local</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Cold Lake Military Tower</Name>
+    <Frequency>128200000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation - Military</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Cold Lake ATIS</Name>
+    <Frequency>125550000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation - Military</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Military Common 243.000</Name>
+    <Frequency>243000000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation - Military</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>SAR (Search and Rescue)</Name>
+    <Frequency>123100000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Aviation</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <!-- ==================== PUBLIC SAFETY / POLICE (NFM) ==================== -->
+
+  <MemoryEntry>
+    <Name>RCMP Alberta VHF (common)</Name>
+    <Frequency>155475000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Public Safety</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>RCMP Mutual Aid</Name>
+    <Frequency>155370000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Public Safety</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Fire Mutual Aid Alberta</Name>
+    <Frequency>154280000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Public Safety</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>EMS Alberta (common)</Name>
+    <Frequency>155340000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Public Safety</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Alberta Forestry</Name>
+    <Frequency>164050000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Public Safety</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>RCMP UHF (common)</Name>
+    <Frequency>460125000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Public Safety</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <!-- ==================== ADS-B / TRANSPONDER ==================== -->
+
+  <MemoryEntry>
+    <Name>ADS-B (1090 MHz)</Name>
+    <Frequency>1090000000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>2000000</FilterBandwidth>
+    <GroupName>ADS-B</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>UAT (978 MHz - US only)</Name>
+    <Frequency>978000000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>2000000</FilterBandwidth>
+    <GroupName>ADS-B</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <!-- ==================== FRS / GMRS / CB ==================== -->
+
+  <MemoryEntry>
+    <Name>FRS Ch 1 (Family Radio)</Name>
+    <Frequency>462562500</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>FRS-GMRS</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>GMRS Ch 15 (repeater)</Name>
+    <Frequency>462550000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>FRS-GMRS</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>CB Channel 19 (truckers)</Name>
+    <Frequency>27185000</Frequency>
+    <DetectorType>AM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>10000</FilterBandwidth>
+    <GroupName>Citizens Band</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <!-- ==================== WEATHER ==================== -->
+
+  <MemoryEntry>
+    <Name>Environment Canada WX1</Name>
+    <Frequency>162550000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Weather</GroupName>
+    <IsFavourite>true</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Environment Canada WX2</Name>
+    <Frequency>162400000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Weather</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>Environment Canada WX3</Name>
+    <Frequency>162475000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Weather</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <!-- ==================== RAILROAD ==================== -->
+
+  <MemoryEntry>
+    <Name>AAR Railroad Ch 1 (End of Train)</Name>
+    <Frequency>161550000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Railroad</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+  <MemoryEntry>
+    <Name>CN Rail Dispatch</Name>
+    <Frequency>160620000</Frequency>
+    <DetectorType>NFM</DetectorType>
+    <Shift>0</Shift>
+    <FilterBandwidth>12500</FilterBandwidth>
+    <GroupName>Railroad</GroupName>
+    <IsFavourite>false</IsFavourite>
+  </MemoryEntry>
+
+</ArrayOfMemoryEntry>

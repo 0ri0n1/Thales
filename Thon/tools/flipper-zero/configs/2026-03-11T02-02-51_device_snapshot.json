@@ -1,0 +1,144 @@
+{
+  "snapshot_time": "2026-03-11T02:02:20.911454+00:00",
+  "port": "COM4",
+  "sections": {
+    "device_info": {
+      "command": "info device",
+      "response": "format.major                  : 3\nformat.minor                  : 3\nhardware.model                : Flipper Zero\nhardware.uid                  : 272BEF0027E18000\nhardware.otp.ver              : 2\nhardware.timestamp            : 1684850676\nhardware.ver                  : 12\nhardware.target               : 7\nhardware.body                 : 9\nhardware.connect              : 6\nhardware.display              : 2\nhardware.color                : 2\nhardware.region.builtin       : 4\nhardware.region.provisioned   : CA\nhardware.name                 : Alaudisu\nfirmware.commit.hash          : 8622f1a2\nfirmware.commit.dirty         : false\nfirmware.branch.name          : 1.4.3\nfirmware.branch.num           : 0\nfirmware.version              : 1.4.3\nfirmware.build.date           : 05-12-2025\nfirmware.target               : 7\nfirmware.api.major            : 87\nfirmware.api.minor            : 1\nfirmware.origin.fork          : Official\nfirmware.origin.git           : https://github.com/flipperdevices/flipperzero-firmware\nradio.alive                   : true\nradio.mode                    : Stack\nradio.fus.major               : 1\nradio.fus.minor               : 2\nradio.fus.sub                 : 0\nradio.fus.sram2b              : 16K\nradio.fus.sram2a              : 0K\nradio.fus.flash               : 24K\nradio.stack.type              : 3\nradio.stack.major             : 1\nradio.stack.minor             : 20\nradio.stack.sub               : 0\nradio.stack.branch            : 0\nradio.stack.release           : 2\nradio.stack.sram2b            : 19K\nradio.stack.sram2a            : 14K\nradio.stack.sram1             : 0K\nradio.stack.flash             : 116K\nradio.ble.mac                 : 272BEF27E180\nenclave.keys.valid            : 10\nenclave.valid                 : true\nsystem.debug                  : 0\nsystem.lock                   : 0\nsystem.orient                 : 0\nsystem.sleep.legacy           : 0\nsystem.stealth                : 0\nsystem.heap.track             : 0\nsystem.boot                   : 0\nsystem.locale.time            : 0\nsystem.locale.date            : 0\nsystem.locale.unit            : 0\nsystem.log.level              : 0\nprotobuf.version.major        : 0\nprotobuf.version.minor        : 25\n>:",
+      "parsed": {
+        "format.major": "3",
+        "format.minor": "3",
+        "hardware.model": "Flipper Zero",
+        "hardware.uid": "272BEF0027E18000",
+        "hardware.otp.ver": "2",
+        "hardware.timestamp": "1684850676",
+        "hardware.ver": "12",
+        "hardware.target": "7",
+        "hardware.body": "9",
+        "hardware.connect": "6",
+        "hardware.display": "2",
+        "hardware.color": "2",
+        "hardware.region.builtin": "4",
+        "hardware.region.provisioned": "CA",
+        "hardware.name": "Alaudisu",
+        "firmware.commit.hash": "8622f1a2",
+        "firmware.commit.dirty": "false",
+        "firmware.branch.name": "1.4.3",
+        "firmware.branch.num": "0",
+        "firmware.version": "1.4.3",
+        "firmware.build.date": "05-12-2025",
+        "firmware.target": "7",
+        "firmware.api.major": "87",
+        "firmware.api.minor": "1",
+        "firmware.origin.fork": "Official",
+        "firmware.origin.git": "https://github.com/flipperdevices/flipperzero-firmware",
+        "radio.alive": "true",
+        "radio.mode": "Stack",
+        "radio.fus.major": "1",
+        "radio.fus.minor": "2",
+        "radio.fus.sub": "0",
+        "radio.fus.sram2b": "16K",
+        "radio.fus.sram2a": "0K",
+        "radio.fus.flash": "24K",
+        "radio.stack.type": "3",
+        "radio.stack.major": "1",
+        "radio.stack.minor": "20",
+        "radio.stack.sub": "0",
+        "radio.stack.branch": "0",
+        "radio.stack.release": "2",
+        "radio.stack.sram2b": "19K",
+        "radio.stack.sram2a": "14K",
+        "radio.stack.sram1": "0K",
+        "radio.stack.flash": "116K",
+        "radio.ble.mac": "272BEF27E180",
+        "enclave.keys.valid": "10",
+        "enclave.valid": "true",
+        "system.debug": "0",
+        "system.lock": "0",
+        "system.orient": "0",
+        "system.sleep.legacy": "0",
+        "system.stealth": "0",
+        "system.heap.track": "0",
+        "system.boot": "0",
+        "system.locale.time": "0",
+        "system.locale.date": "0",
+        "system.locale.unit": "0",
+        "system.log.level": "0",
+        "protobuf.version.major": "0",
+        "protobuf.version.minor": "25"
+      }
+    },
+    "power_info": {
+      "command": "info power",
+      "response": "format.major                  : 2\nformat.minor                  : 1\ncharge.level                  : 62\ncharge.state                  : charging\ncharge.voltage.limit          : 4208\nbattery.voltage               : 3870\nbattery.current               : 837\nbattery.temp                  : 27\nbattery.health                : 100\ncapacity.remain               : 1283\ncapacity.full                 : 2100\ncapacity.design               : 2100\n>:",
+      "parsed": {
+        "format.major": "2",
+        "format.minor": "1",
+        "charge.level": "62",
+        "charge.state": "charging",
+        "charge.voltage.limit": "4208",
+        "battery.voltage": "3870",
+        "battery.current": "837",
+        "battery.temp": "27",
+        "battery.health": "100",
+        "capacity.remain": "1283",
+        "capacity.full": "2100",
+        "capacity.design": "2100"
+      }
+    },
+    "storage_internal": {
+      "command": "storage info /int",
+      "response": "Label: Alaudisu\nType: Virtual\n15169536KiB total\n15136624KiB free\n>:",
+      "parsed": {
+        "label": "Alaudisu",
+        "type": "Virtual"
+      }
+    },
+    "storage_external": {
+      "command": "storage info /ext",
+      "response": "Label: FLIPPER\nType: FAT32\n15169536KiB total\n15136256KiB free\n02TM SA16G v5.5\nSN:309d177c 02/2019\n>:",
+      "parsed": {
+        "label": "FLIPPER",
+        "type": "FAT32",
+        "sn": "309d177c 02/2019"
+      }
+    },
+    "bt_info": {
+      "command": "bt hci_info",
+      "response": "Ret: 0, HCI_Version: 13, HCI_Revision: 16507, LMP_PAL_Version: 13, Manufacturer_Name: 48, LMP_PAL_Subversion: 123\n>:",
+      "parsed": {
+        "ret": "0, HCI_Version: 13, HCI_Revision: 16507, LMP_PAL_Version: 13, Manufacturer_Name: 48, LMP_PAL_Subversion: 123"
+      }
+    },
+    "gpio_apps": {
+      "command": "storage list /ext/apps/GPIO",
+      "response": "[F] gpio.fap 26916b\n[F] air_mouse.fap 105816b\n[F] vgm_air_mouse.fap 30220b\n>:",
+      "parsed": {}
+    }
+  },
+  "usb": {
+    "vid": "0x483",
+    "pid": "0x5740",
+    "serial_number": "FLIP_ALAUDISU",
+    "manufacturer": "Microsoft",
+    "description": "USB Serial Device (COM4)"
+  },
+  "summary": {
+    "firmware_version": "1.4.3",
+    "firmware_build": "05-12-2025",
+    "firmware_branch": "1.4.3",
+    "firmware_origin": "Official",
+    "hardware_model": "Flipper Zero",
+    "hardware_revision": "12",
+    "hardware_uid": "272BEF0027E18000",
+    "hardware_name": "Alaudisu",
+    "ble_mac": "272BEF27E180",
+    "region": "CA",
+    "battery_charge": "62",
+    "battery_state": "charging",
+    "battery_health": "100",
+    "battery_temp": "27",
+    "sd_card_label": "FLIPPER",
+    "sd_card_type": "FAT32"
+  }
+}

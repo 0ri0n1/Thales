@@ -1,0 +1,2391 @@
+{
+  "device": {
+    "model": "Flipper Zero",
+    "firmware": {
+      "family": "official",
+      "version": "1.4.3",
+      "build_date": "05-12-2025",
+      "api_version": "87.1",
+      "git_hash": "8622f1a2",
+      "origin": "Official"
+    },
+    "transports": {
+      "usb": {
+        "viable": true
+      },
+      "wifi": {
+        "viable": false,
+        "blocker": "ESP32-S2 devboard with Marauder firmware \u2014 no native CLI relay over WiFi",
+        "recommended_firmware": "ESP-AT firmware for TCP server CLI passthrough",
+        "notes": "Marauder provides offensive WiFi tools but cannot relay Flipper CLI commands over WiFi"
+      },
+      "bluetooth": {
+        "viable": "unknown",
+        "assessment": "BLE serial profile support depends on firmware \u2014 needs runtime probe",
+        "ble_mac": "272BEF27E180"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "\u001b[32mbt_2mbt",
+      "description": "read via \u001b[32mbt",
+      "subsystem": "\u001b[32mbt",
+      "cli_command_template": "\u001b[32mbt 2mbt",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "\u001b[32mbt_\u001b[31mcould",
+      "description": "read via \u001b[32mbt",
+      "subsystem": "\u001b[32mbt",
+      "cli_command_template": "\u001b[32mbt \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_device_info_major",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! device_info_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_device_info_minor",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! device_info_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_model",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_model",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_uid",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_uid",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_otp_ver",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_otp_ver",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_timestamp",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_timestamp",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_ver",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_ver",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_target",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_target",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_body",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_body",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_connect",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_connect",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_display",
+      "description": "execute via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_display",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "execute",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_color",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_color",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_region",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_region",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_region_provisioned",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_region_provisioned",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_hardware_name",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! hardware_name",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_commit",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_commit",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_commit_dirty",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_commit_dirty",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_branch",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_branch",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_branch_num",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_branch_num",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_version",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_version",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_build_date",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_build_date",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_target",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_target",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_api_major",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_api_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_api_minor",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_api_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_origin_fork",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_origin_fork",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_firmware_origin_git",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! firmware_origin_git",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_alive",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_alive",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_mode",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_mode",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_fus_major",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_fus_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_fus_minor",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_fus_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_fus_sub",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_fus_sub",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_fus_sram2b",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_fus_sram2b",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_fus_sram2a",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_fus_sram2a",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_fus_flash",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_fus_flash",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "critical",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_type",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_type",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_major",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_minor",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_sub",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_sub",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_branch",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_branch",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_release",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_release",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_sram2b",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_sram2b",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_sram2a",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_sram2a",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_sram1",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_sram1",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_stack_flash",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_stack_flash",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "critical",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_radio_ble_mac",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! radio_ble_mac",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_enclave_valid_keys",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! enclave_valid_keys",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_enclave_valid",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! enclave_valid",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_debug",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_debug",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_lock",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_lock",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_orient",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_orient",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_sleep_legacy",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_sleep_legacy",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_stealth",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_stealth",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_heap_track",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_heap_track",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_boot",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_boot",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_locale_time",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_locale_time",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_locale_date",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_locale_date",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_locale_unit",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_locale_unit",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_system_log_level",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! system_log_level",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_protobuf_version_major",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! protobuf_version_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "!_protobuf_version_minor",
+      "description": "read via !",
+      "subsystem": "!",
+      "cli_command_template": "! protobuf_version_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "Available_\u001b[31mcould",
+      "description": "read via Available",
+      "subsystem": "Available",
+      "cli_command_template": "Available \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "Find_\u001b[31mcould",
+      "description": "read via Find",
+      "subsystem": "Find",
+      "cli_command_template": "Find \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "If_\u001b[31mcould",
+      "description": "read via If",
+      "subsystem": "If",
+      "cli_command_template": "If \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "badusb_\u001b[31mcould",
+      "description": "read via badusb",
+      "subsystem": "badusb",
+      "cli_command_template": "badusb \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "bt_\u001b[31mthis",
+      "description": "read via bt",
+      "subsystem": "bt",
+      "cli_command_template": "bt \u001b[31mthis",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "buzzer_\u001b[31mthis",
+      "description": "read via buzzer",
+      "subsystem": "buzzer",
+      "cli_command_template": "buzzer \u001b[31mthis",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "crypto_\u001b[31mthis",
+      "description": "read via crypto",
+      "subsystem": "crypto",
+      "cli_command_template": "crypto \u001b[31mthis",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "debug_\u001b[31mcould",
+      "description": "read via debug",
+      "subsystem": "debug",
+      "cli_command_template": "debug \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "desktop_\u001b[31mcould",
+      "description": "read via desktop",
+      "subsystem": "desktop",
+      "cli_command_template": "desktop \u001b[31mcould",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_device_info_major",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info device_info_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_device_info_minor",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info device_info_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_model",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_model",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_uid",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_uid",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_otp_ver",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_otp_ver",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_timestamp",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_timestamp",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_ver",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_ver",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_target",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_target",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_body",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_body",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_connect",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_connect",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_display",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_display",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_color",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_color",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_region",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_region",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_region_provisioned",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_region_provisioned",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_hardware_name",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info hardware_name",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_commit",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_commit",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_commit_dirty",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_commit_dirty",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_branch",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_branch",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_branch_num",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_branch_num",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_version",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_version",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_build_date",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_build_date",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_target",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_target",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_api_major",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_api_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_api_minor",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_api_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_origin_fork",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_origin_fork",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_firmware_origin_git",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info firmware_origin_git",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_alive",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_alive",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_mode",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_mode",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_fus_major",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_fus_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_fus_minor",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_fus_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_fus_sub",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_fus_sub",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_fus_sram2b",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_fus_sram2b",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_fus_sram2a",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_fus_sram2a",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_fus_flash",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_fus_flash",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "critical",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_type",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_type",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_major",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_minor",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_sub",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_sub",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_branch",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_branch",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_release",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_release",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_sram2b",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_sram2b",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_sram2a",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_sram2a",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_sram1",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_sram1",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_stack_flash",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_stack_flash",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "critical",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_radio_ble_mac",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info radio_ble_mac",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_enclave_valid_keys",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info enclave_valid_keys",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_enclave_valid",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info enclave_valid",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_debug",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_debug",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_lock",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_lock",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_orient",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_orient",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_sleep_legacy",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_sleep_legacy",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_stealth",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_stealth",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_heap_track",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_heap_track",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_boot",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_boot",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_locale_time",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_locale_time",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_locale_date",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_locale_date",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_locale_unit",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_locale_unit",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_system_log_level",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info system_log_level",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_protobuf_version_major",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info protobuf_version_major",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    },
+    {
+      "name": "device_info_protobuf_version_minor",
+      "description": "read via device_info",
+      "subsystem": "device_info",
+      "cli_command_template": "device_info protobuf_version_minor",
+      "parameters": {},
+      "response": {
+        "type": "text",
+        "format": "text"
+      },
+      "blocking": true,
+      "risk_level": "none",
+      "action_type": "read",
+      "usb_controllable": "full",
+      "wifi_controllable": "untested",
+      "requires_physical": false,
+      "mcp_tool_type": "compound"
+    }
+  ],
+  "compound_sequences": [],
+  "event_sources": []
+}

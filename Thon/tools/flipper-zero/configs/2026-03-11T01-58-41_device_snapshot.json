@@ -1,0 +1,76 @@
+{
+  "snapshot_time": "2026-03-11T01:58:05.866500+00:00",
+  "port": "COM4",
+  "sections": {
+    "device_info": {
+      "command": "info",
+      "response": "info: illegal option --\nusage: info <device|power|power_debug>\n>:",
+      "parsed": {
+        "info": "illegal option --",
+        "usage": "info <device|power|power_debug>"
+      }
+    },
+    "firmware": {
+      "command": "info firmware",
+      "response": "info: illegal option -- firmware\nusage: info <device|power|power_debug>\n>:",
+      "parsed": {
+        "info": "illegal option -- firmware",
+        "usage": "info <device|power|power_debug>"
+      }
+    },
+    "hardware": {
+      "command": "info hardware",
+      "response": "info: illegal option -- hardware\nusage: info <device|power|power_debug>\n>:",
+      "parsed": {
+        "info": "illegal option -- hardware",
+        "usage": "info <device|power|power_debug>"
+      }
+    },
+    "power": {
+      "command": "power info",
+      "response": "Usage:\npower <cmd> <args>\nCmd list:\noff\t - shutdown power\nreboot\t - reboot\nreboot2dfu\t - reboot to dfu bootloader\n5v <0 or 1>\t - enable or disable 5v ext\n>:",
+      "parsed": {}
+    },
+    "storage_internal": {
+      "command": "storage info /int",
+      "response": "Label: Alaudisu\nType: Virtual\n15169536KiB total\n15136624KiB free\n>:",
+      "parsed": {
+        "label": "Alaudisu",
+        "type": "Virtual"
+      }
+    },
+    "storage_external": {
+      "command": "storage info /ext",
+      "response": "Label: FLIPPER\nType: FAT32\n15169536KiB total\n15136256KiB free\n02TM SA16G v5.5\nSN:309d177c 02/2019\n>:",
+      "parsed": {
+        "label": "FLIPPER",
+        "type": "FAT32",
+        "sn": "309d177c 02/2019"
+      }
+    },
+    "bt_info": {
+      "command": "bt info",
+      "response": "Usage:\nbt <cmd> <args>\nCmd list:\nhci_info\t - HCI info\n>:",
+      "parsed": {}
+    }
+  },
+  "usb": {
+    "vid": "0x483",
+    "pid": "0x5740",
+    "serial_number": "FLIP_ALAUDISU",
+    "manufacturer": "Microsoft",
+    "description": "USB Serial Device (COM4)"
+  },
+  "summary": {
+    "firmware_version": "unknown",
+    "firmware_build": "unknown",
+    "firmware_branch": "unknown",
+    "hardware_model": "unknown",
+    "hardware_revision": "unknown",
+    "hardware_uid": "unknown",
+    "sd_card_total": "unknown",
+    "sd_card_free": "unknown",
+    "battery_charge": "unknown",
+    "battery_health": "unknown"
+  }
+}

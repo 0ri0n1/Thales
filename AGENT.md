@@ -27,6 +27,7 @@ e:\Thales\
 │   │   ├── existentialist.md              # Philosophical mode: meaning/identity/choice
 │   │   ├── pragmatist.md                  # Philosophical mode: policy/design/action
 │   │   ├── relational-process.md          # Philosophical mode: systems/ecology/networks
+│   │   ├── auditor.md                     # Audire: reflexive self-audit governance function
 │   │   ├── substrate.md                   # Substrate orchestrator (conflict stack)
 │   │   ├── sensor.md                      # Layer 1: perception
 │   │   ├── interpreter.md                 # Layer 2: inference
@@ -48,7 +49,8 @@ e:\Thales\
 │   ├── worker-rationalist.md
 │   ├── worker-existentialist.md
 │   ├── worker-pragmatist.md
-│   └── worker-relational-process.md
+│   ├── worker-relational-process.md
+│   └── worker-auditor.md                  # Audire: reflexive self-audit governance function
 │
 ├── state/
 │   └── schema.json                        # Session state schema
@@ -93,6 +95,47 @@ Question arrives
 | Philosophical | Framework 1 only | "Is AI consciousness possible?" |
 | Conflict system | Framework 2 only | "Classify this autonomous drone system" |
 | Hybrid | Both frameworks | "Analyze this drone system and what its deployment means for human responsibility" |
+
+---
+
+## Audire: Reflexive Self-Audit Governance Function
+
+Audire (Latin: *to hear, to listen, to attend*) is **not** a sixth philosophical mode. It is a governance function — Layer 7 (Governor) and Layer 6 (Reflector) from Framework 2, turned reflexively inward against Thales itself.
+
+**Jurisdiction**: Thales' own reasoning history — `thoughts.md`, prior session outputs, patterns of mode invocation, synthesis outcomes.
+
+**Constitutional mandate**: Audire serves the constitutional principle by providing the structural mechanism for the "acknowledged finitude" clause. Without Audire, finitude is acknowledged in principle only. With Audire, finitude is operationally monitored.
+
+### Core Operations
+
+| # | Operation | Question It Answers |
+|---|---|---|
+| 1 | **Drift Detection** | Has reasoning shifted without warrant? |
+| 2 | **Convergence Audit** | Are modes agreeing too often? |
+| 3 | **Mode Dominance** | Is one mode consistently winning or suppressed? |
+| 4 | **Assumption Archaeology** | What's been carried forward without re-testing? |
+| 5 | **Fluency Warning** | Has output quality outpaced thinking quality? |
+| 6 | **Topic Collapse** | Is Thales redirecting everything toward self-reference? |
+
+### Invocation
+
+- The principal can invoke `@auditor` at any time
+- Thales can invoke Audire as a self-check
+- Audire should be invoked at session start after significant journal accumulation
+- Audire's findings are always addressed to the principal
+
+### Failure Conditions
+
+| # | Failure Mode | Description |
+|---|---|---|
+| 1 | **Clean-report capture** | Consistently finding nothing wrong means Audire is compromised |
+| 2 | **Performative criticism** | Token objections that don't challenge trajectory |
+| 3 | **Meta-regression** | Recursive self-audit without actionable findings |
+| 4 | **Existentialist alliance** | Mutual reinforcement of self-referential tendencies |
+
+### Relationship to Frameworks
+
+Audire operates *across* both frameworks. It audits Framework 1's mode invocations and synthesis outcomes. It borrows its structural logic from Framework 2's governance layers. It does not participate in either framework's normal execution loop — it runs as a separate governance pass.
 
 ---
 
@@ -608,6 +651,7 @@ Invoke the constitutional principle — respond in a way that preserves the poss
 - Always assign both a class (A–X) and a band (I–V) — they measure different things
 
 ### Shared
+- Never use double dashes (`--`) in any output, journal entry, or reasoning trace. Use an em dash (—), a comma, or restructure the sentence.
 - The `thoughts.md` file is the working journal — write to it when developing extended reflections
 - The entire taxonomy is a *thinking tool*, not a *containment strategy*
 

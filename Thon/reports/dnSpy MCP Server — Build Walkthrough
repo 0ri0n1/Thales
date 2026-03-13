@@ -1,0 +1,65 @@
+# dnSpy MCP Server — Build Walkthrough
+
+## What Was Built
+
+A complete Python MCP server for .NET assembly decompilation and analysis, deployed at:
+
+**Server:** [server.py](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py)
+**Config:** [pyproject.toml](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/pyproject.toml)
+**MCP Registration:** [mcp_config.json](file:///C:/Users/Dallas/.gemini/antigravity/mcp_config.json) ([dnspy](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#376-465) entry)
+
+---
+
+## Tool Inventory (10 tools)
+
+| Tool | Engine | Function |
+|------|--------|----------|
+| [dnspy_decompile_assembly](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#186-256) | CLI (PowerShell → dnSpy.Console.exe) | Full assembly → C# project |
+| [dnspy_decompile_type](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#258-314) | CLI | Single type decompilation |
+| [dnspy_decompile_token](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#316-370) | CLI | Decompile by metadata token |
+| [dnspy_list_types](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#376-465) | dnfile (in-process) | All types, grouped by namespace |
+| [dnspy_list_methods](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#467-559) | dnfile | Methods with visibility/modifiers |
+| [dnspy_get_metadata](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#561-635) | pefile + dnfile | PE headers + .NET summary |
+| [dnspy_get_references](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#637-674) | dnfile | Assembly dependencies |
+| [dnspy_search_strings](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#676-781) | dnfile | String literal search |
+| [dnspy_get_resources](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#783-826) | dnfile | Embedded managed resources |
+| [dnspy_get_assembly_info](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#828-899) | dnfile | Identity, MVID, attributes |
+
+---
+
+## Verification Results
+
+**Test target:** [dnSpy.Console.dll](file:///E:/Thales/Thon/tools/dnSpy-net-win64/bin/dnSpy.Console.dll) (55 KB, dnSpy v6.1.8)
+
+### [dnspy_get_metadata](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#561-635) ✅
+```json
+{
+  "pe": {"machine": "0x14c", "sections": [".text", ".rsrc", ".reloc"]},
+  "dotnet": {
+    "type_count": 25, "method_count": 234,
+    "field_count": 126, "memberref_count": 275,
+    "assembly": {"name": "dnSpy.Console", "version": "6.1.8.0"}
+  }
+}
+```
+
+### [dnspy_list_types](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#376-465) ✅
+Found 24 types across 4 namespaces (dnSpy_Console, dnSpy.Console.Properties, dnSpy.MainApp, global compiler-generated types).
+
+### [dnspy_get_references](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#637-674) ✅
+9 assembly references: System.Collections, System.Runtime, dnSpy.Contracts.Logic v6.1.8.0, dnlib v3.3.2.0, etc.
+
+### [dnspy_get_assembly_info](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#828-899) ✅
+MVID `1225d92c-0428-4f34-a4c1-e5de443ad045`, 108 custom attributes, hash algorithm `0x8004` (SHA-256).
+
+---
+
+## Activation
+
+> [!IMPORTANT]
+> **Restart Antigravity** to load the new [dnspy](file:///F:/openclaw-rts/mcp-servers/dnspy-mcp/server.py#376-465) MCP server. It will then be available as a tool provider in conversations.
+
+After restart, you can use it like:
+- *"List all types in `E:\path\to\assembly.dll`"*
+- *"Decompile the `Program` class from this exe"*
+- *"Search for hardcoded URLs in this dll"*

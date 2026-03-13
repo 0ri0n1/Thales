@@ -1,0 +1,54 @@
+# Flipper Zero WiFi Module v1 — Walkthrough
+
+## Device Profile
+| Field | Value |
+|-------|-------|
+| Firmware | 1.4.3 (Official) |
+| Hardware | Rev 12 |
+| Serial | FLIP_ALAUDISU |
+| Flipper COM | COM4 (VID 0483:5740) |
+| Devboard COM | COM12 (ESP32-S2) |
+| SD Card | 16 GB |
+
+## What Was Done
+
+### 1. Device Discovery & Serial Tooling
+- Auto-detected Flipper on COM4, WiFi devboard on COM12
+- Built 3 Python tools: [serial_commander.py](file:///E:/Thales/Thon/tools/flipper-zero/scripts/serial_commander.py), [scan_launcher.py](file:///E:/Thales/Thon/tools/flipper-zero/scripts/scan_launcher.py), [device_snapshot.py](file:///E:/Thales/Thon/tools/flipper-zero/scripts/device_snapshot.py)
+- Captured full device snapshot (JSON) with corrected FW 1.4.3 CLI parsing
+
+### 2. WiFi Marauder Companion App
+- Built `esp32_wifi_marauder.fap` from source using `ufbt` (Target 7, API 87.1)
+- Deployed to Flipper at `/ext/apps/GPIO/esp32_wifi_marauder.fap` via `ufbt launch`
+
+### 3. Marauder Firmware Flash (ESP32-S2)
+- **Previous firmware:** Blackmagic Debug Probe (factory default)
+- **New firmware:** ESP32 Marauder **v1.11.0** (released 2026-03-10)
+- **Method:** Web flasher at [esp.huhn.me](https://esp.huhn.me) via Chrome WebSerial
+- **Files flashed:**
+
+| Address | File | Size |
+|---------|------|------|
+| `0x1000` | `bootloader.bin` | 13 KB |
+| `0x8000` | `partitions.bin` | 3 KB |
+| `0xE000` | `boot_app.bin` | 8 KB |
+| `0x10000` | `esp32_marauder_v1_11_0_flipper.bin` | 1 MB |
+
+- Flash completed in **13 seconds**
+
+## Issues Encountered
+| Issue | Resolution |
+|-------|-----------|
+| Flipper stuck in DFU mode | User power-cycled and updated FW via qFlipper |
+| COM4 locked by devboard GPIO | Deployed .fap via `ufbt launch` after closing qFlipper |
+| ESP Flasher `ufbt build` missing submodule | Switched to web flasher (esp.huhn.me) — cleaner path |
+| Bootloader.bin download was 404 HTML | Extracted correct binaries from FZ_Marauder_v2.8.zip bundle |
+
+## Files & Locations
+- **Firmware files:** `E:\Thales\Thon\tools\flipper-zero\firmware\`
+- **Scripts:** `E:\Thales\Thon\tools\flipper-zero\scripts\`
+- **Docs:** `E:\Thales\Thon\tools\flipper-zero\docs\`
+
+## Next Steps
+- Reset devboard and validate Marauder connection from Flipper companion app
+- Run first WiFi AP scan to confirm end-to-end functionality

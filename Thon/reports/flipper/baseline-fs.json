@@ -1,0 +1,130 @@
+{
+  "/ext_info": {
+    "label": "FLIPPER",
+    "type": "FAT32",
+    "sn": "309d177c 02/2019",
+    "_raw": "Label: FLIPPER\nType: FAT32\n15169536KiB total\n15136256KiB free\n02TM SA16G v5.5\nSN:309d177c 02/2019"
+  },
+  "/ext_listing": [
+    {
+      "type": "dir",
+      "name": "System Volume Information"
+    },
+    {
+      "type": "dir",
+      "name": "nfc"
+    },
+    {
+      "type": "dir",
+      "name": "subghz"
+    },
+    {
+      "type": "dir",
+      "name": "lfrfid"
+    },
+    {
+      "type": "dir",
+      "name": "infrared"
+    },
+    {
+      "type": "dir",
+      "name": "ibutton"
+    },
+    {
+      "type": "file",
+      "name": "Manifest",
+      "size": 85176
+    },
+    {
+      "type": "dir",
+      "name": "update"
+    },
+    {
+      "type": "dir",
+      "name": ".tmp"
+    },
+    {
+      "type": "dir",
+      "name": "apps"
+    },
+    {
+      "type": "dir",
+      "name": "apps_data"
+    },
+    {
+      "type": "dir",
+      "name": "badusb"
+    },
+    {
+      "type": "dir",
+      "name": "dolphin"
+    },
+    {
+      "type": "dir",
+      "name": "u2f"
+    },
+    {
+      "type": "dir",
+      "name": "apps_manifests"
+    },
+    {
+      "type": "dir",
+      "name": "subghz_remote"
+    },
+    {
+      "type": "dir",
+      "name": ".int"
+    },
+    {
+      "type": "dir",
+      "name": ".config"
+    }
+  ],
+  "/int_info": {
+    "label": "Alaudisu",
+    "type": "Virtual",
+    "_raw": "Label: Alaudisu\nType: Virtual\n15169536KiB total\n15136440KiB free"
+  },
+  "/int_listing": [
+    {
+      "type": "file",
+      "name": ".notification.settings",
+      "size": 24
+    },
+    {
+      "type": "file",
+      "name": ".expansion.settings",
+      "size": 9
+    },
+    {
+      "type": "file",
+      "name": ".desktop.settings",
+      "size": 1052
+    },
+    {
+      "type": "file",
+      "name": ".key.u2f",
+      "size": 251
+    },
+    {
+      "type": "file",
+      "name": ".region_data",
+      "size": 58
+    },
+    {
+      "type": "file",
+      "name": ".dolphin.state",
+      "size": 40
+    },
+    {
+      "type": "file",
+      "name": ".bt.settings",
+      "size": 9
+    },
+    {
+      "type": "file",
+      "name": ".infrared.settings",
+      "size": 10
+    }
+  ]
+}

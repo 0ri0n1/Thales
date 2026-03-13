@@ -1,0 +1,103 @@
+# Flipper Zero C2 Recon — Execution Walkthrough
+
+## Mission Summary
+
+The [flipper_recon.py](file:///E:/Thon/recon/flipper/flipper_recon.py) script completed a full 4-phase automated interrogation of the Flipper Zero device over USB serial (COM4, 115200 baud). **Total runtime: 1075.9s (~18 min)**. All 7 deliverables were generated to `E:\Thon\recon\flipper\`.
+
+## Results Overview
+
+| Metric | Value |
+|--------|-------|
+| Top-level commands | **17** |
+| Active subsystems | **12** |
+| Total commands classified | **131** |
+| Risk: none | 127 |
+| Risk: critical | 4 |
+| Filesystem status | ✅ CLEAN |
+| Device firmware | Official 1.4.3 |
+
+## Deliverables
+
+| File | Size | Status |
+|------|------|--------|
+| [flipper-capability-report.md](file:///E:/Thon/recon/flipper/flipper-capability-report.md) | 10KB | ✅ |
+| [mcp-tool-schemas.json](file:///E:/Thon/recon/flipper/mcp-tool-schemas.json) | 69KB | ⚠️ Needs cleanup |
+| [transport-config.json](file:///E:/Thon/recon/flipper/transport-config.json) | 1KB | ✅ |
+| [command-tree.json](file:///E:/Thon/recon/flipper/command-tree.json) | 27KB | ⚠️ Needs cleanup |
+| [session-log.txt](file:///E:/Thon/recon/flipper/session-log.txt) | 32KB | ✅ |
+| [baseline-fs.json](file:///E:/Thon/recon/flipper/baseline-fs.json) | 2KB | ✅ |
+| [filesystem-diff.txt](file:///E:/Thon/recon/flipper/filesystem-diff.txt) | 108B | ✅ |
+
+## Device Identity (Phase 0)
+
+| Field | Value |
+|-------|-------|
+| Name | Alaudisu |
+| UID | `272BEF0027E18000` |
+| HW Rev | 12, Target 7, Region CA |
+| Firmware | Official 1.4.3 (build 05-12-2025) |
+| API | 87.1, Git `8622f1a2` |
+| BLE MAC | `272BEF27E180` |
+| Battery | 100% charged, 100% health |
+| SD Card | FAT32 "FLIPPER", 15GB total, 15GB free |
+
+## C2 Transport Assessment
+
+| Transport | Status | Notes |
+|-----------|--------|-------|
+| **USB Serial** | ✅ Confirmed | COM4, 115200, full CLI access |
+| **WiFi** | ❌ Not viable | Marauder on ESP32-S2 — no CLI relay |
+| **Bluetooth** | ❓ Unknown | BLE serial needs runtime probe |
+
+## Top-Level Commands Discovered
+
+From the `?` help output, the firmware exposes **17 flat commands** plus subsystem routers:
+
+```
+bt, loader, crypto, js, nfc, exit, buzzer, input, neofetch,
+echo, log, onewire, device_info, free_blocks, top, factory_reset,
+uptime, ?, storage, vibro, ikey, !, start_rpc_session, power,
+subshell_demo, i2c, subghz, ir, update, reload_ext_cmds,
+hello_world, rfid, sleep, help, sysctl, info, gpio, date, led, free
+```
+
+---
+
+## Known Issues & Cleanup Required
+
+> [!WARNING]
+> Two systemic parsing issues were identified that affect the [mcp-tool-schemas.json](file:///E:/Thon/recon/flipper/mcp-tool-schemas.json) and [command-tree.json](file:///E:/Thon/recon/flipper/command-tree.json) files. These must be cleaned up before Stage 2 (MCP server construction).
+
+### Issue 1: ANSI Escape Codes Not Stripped
+
+The Flipper CLI outputs ANSI color codes (e.g., `\u001b[32m` for green, `\u001b[31m` for red). The script did not strip these before parsing, resulting in contaminated command names like:
+
+- `\u001b[32mbt` instead of `bt`
+- `\u001b[31mcould` parsed as a sub-command name
+
+**Impact:** Tool names and subsystem names in the JSON schemas contain escape sequences.
+**Fix:** Add `re.sub(r'\x1b\[[0-9;]*m', '', text)` to the response parser.
+
+### Issue 2: Data-Dump Commands Misclassified as Subsystems
+
+The `!` and `device_info` commands are **key-value data dumps** (they output 53 properties like `hardware_model : Flipper Zero`). The parser interpreted each key-value line as a "sub-command," creating 60 phantom entries per command. These are **not real CLI commands** — they're just the output format of `device_info`.
+
+**Impact:** 120 of the 131 "commands" in the schema are actually device property names, not executable commands.
+**Fix:** Special-case `!` and `device_info` as single read-only data-dump tools.
+
+### Issue 3: App-Locked Commands
+
+Several subsystems (`bt`, `buzzer`, `crypto`) returned `this command cannot be run while an application is open`. This means an app was active on the Flipper during the probe. Nearly all other subsystems returned empty responses from the cascading probe (`sub`, `sub help`, `sub ?`).
+
+**Impact:** The actual command syntax for subsystems like `storage`, `subghz`, `nfc`, [ir](file:///e:/Thales/Thon/tools/flipper-zero/scripts/scan_launcher.py#131-170), `rfid`, `led`, `vibro`, `gpio`, `power` was not captured.
+**Fix for Stage 2:** Re-run with no apps open, or hardcode known command syntax from Flipper firmware source.
+
+---
+
+## Stage 2 Recommendations
+
+1. **Fix the ANSI stripping** — single regex in the response parser
+2. **Re-classify** `!` and `device_info` as singleton data-dump tools
+3. **Close all apps** on the Flipper before re-running the probe to unlock `bt`, `buzzer`, `crypto`
+4. **Supplement with firmware docs** — the official Flipper CLI documentation lists exact syntax for `storage`, `subghz`, `nfc`, [ir](file:///e:/Thales/Thon/tools/flipper-zero/scripts/scan_launcher.py#131-170), etc. that the blind probe couldn't capture
+5. The **transport-config.json** is clean and ready for MCP server use as-is

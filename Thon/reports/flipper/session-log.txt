@@ -1,0 +1,736 @@
+# Flipper Zero Recon Session Log
+# Started: 2026-03-11T03:46:47.996539+00:00
+
+[03:46:48.498] NOTE: Connected to COM4 @ 115200
+[03:46:48.498] NOTE: Validating CLI session...
+[03:46:48.998] NOTE: CLI prompt confirmed
+[03:46:48.999] TX >>> info device
+[03:46:56.078] RX <<< format.major                  : 3
+[03:46:56.078] RX <<< format.minor                  : 3
+[03:46:56.078] RX <<< hardware.model                : Flipper Zero
+[03:46:56.078] RX <<< hardware.uid                  : 272BEF0027E18000
+[03:46:56.078] RX <<< hardware.otp.ver              : 2
+[03:46:56.078] RX <<< hardware.timestamp            : 1684850676
+[03:46:56.078] RX <<< hardware.ver                  : 12
+[03:46:56.078] RX <<< hardware.target               : 7
+[03:46:56.078] RX <<< hardware.body                 : 9
+[03:46:56.078] RX <<< hardware.connect              : 6
+[03:46:56.078] RX <<< hardware.display              : 2
+[03:46:56.078] RX <<< hardware.color                : 2
+[03:46:56.078] RX <<< hardware.region.builtin       : 4
+[03:46:56.078] RX <<< hardware.region.provisioned   : CA
+[03:46:56.078] RX <<< hardware.name                 : Alaudisu
+[03:46:56.078] RX <<< firmware.commit.hash          : 8622f1a2
+[03:46:56.078] RX <<< firmware.commit.dirty         : false
+[03:46:56.078] RX <<< firmware.branch.name          : 1.4.3
+[03:46:56.078] RX <<< firmware.branch.num           : 0
+[03:46:56.078] RX <<< firmware.version              : 1.4.3
+[03:46:56.078] RX <<< firmware.build.date           : 05-12-2025
+[03:46:56.078] RX <<< firmware.target               : 7
+[03:46:56.078] RX <<< firmware.api.major            : 87
+[03:46:56.078] RX <<< firmware.api.minor            : 1
+[03:46:56.078] RX <<< firmware.origin.fork          : Official
+[03:46:56.078] RX <<< firmware.origin.git           : https://github.com/flipperdevices/flipperzero-firmware
+[03:46:56.078] RX <<< radio.alive                   : true
+[03:46:56.078] RX <<< radio.mode                    : Stack
+[03:46:56.078] RX <<< radio.fus.major               : 1
+[03:46:56.078] RX <<< radio.fus.minor               : 2
+[03:46:56.078] RX <<< radio.fus.sub                 : 0
+[03:46:56.078] RX <<< radio.fus.sram2b              : 16K
+[03:46:56.078] RX <<< radio.fus.sram2a              : 0K
+[03:46:56.078] RX <<< radio.fus.flash               : 24K
+[03:46:56.078] RX <<< radio.stack.type              : 3
+[03:46:56.078] RX <<< radio.stack.major             : 1
+[03:46:56.078] RX <<< radio.stack.minor             : 20
+[03:46:56.078] RX <<< radio.stack.sub               : 0
+[03:46:56.078] RX <<< radio.stack.branch            : 0
+[03:46:56.078] RX <<< radio.stack.release           : 2
+[03:46:56.078] RX <<< radio.stack.sram2b            : 19K
+[03:46:56.078] RX <<< radio.stack.sram2a            : 14K
+[03:46:56.078] RX <<< radio.stack.sram1             : 0K
+[03:46:56.078] RX <<< radio.stack.flash             : 116K
+[03:46:56.078] RX <<< radio.ble.mac                 : 272BEF27E180
+[03:46:56.078] RX <<< enclave.keys.valid            : 10
+[03:46:56.078] RX <<< enclave.valid                 : true
+[03:46:56.078] RX <<< system.debug                  : 0
+[03:46:56.078] RX <<< system.lock                   : 0
+[03:46:56.078] RX <<< system.orient                 : 0
+[03:46:56.078] RX <<< system.sleep.legacy           : 0
+[03:46:56.078] RX <<< system.stealth                : 0
+[03:46:56.078] RX <<< system.heap.track             : 0
+[03:46:56.078] RX <<< system.boot                   : 0
+[03:46:56.078] RX <<< system.locale.time            : 0
+[03:46:56.078] RX <<< system.locale.date            : 0
+[03:46:56.078] RX <<< system.locale.unit            : 0
+[03:46:56.078] RX <<< system.log.level              : 0
+[03:46:56.078] RX <<< protobuf.version.major        : 0
+[03:46:56.078] RX <<< protobuf.version.minor        : 25
+[03:46:56.078] TX >>> info power
+[03:47:03.116] RX <<< format.major                  : 2
+[03:47:03.116] RX <<< format.minor                  : 1
+[03:47:03.116] RX <<< charge.level                  : 100
+[03:47:03.116] RX <<< charge.state                  : charged
+[03:47:03.116] RX <<< charge.voltage.limit          : 4208
+[03:47:03.116] RX <<< battery.voltage               : 4133
+[03:47:03.116] RX <<< battery.current               : 0
+[03:47:03.116] RX <<< battery.temp                  : 20
+[03:47:03.116] RX <<< battery.health                : 100
+[03:47:03.116] RX <<< capacity.remain               : 2095
+[03:47:03.116] RX <<< capacity.full                 : 2100
+[03:47:03.116] RX <<< capacity.design               : 2100
+[03:47:03.117] TX >>> storage info /ext
+[03:47:15.151] RX <<< Label: FLIPPER
+[03:47:15.151] RX <<< Type: FAT32
+[03:47:15.151] RX <<< 15169536KiB total
+[03:47:15.151] RX <<< 15136256KiB free
+[03:47:15.151] RX <<< 02TM SA16G v5.5
+[03:47:15.151] RX <<< SN:309d177c 02/2019
+[03:47:15.152] TX >>> storage list /ext
+[03:47:32.196] RX <<< [D] System Volume Information
+[03:47:32.196] RX <<< [D] nfc
+[03:47:32.196] RX <<< [D] subghz
+[03:47:32.196] RX <<< [D] lfrfid
+[03:47:32.196] RX <<< [D] infrared
+[03:47:32.196] RX <<< [D] ibutton
+[03:47:32.196] RX <<< [F] Manifest 85176b
+[03:47:32.196] RX <<< [D] update
+[03:47:32.196] RX <<< [D] .tmp
+[03:47:32.196] RX <<< [D] apps
+[03:47:32.196] RX <<< [D] apps_data
+[03:47:32.196] RX <<< [D] badusb
+[03:47:32.196] RX <<< [D] dolphin
+[03:47:32.196] RX <<< [D] u2f
+[03:47:32.196] RX <<< [D] apps_manifests
+[03:47:32.196] RX <<< [D] subghz_remote
+[03:47:32.196] RX <<< [D] .int
+[03:47:32.196] RX <<< [D] .config
+[03:47:32.196] TX >>> storage info /int
+[03:47:44.245] RX <<< Label: Alaudisu
+[03:47:44.245] RX <<< Type: Virtual
+[03:47:44.245] RX <<< 15169536KiB total
+[03:47:44.245] RX <<< 15136440KiB free
+[03:47:44.245] TX >>> storage list /int
+[03:48:01.270] RX <<< [F] .notification.settings 24b
+[03:48:01.270] RX <<< [F] .expansion.settings 9b
+[03:48:01.270] RX <<< [F] .desktop.settings 1052b
+[03:48:01.270] RX <<< [F] .key.u2f 251b
+[03:48:01.270] RX <<< [F] .region_data 58b
+[03:48:01.270] RX <<< [F] .dolphin.state 40b
+[03:48:01.270] RX <<< [F] .bt.settings 9b
+[03:48:01.270] RX <<< [F] .infrared.settings 10b
+[03:48:01.272] TX >>> ?
+[03:48:08.337] RX <<< Available commands:
+[03:48:08.337] RX <<< [32mbt                            loader                        crypto
+[03:48:08.337] RX <<< js                            nfc                           exit
+[03:48:08.337] RX <<< buzzer                        input                         neofetch
+[03:48:08.337] RX <<< echo                          log                           onewire
+[03:48:08.337] RX <<< device_info                   free_blocks                   top
+[03:48:08.337] RX <<< factory_reset                 uptime                        ?
+[03:48:08.337] RX <<< storage                       vibro                         ikey
+[03:48:08.337] RX <<< !                             start_rpc_session             power
+[03:48:08.337] RX <<< subshell_demo                 i2c                           subghz
+[03:48:08.337] RX <<< ir                            update                        reload_ext_cmds
+[03:48:08.337] RX <<< hello_world                   rfid                          sleep
+[03:48:08.337] RX <<< help                          sysctl                        info
+[03:48:08.337] RX <<< gpio                          date                          led
+[03:48:08.337] RX <<< free                          [0m
+[03:48:08.337] RX <<< If you added a new external command and can't see it above, run `reload_ext_cmds`[0m
+[03:48:08.337] RX <<< Find out more: https://docs.flipper.net/development/cli
+[03:48:08.337] TX >>> [32mbt
+[03:48:14.369] RX <<< 2mbt
+[03:48:14.369] RX <<< [31mcould not find command `2mbt`, try `help`[0m
+[03:48:14.369] TX >>> !
+[03:48:20.440] RX <<< device_info_major             : 2
+[03:48:20.440] RX <<< device_info_minor             : 4
+[03:48:20.440] RX <<< hardware_model                : Flipper Zero
+[03:48:20.440] RX <<< hardware_uid                  : 272BEF0027E18000
+[03:48:20.440] RX <<< hardware_otp_ver              : 2
+[03:48:20.440] RX <<< hardware_timestamp            : 1684850676
+[03:48:20.440] RX <<< hardware_ver                  : 12
+[03:48:20.440] RX <<< hardware_target               : 7
+[03:48:20.440] RX <<< hardware_body                 : 9
+[03:48:20.440] RX <<< hardware_connect              : 6
+[03:48:20.440] RX <<< hardware_display              : 2
+[03:48:20.440] RX <<< hardware_color                : 2
+[03:48:20.440] RX <<< hardware_region               : 4
+[03:48:20.440] RX <<< hardware_region_provisioned   : CA
+[03:48:20.440] RX <<< hardware_name                 : Alaudisu
+[03:48:20.440] RX <<< firmware_commit               : 8622f1a2
+[03:48:20.440] RX <<< firmware_commit_dirty         : false
+[03:48:20.440] RX <<< firmware_branch               : 1.4.3
+[03:48:20.440] RX <<< firmware_branch_num           : 0
+[03:48:20.440] RX <<< firmware_version              : 1.4.3
+[03:48:20.440] RX <<< firmware_build_date           : 05-12-2025
+[03:48:20.440] RX <<< firmware_target               : 7
+[03:48:20.440] RX <<< firmware_api_major            : 87
+[03:48:20.440] RX <<< firmware_api_minor            : 1
+[03:48:20.440] RX <<< firmware_origin_fork          : Official
+[03:48:20.440] RX <<< firmware_origin_git           : https://github.com/flipperdevices/flipperzero-firmware
+[03:48:20.440] RX <<< radio_alive                   : true
+[03:48:20.440] RX <<< radio_mode                    : Stack
+[03:48:20.440] RX <<< radio_fus_major               : 1
+[03:48:20.440] RX <<< radio_fus_minor               : 2
+[03:48:20.440] RX <<< radio_fus_sub                 : 0
+[03:48:20.440] RX <<< radio_fus_sram2b              : 16K
+[03:48:20.440] RX <<< radio_fus_sram2a              : 0K
+[03:48:20.440] RX <<< radio_fus_flash               : 24K
+[03:48:20.440] RX <<< radio_stack_type              : 3
+[03:48:20.440] RX <<< radio_stack_major             : 1
+[03:48:20.440] RX <<< radio_stack_minor             : 20
+[03:48:20.440] RX <<< radio_stack_sub               : 0
+[03:48:20.440] RX <<< radio_stack_branch            : 0
+[03:48:20.440] RX <<< radio_stack_release           : 2
+[03:48:20.440] RX <<< radio_stack_sram2b            : 19K
+[03:48:20.440] RX <<< radio_stack_sram2a            : 14K
+[03:48:20.440] RX <<< radio_stack_sram1             : 0K
+[03:48:20.440] RX <<< radio_stack_flash             : 116K
+[03:48:20.440] RX <<< radio_ble_mac                 : 272BEF27E180
+[03:48:20.440] RX <<< enclave_valid_keys            : 10
+[03:48:20.440] RX <<< enclave_valid                 : true
+[03:48:20.440] RX <<< system_debug                  : 0
+[03:48:20.440] RX <<< system_lock                   : 0
+[03:48:20.440] RX <<< system_orient                 : 0
+[03:48:20.440] RX <<< system_sleep_legacy           : 0
+[03:48:20.440] RX <<< system_stealth                : 0
+[03:48:20.440] RX <<< system_heap_track             : 0
+[03:48:20.440] RX <<< system_boot                   : 0
+[03:48:20.440] RX <<< system_locale_time            : 0
+[03:48:20.440] RX <<< system_locale_date            : 0
+[03:48:20.440] RX <<< system_locale_unit            : 0
+[03:48:20.440] RX <<< system_log_level              : 0
+[03:48:20.440] RX <<< protobuf_version_major        : 0
+[03:48:20.440] RX <<< protobuf_version_minor        : 25
+[03:48:20.441] TX >>> Available
+[03:48:26.487] RX <<< [31mcould not find command `Available`, try `help`[0m
+[03:48:26.487] TX >>> Find
+[03:48:32.526] RX <<< [31mcould not find command `Find`, try `help`[0m
+[03:48:32.526] TX >>> If
+[03:48:38.563] RX <<< [31mcould not find command `If`, try `help`[0m
+[03:48:38.563] TX >>> badusb
+[03:48:44.609] RX <<< [31mcould not find command `badusb`, try `help`[0m
+[03:48:44.609] TX >>> bt
+[03:48:50.640] RX <<< [31mthis command cannot be run while an application is open[0m
+[03:48:50.640] TX >>> buzzer
+[03:48:56.718] RX <<< [31mthis command cannot be run while an application is open[0m
+[03:48:56.718] TX >>> crypto
+[03:49:02.759] RX <<< [31mthis command cannot be run while an application is open[0m
+[03:49:02.759] TX >>> debug
+[03:49:08.796] RX <<< [31mcould not find command `debug`, try `help`[0m
+[03:49:08.796] TX >>> desktop
+[03:49:14.830] RX <<< [31mcould not find command `desktop`, try `help`[0m
+[03:49:14.830] TX >>> device_info
+[03:49:20.885] RX <<< device_info_major             : 2
+[03:49:20.885] RX <<< device_info_minor             : 4
+[03:49:20.885] RX <<< hardware_model                : Flipper Zero
+[03:49:20.885] RX <<< hardware_uid                  : 272BEF0027E18000
+[03:49:20.885] RX <<< hardware_otp_ver              : 2
+[03:49:20.885] RX <<< hardware_timestamp            : 1684850676
+[03:49:20.885] RX <<< hardware_ver                  : 12
+[03:49:20.885] RX <<< hardware_target               : 7
+[03:49:20.885] RX <<< hardware_body                 : 9
+[03:49:20.885] RX <<< hardware_connect              : 6
+[03:49:20.885] RX <<< hardware_display              : 2
+[03:49:20.885] RX <<< hardware_color                : 2
+[03:49:20.885] RX <<< hardware_region               : 4
+[03:49:20.885] RX <<< hardware_region_provisioned   : CA
+[03:49:20.885] RX <<< hardware_name                 : Alaudisu
+[03:49:20.885] RX <<< firmware_commit               : 8622f1a2
+[03:49:20.885] RX <<< firmware_commit_dirty         : false
+[03:49:20.885] RX <<< firmware_branch               : 1.4.3
+[03:49:20.885] RX <<< firmware_branch_num           : 0
+[03:49:20.885] RX <<< firmware_version              : 1.4.3
+[03:49:20.885] RX <<< firmware_build_date           : 05-12-2025
+[03:49:20.885] RX <<< firmware_target               : 7
+[03:49:20.885] RX <<< firmware_api_major            : 87
+[03:49:20.885] RX <<< firmware_api_minor            : 1
+[03:49:20.885] RX <<< firmware_origin_fork          : Official
+[03:49:20.885] RX <<< firmware_origin_git           : https://github.com/flipperdevices/flipperzero-firmware
+[03:49:20.885] RX <<< radio_alive                   : true
+[03:49:20.885] RX <<< radio_mode                    : Stack
+[03:49:20.885] RX <<< radio_fus_major               : 1
+[03:49:20.885] RX <<< radio_fus_minor               : 2
+[03:49:20.885] RX <<< radio_fus_sub                 : 0
+[03:49:20.885] RX <<< radio_fus_sram2b              : 16K
+[03:49:20.885] RX <<< radio_fus_sram2a              : 0K
+[03:49:20.885] RX <<< radio_fus_flash               : 24K
+[03:49:20.885] RX <<< radio_stack_type              : 3
+[03:49:20.885] RX <<< radio_stack_major             : 1
+[03:49:20.885] RX <<< radio_stack_minor             : 20
+[03:49:20.885] RX <<< radio_stack_sub               : 0
+[03:49:20.885] RX <<< radio_stack_branch            : 0
+[03:49:20.885] RX <<< radio_stack_release           : 2
+[03:49:20.885] RX <<< radio_stack_sram2b            : 19K
+[03:49:20.885] RX <<< radio_stack_sram2a            : 14K
+[03:49:20.885] RX <<< radio_stack_sram1             : 0K
+[03:49:20.885] RX <<< radio_stack_flash             : 116K
+[03:49:20.885] RX <<< radio_ble_mac                 : 272BEF27E180
+[03:49:20.885] RX <<< enclave_valid_keys            : 10
+[03:49:20.885] RX <<< enclave_valid                 : true
+[03:49:20.885] RX <<< system_debug                  : 0
+[03:49:20.885] RX <<< system_lock                   : 0
+[03:49:20.885] RX <<< system_orient                 : 0
+[03:49:20.885] RX <<< system_sleep_legacy           : 0
+[03:49:20.885] RX <<< system_stealth                : 0
+[03:49:20.885] RX <<< system_heap_track             : 0
+[03:49:20.885] RX <<< system_boot                   : 0
+[03:49:20.885] RX <<< system_locale_time            : 0
+[03:49:20.885] RX <<< system_locale_date            : 0
+[03:49:20.885] RX <<< system_locale_unit            : 0
+[03:49:20.885] RX <<< system_log_level              : 0
+[03:49:20.885] RX <<< protobuf_version_major        : 0
+[03:49:20.885] RX <<< protobuf_version_minor        : 25
+[03:49:20.885] TX >>> echo
+[03:49:24.910] RX <<< (empty)
+[03:49:24.910] TX >>> echo help
+[03:49:28.934] RX <<< (empty)
+[03:49:28.934] TX >>> echo ?
+[03:49:32.962] RX <<< (empty)
+[03:49:32.962] TX >>> factory_reset
+[03:49:36.986] RX <<< (empty)
+[03:49:36.986] TX >>> factory_reset help
+[03:49:41.016] RX <<< (empty)
+[03:49:41.017] TX >>> factory_reset ?
+[03:49:45.040] RX <<< (empty)
+[03:49:45.040] TX >>> free
+[03:49:49.076] RX <<< (empty)
+[03:49:49.076] TX >>> free help
+[03:49:53.113] RX <<< (empty)
+[03:49:53.113] TX >>> free ?
+[03:49:57.144] RX <<< (empty)
+[03:49:57.144] TX >>> gpio
+[03:50:01.178] RX <<< (empty)
+[03:50:01.178] TX >>> gpio help
+[03:50:05.209] RX <<< (empty)
+[03:50:05.209] TX >>> gpio ?
+[03:50:09.247] RX <<< (empty)
+[03:50:09.247] TX >>> hello_world
+[03:50:13.283] RX <<< (empty)
+[03:50:13.283] TX >>> hello_world help
+[03:50:17.307] RX <<< (empty)
+[03:50:17.307] TX >>> hello_world ?
+[03:50:21.341] RX <<< (empty)
+[03:50:21.341] TX >>> help
+[03:50:25.366] RX <<< (empty)
+[03:50:25.366] TX >>> help help
+[03:50:29.406] RX <<< (empty)
+[03:50:29.406] TX >>> help ?
+[03:50:33.446] RX <<< (empty)
+[03:50:33.446] TX >>> ibutton
+[03:50:37.473] RX <<< (empty)
+[03:50:37.473] TX >>> ibutton help
+[03:50:41.498] RX <<< (empty)
+[03:50:41.498] TX >>> ibutton ?
+[03:50:45.535] RX <<< (empty)
+[03:50:45.535] TX >>> info
+[03:50:49.569] RX <<< (empty)
+[03:50:49.569] TX >>> info help
+[03:50:53.602] RX <<< (empty)
+[03:50:53.602] TX >>> info ?
+[03:50:57.625] RX <<< (empty)
+[03:50:57.626] TX >>> infrared
+[03:51:01.659] RX <<< (empty)
+[03:51:01.659] TX >>> infrared help
+[03:51:05.689] RX <<< (empty)
+[03:51:05.689] TX >>> infrared ?
+[03:51:09.717] RX <<< (empty)
+[03:51:09.717] TX >>> input
+[03:51:13.747] RX <<< (empty)
+[03:51:13.747] TX >>> input help
+[03:51:17.786] RX <<< (empty)
+[03:51:17.786] TX >>> input ?
+[03:51:21.819] RX <<< (empty)
+[03:51:21.820] TX >>> ir
+[03:51:25.846] RX <<< (empty)
+[03:51:25.846] TX >>> ir help
+[03:51:29.879] RX <<< (empty)
+[03:51:29.879] TX >>> ir ?
+[03:51:33.909] RX <<< (empty)
+[03:51:33.910] TX >>> js
+[03:51:37.937] RX <<< (empty)
+[03:51:37.937] TX >>> js help
+[03:51:41.969] RX <<< (empty)
+[03:51:41.969] TX >>> js ?
+[03:51:46.000] RX <<< (empty)
+[03:51:46.000] TX >>> led
+[03:51:50.031] RX <<< (empty)
+[03:51:50.031] TX >>> led help
+[03:51:54.063] RX <<< (empty)
+[03:51:54.063] TX >>> led ?
+[03:51:58.086] RX <<< (empty)
+[03:51:58.086] TX >>> lfrfid
+[03:52:02.125] RX <<< (empty)
+[03:52:02.125] TX >>> lfrfid help
+[03:52:06.161] RX <<< (empty)
+[03:52:06.161] TX >>> lfrfid ?
+[03:52:10.185] RX <<< (empty)
+[03:52:10.185] TX >>> loader
+[03:52:14.224] RX <<< (empty)
+[03:52:14.224] TX >>> loader help
+[03:52:18.245] RX <<< (empty)
+[03:52:18.246] TX >>> loader ?
+[03:52:22.275] RX <<< (empty)
+[03:52:22.275] TX >>> log
+[03:52:26.305] RX <<< (empty)
+[03:52:26.305] TX >>> log help
+[03:52:30.346] RX <<< (empty)
+[03:52:30.346] TX >>> log ?
+[03:52:34.376] RX <<< (empty)
+[03:52:34.377] TX >>> nfc
+[03:52:38.383] RX <<< (empty)
+[03:52:38.383] TX >>> nfc help
+[03:52:42.410] RX <<< (empty)
+[03:52:42.410] TX >>> nfc ?
+[03:52:46.438] RX <<< (empty)
+[03:52:46.438] TX >>> notification
+[03:52:50.469] RX <<< (empty)
+[03:52:50.469] TX >>> notification help
+[03:52:54.510] RX <<< (empty)
+[03:52:54.510] TX >>> notification ?
+[03:52:58.550] RX <<< (empty)
+[03:52:58.550] TX >>> onewire
+[03:53:02.590] RX <<< (empty)
+[03:53:02.590] TX >>> onewire help
+[03:53:06.631] RX <<< (empty)
+[03:53:06.631] TX >>> onewire ?
+[03:53:10.655] RX <<< (empty)
+[03:53:10.656] TX >>> power
+[03:53:14.686] RX <<< (empty)
+[03:53:14.686] TX >>> power help
+[03:53:18.713] RX <<< (empty)
+[03:53:18.713] TX >>> power ?
+[03:53:22.738] RX <<< (empty)
+[03:53:22.738] TX >>> rfid
+[03:53:26.760] RX <<< (empty)
+[03:53:26.761] TX >>> rfid help
+[03:53:30.798] RX <<< (empty)
+[03:53:30.798] TX >>> rfid ?
+[03:53:34.834] RX <<< (empty)
+[03:53:34.834] TX >>> rpc
+[03:53:38.864] RX <<< (empty)
+[03:53:38.864] TX >>> rpc help
+[03:53:42.895] RX <<< (empty)
+[03:53:42.895] TX >>> rpc ?
+[03:53:46.923] RX <<< (empty)
+[03:53:46.923] TX >>> speaker
+[03:53:50.948] RX <<< (empty)
+[03:53:50.948] TX >>> speaker help
+[03:53:54.984] RX <<< (empty)
+[03:53:54.984] TX >>> speaker ?
+[03:53:59.021] RX <<< (empty)
+[03:53:59.021] TX >>> storage
+[03:54:03.058] RX <<< (empty)
+[03:54:03.058] TX >>> storage help
+[03:54:07.082] RX <<< (empty)
+[03:54:07.082] TX >>> storage ?
+[03:54:11.115] RX <<< (empty)
+[03:54:11.115] TX >>> subghz
+[03:54:15.136] RX <<< (empty)
+[03:54:15.136] TX >>> subghz help
+[03:54:19.162] RX <<< (empty)
+[03:54:19.162] TX >>> subghz ?
+[03:54:23.199] RX <<< (empty)
+[03:54:23.199] TX >>> subshell_demo
+[03:54:27.229] RX <<< (empty)
+[03:54:27.229] TX >>> subshell_demo help
+[03:54:31.263] RX <<< (empty)
+[03:54:31.263] TX >>> subshell_demo ?
+[03:54:35.293] RX <<< (empty)
+[03:54:35.293] TX >>> system
+[03:54:39.323] RX <<< (empty)
+[03:54:39.324] TX >>> system help
+[03:54:43.352] RX <<< (empty)
+[03:54:43.352] TX >>> system ?
+[03:54:47.392] RX <<< (empty)
+[03:54:47.392] TX >>> update
+[03:54:51.424] RX <<< (empty)
+[03:54:51.425] TX >>> update help
+[03:54:55.451] RX <<< (empty)
+[03:54:55.451] TX >>> update ?
+[03:54:59.484] RX <<< (empty)
+[03:54:59.485] TX >>> vibro
+[03:55:03.521] RX <<< (empty)
+[03:55:03.521] TX >>> vibro help
+[03:55:07.552] RX <<< (empty)
+[03:55:07.552] TX >>> vibro ?
+[03:55:11.584] RX <<< (empty)
+[03:55:11.584] TX >>> wifi
+[03:55:15.612] RX <<< (empty)
+[03:55:15.612] TX >>> wifi help
+[03:55:19.647] RX <<< (empty)
+[03:55:19.647] TX >>> wifi ?
+[03:55:23.679] RX <<< (empty)
+[03:55:23.680] TX >>> [32mbt 2mbt
+[03:55:27.716] RX <<< (empty)
+[03:55:27.717] TX >>> [32mbt [31mcould
+[03:55:31.747] RX <<< (empty)
+[03:55:31.748] TX >>> ! device_info_major
+[03:55:35.788] RX <<< (empty)
+[03:55:35.788] TX >>> ! device_info_minor
+[03:55:39.821] RX <<< (empty)
+[03:55:39.821] TX >>> ! hardware_model
+[03:55:43.858] RX <<< (empty)
+[03:55:43.858] TX >>> ! hardware_uid
+[03:55:47.898] RX <<< (empty)
+[03:55:47.898] TX >>> ! hardware_otp_ver
+[03:55:51.932] RX <<< (empty)
+[03:55:51.932] TX >>> ! hardware_timestamp
+[03:55:55.968] RX <<< (empty)
+[03:55:55.968] TX >>> ! hardware_ver
+[03:55:59.993] RX <<< (empty)
+[03:55:59.993] TX >>> ! hardware_target
+[03:56:04.017] RX <<< (empty)
+[03:56:04.017] TX >>> ! hardware_body
+[03:56:08.058] RX <<< (empty)
+[03:56:08.058] TX >>> ! hardware_connect
+[03:56:12.096] RX <<< (empty)
+[03:56:12.096] TX >>> ! hardware_display
+[03:56:16.136] RX <<< (empty)
+[03:56:16.136] TX >>> ! hardware_color
+[03:56:20.169] RX <<< (empty)
+[03:56:20.170] TX >>> ! hardware_region
+[03:56:24.204] RX <<< (empty)
+[03:56:24.204] TX >>> ! hardware_region_provisioned
+[03:56:28.226] RX <<< (empty)
+[03:56:28.226] TX >>> ! hardware_name
+[03:56:32.248] RX <<< (empty)
+[03:56:32.248] TX >>> ! firmware_commit
+[03:56:36.289] RX <<< (empty)
+[03:56:36.289] TX >>> ! firmware_commit_dirty
+[03:56:40.326] RX <<< (empty)
+[03:56:40.326] TX >>> ! firmware_branch
+[03:56:44.351] RX <<< (empty)
+[03:56:44.351] TX >>> ! firmware_branch_num
+[03:56:48.374] RX <<< (empty)
+[03:56:48.374] TX >>> ! firmware_version
+[03:56:52.404] RX <<< (empty)
+[03:56:52.404] TX >>> ! firmware_build_date
+[03:56:56.428] RX <<< (empty)
+[03:56:56.428] TX >>> ! firmware_target
+[03:57:00.462] RX <<< (empty)
+[03:57:00.462] TX >>> ! firmware_api_major
+[03:57:04.491] RX <<< (empty)
+[03:57:04.491] TX >>> ! firmware_api_minor
+[03:57:08.516] RX <<< (empty)
+[03:57:08.516] TX >>> ! firmware_origin_fork
+[03:57:12.543] RX <<< (empty)
+[03:57:12.543] TX >>> ! firmware_origin_git
+[03:57:16.581] RX <<< (empty)
+[03:57:16.581] TX >>> ! radio_alive
+[03:57:20.605] RX <<< (empty)
+[03:57:20.605] TX >>> ! radio_mode
+[03:57:24.640] RX <<< (empty)
+[03:57:24.640] TX >>> ! radio_fus_major
+[03:57:28.665] RX <<< (empty)
+[03:57:28.665] TX >>> ! radio_fus_minor
+[03:57:32.705] RX <<< (empty)
+[03:57:32.705] TX >>> ! radio_fus_sub
+[03:57:36.745] RX <<< (empty)
+[03:57:36.745] TX >>> ! radio_fus_sram2b
+[03:57:40.781] RX <<< (empty)
+[03:57:40.781] TX >>> ! radio_fus_sram2a
+[03:57:44.810] RX <<< (empty)
+[03:57:44.810] TX >>> ! radio_fus_flash
+[03:57:48.841] RX <<< (empty)
+[03:57:48.841] TX >>> ! radio_stack_type
+[03:57:52.869] RX <<< (empty)
+[03:57:52.869] TX >>> ! radio_stack_major
+[03:57:56.908] RX <<< (empty)
+[03:57:56.908] TX >>> ! radio_stack_minor
+[03:58:00.938] RX <<< (empty)
+[03:58:00.938] TX >>> ! radio_stack_sub
+[03:58:04.976] RX <<< (empty)
+[03:58:04.976] TX >>> ! radio_stack_branch
+[03:58:09.014] RX <<< (empty)
+[03:58:09.014] TX >>> ! radio_stack_release
+[03:58:13.042] RX <<< (empty)
+[03:58:13.042] TX >>> ! radio_stack_sram2b
+[03:58:17.069] RX <<< (empty)
+[03:58:17.069] TX >>> ! radio_stack_sram2a
+[03:58:21.103] RX <<< (empty)
+[03:58:21.103] TX >>> ! radio_stack_sram1
+[03:58:25.137] RX <<< (empty)
+[03:58:25.138] TX >>> ! radio_stack_flash
+[03:58:29.159] RX <<< (empty)
+[03:58:29.159] TX >>> ! radio_ble_mac
+[03:58:33.195] RX <<< (empty)
+[03:58:33.195] TX >>> ! enclave_valid_keys
+[03:58:37.217] RX <<< (empty)
+[03:58:37.217] TX >>> ! enclave_valid
+[03:58:41.256] RX <<< (empty)
+[03:58:41.256] TX >>> ! system_debug
+[03:58:45.281] RX <<< (empty)
+[03:58:45.281] TX >>> ! system_lock
+[03:58:49.306] RX <<< (empty)
+[03:58:49.306] TX >>> ! system_orient
+[03:58:53.347] RX <<< (empty)
+[03:58:53.347] TX >>> ! system_sleep_legacy
+[03:58:57.387] RX <<< (empty)
+[03:58:57.387] TX >>> ! system_stealth
+[03:59:01.420] RX <<< (empty)
+[03:59:01.420] TX >>> ! system_heap_track
+[03:59:05.448] RX <<< (empty)
+[03:59:05.448] TX >>> ! system_boot
+[03:59:09.473] RX <<< (empty)
+[03:59:09.473] TX >>> ! system_locale_time
+[03:59:13.503] RX <<< (empty)
+[03:59:13.503] TX >>> ! system_locale_date
+[03:59:17.542] RX <<< (empty)
+[03:59:17.542] TX >>> ! system_locale_unit
+[03:59:21.582] RX <<< (empty)
+[03:59:21.582] TX >>> ! system_log_level
+[03:59:25.612] RX <<< (empty)
+[03:59:25.612] TX >>> ! protobuf_version_major
+[03:59:29.642] RX <<< (empty)
+[03:59:29.642] TX >>> ! protobuf_version_minor
+[03:59:33.680] RX <<< (empty)
+[03:59:33.680] TX >>> Available [31mcould
+[03:59:37.704] RX <<< (empty)
+[03:59:37.704] TX >>> Find [31mcould
+[03:59:41.735] RX <<< (empty)
+[03:59:41.735] TX >>> If [31mcould
+[03:59:45.765] RX <<< (empty)
+[03:59:45.765] TX >>> badusb [31mcould
+[03:59:49.796] RX <<< (empty)
+[03:59:49.796] TX >>> bt [31mthis
+[03:59:53.826] RX <<< (empty)
+[03:59:53.826] TX >>> buzzer [31mthis
+[03:59:57.848] RX <<< (empty)
+[03:59:57.848] TX >>> crypto [31mthis
+[04:00:01.874] RX <<< (empty)
+[04:00:01.874] TX >>> debug [31mcould
+[04:00:05.898] RX <<< (empty)
+[04:00:05.899] TX >>> desktop [31mcould
+[04:00:09.926] RX <<< (empty)
+[04:00:09.926] TX >>> device_info device_info_major
+[04:00:13.950] RX <<< (empty)
+[04:00:13.950] TX >>> device_info device_info_minor
+[04:00:17.991] RX <<< (empty)
+[04:00:17.991] TX >>> device_info hardware_model
+[04:00:22.016] RX <<< (empty)
+[04:00:22.016] TX >>> device_info hardware_uid
+[04:00:26.044] RX <<< (empty)
+[04:00:26.044] TX >>> device_info hardware_otp_ver
+[04:00:30.078] RX <<< (empty)
+[04:00:30.078] TX >>> device_info hardware_timestamp
+[04:00:34.107] RX <<< (empty)
+[04:00:34.107] TX >>> device_info hardware_ver
+[04:00:38.137] RX <<< (empty)
+[04:00:38.137] TX >>> device_info hardware_target
+[04:00:42.168] RX <<< (empty)
+[04:00:42.168] TX >>> device_info hardware_body
+[04:00:46.198] RX <<< (empty)
+[04:00:46.198] TX >>> device_info hardware_connect
+[04:00:50.230] RX <<< (empty)
+[04:00:50.230] TX >>> device_info hardware_display
+[04:00:54.255] RX <<< (empty)
+[04:00:54.255] TX >>> device_info hardware_color
+[04:00:58.287] RX <<< (empty)
+[04:00:58.287] TX >>> device_info hardware_region
+[04:01:02.328] RX <<< (empty)
+[04:01:02.328] TX >>> device_info hardware_region_provisioned
+[04:01:06.355] RX <<< (empty)
+[04:01:06.355] TX >>> device_info hardware_name
+[04:01:10.379] RX <<< (empty)
+[04:01:10.379] TX >>> device_info firmware_commit
+[04:01:14.417] RX <<< (empty)
+[04:01:14.417] TX >>> device_info firmware_commit_dirty
+[04:01:18.449] RX <<< (empty)
+[04:01:18.449] TX >>> device_info firmware_branch
+[04:01:22.475] RX <<< (empty)
+[04:01:22.475] TX >>> device_info firmware_branch_num
+[04:01:26.504] RX <<< (empty)
+[04:01:26.504] TX >>> device_info firmware_version
+[04:01:30.535] RX <<< (empty)
+[04:01:30.535] TX >>> device_info firmware_build_date
+[04:01:34.560] RX <<< (empty)
+[04:01:34.560] TX >>> device_info firmware_target
+[04:01:38.586] RX <<< (empty)
+[04:01:38.587] TX >>> device_info firmware_api_major
+[04:01:42.616] RX <<< (empty)
+[04:01:42.617] TX >>> device_info firmware_api_minor
+[04:01:46.653] RX <<< (empty)
+[04:01:46.653] TX >>> device_info firmware_origin_fork
+[04:01:50.687] RX <<< (empty)
+[04:01:50.687] TX >>> device_info firmware_origin_git
+[04:01:54.715] RX <<< (empty)
+[04:01:54.715] TX >>> device_info radio_alive
+[04:01:58.737] RX <<< (empty)
+[04:01:58.737] TX >>> device_info radio_mode
+[04:02:02.767] RX <<< (empty)
+[04:02:02.767] TX >>> device_info radio_fus_major
+[04:02:06.801] RX <<< (empty)
+[04:02:06.801] TX >>> device_info radio_fus_minor
+[04:02:10.809] RX <<< (empty)
+[04:02:10.809] TX >>> device_info radio_fus_sub
+[04:02:14.836] RX <<< (empty)
+[04:02:14.836] TX >>> device_info radio_fus_sram2b
+[04:02:18.867] RX <<< (empty)
+[04:02:18.867] TX >>> device_info radio_fus_sram2a
+[04:02:22.904] RX <<< (empty)
+[04:02:22.904] TX >>> device_info radio_fus_flash
+[04:02:26.927] RX <<< (empty)
+[04:02:26.927] TX >>> device_info radio_stack_type
+[04:02:30.954] RX <<< (empty)
+[04:02:30.954] TX >>> device_info radio_stack_major
+[04:02:34.993] RX <<< (empty)
+[04:02:34.993] TX >>> device_info radio_stack_minor
+[04:02:39.018] RX <<< (empty)
+[04:02:39.018] TX >>> device_info radio_stack_sub
+[04:02:43.050] RX <<< (empty)
+[04:02:43.050] TX >>> device_info radio_stack_branch
+[04:02:47.076] RX <<< (empty)
+[04:02:47.076] TX >>> device_info radio_stack_release
+[04:02:51.104] RX <<< (empty)
+[04:02:51.104] TX >>> device_info radio_stack_sram2b
+[04:02:55.133] RX <<< (empty)
+[04:02:55.133] TX >>> device_info radio_stack_sram2a
+[04:02:59.161] RX <<< (empty)
+[04:02:59.161] TX >>> device_info radio_stack_sram1
+[04:03:03.185] RX <<< (empty)
+[04:03:03.186] TX >>> device_info radio_stack_flash
+[04:03:07.221] RX <<< (empty)
+[04:03:07.221] TX >>> device_info radio_ble_mac
+[04:03:11.252] RX <<< (empty)
+[04:03:11.252] TX >>> device_info enclave_valid_keys
+[04:03:15.287] RX <<< (empty)
+[04:03:15.287] TX >>> device_info enclave_valid
+[04:03:19.308] RX <<< (empty)
+[04:03:19.308] TX >>> device_info system_debug
+[04:03:23.335] RX <<< (empty)
+[04:03:23.335] TX >>> device_info system_lock
+[04:03:27.361] RX <<< (empty)
+[04:03:27.361] TX >>> device_info system_orient
+[04:03:31.393] RX <<< (empty)
+[04:03:31.393] TX >>> device_info system_sleep_legacy
+[04:03:35.417] RX <<< (empty)
+[04:03:35.418] TX >>> device_info system_stealth
+[04:03:39.441] RX <<< (empty)
+[04:03:39.441] TX >>> device_info system_heap_track
+[04:03:43.471] RX <<< (empty)
+[04:03:43.472] TX >>> device_info system_boot
+[04:03:47.499] RX <<< (empty)
+[04:03:47.499] TX >>> device_info system_locale_time
+[04:03:51.525] RX <<< (empty)
+[04:03:51.525] TX >>> device_info system_locale_date
+[04:03:55.554] RX <<< (empty)
+[04:03:55.554] TX >>> device_info system_locale_unit
+[04:03:59.583] RX <<< (empty)
+[04:03:59.583] TX >>> device_info system_log_level
+[04:04:03.611] RX <<< (empty)
+[04:04:03.611] TX >>> device_info protobuf_version_major
+[04:04:07.638] RX <<< (empty)
+[04:04:07.638] TX >>> device_info protobuf_version_minor
+[04:04:11.660] RX <<< (empty)
+[04:04:11.661] TX >>> bt
+[04:04:15.695] RX <<< (empty)
+[04:04:15.695] TX >>> bt hci_info
+[04:04:19.721] RX <<< (empty)
+[04:04:19.721] TX >>> wifi
+[04:04:23.762] RX <<< (empty)
+[04:04:23.770] TX >>> storage info /ext
+[04:04:33.809] RX <<< (empty)
+[04:04:33.809] TX >>> storage info /int
+[04:04:43.848] RX <<< (empty)
+[04:04:43.850] NOTE: Disconnected
+
+# Ended: 2026-03-11T04:04:43.850239+00:00

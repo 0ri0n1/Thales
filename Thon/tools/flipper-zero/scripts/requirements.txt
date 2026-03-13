@@ -1,0 +1,5 @@
+# Flipper Zero WiFi Module — Host-side dependencies
+# Install: pip install -r requirements.txt
+
+pyserial>=3.5
+esptool>=5.0

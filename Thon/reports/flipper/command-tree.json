@@ -1,0 +1,979 @@
+{
+  "\u001b[32mbt": {
+    "available": true,
+    "commands": [
+      {
+        "name": "2mbt",
+        "full_command": "\u001b[32mbt 2mbt",
+        "description": "",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "\u001b[32mbt \u001b[31mcould",
+        "description": "not find command `2mbt`, try `help`\u001b[0m",
+        "latency_ms": 4031,
+        "blocking": true
+      }
+    ]
+  },
+  "!": {
+    "available": true,
+    "commands": [
+      {
+        "name": "device_info_major",
+        "full_command": "! device_info_major",
+        "description": "2",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "device_info_minor",
+        "full_command": "! device_info_minor",
+        "description": "4",
+        "latency_ms": 4032,
+        "blocking": true
+      },
+      {
+        "name": "hardware_model",
+        "full_command": "! hardware_model",
+        "description": "Flipper Zero",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "hardware_uid",
+        "full_command": "! hardware_uid",
+        "description": "272BEF0027E18000",
+        "latency_ms": 4039,
+        "blocking": true
+      },
+      {
+        "name": "hardware_otp_ver",
+        "full_command": "! hardware_otp_ver",
+        "description": "2",
+        "latency_ms": 4033,
+        "blocking": true
+      },
+      {
+        "name": "hardware_timestamp",
+        "full_command": "! hardware_timestamp",
+        "description": "1684850676",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "hardware_ver",
+        "full_command": "! hardware_ver",
+        "description": "12",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "hardware_target",
+        "full_command": "! hardware_target",
+        "description": "7",
+        "latency_ms": 4023,
+        "blocking": true
+      },
+      {
+        "name": "hardware_body",
+        "full_command": "! hardware_body",
+        "description": "9",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "hardware_connect",
+        "full_command": "! hardware_connect",
+        "description": "6",
+        "latency_ms": 4037,
+        "blocking": true
+      },
+      {
+        "name": "hardware_display",
+        "full_command": "! hardware_display",
+        "description": "2",
+        "latency_ms": 4039,
+        "blocking": true
+      },
+      {
+        "name": "hardware_color",
+        "full_command": "! hardware_color",
+        "description": "2",
+        "latency_ms": 4033,
+        "blocking": true
+      },
+      {
+        "name": "hardware_region",
+        "full_command": "! hardware_region",
+        "description": "4",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "hardware_region_provisioned",
+        "full_command": "! hardware_region_provisioned",
+        "description": "CA",
+        "latency_ms": 4021,
+        "blocking": true
+      },
+      {
+        "name": "hardware_name",
+        "full_command": "! hardware_name",
+        "description": "Alaudisu",
+        "latency_ms": 4022,
+        "blocking": true
+      },
+      {
+        "name": "firmware_commit",
+        "full_command": "! firmware_commit",
+        "description": "8622f1a2",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "firmware_commit_dirty",
+        "full_command": "! firmware_commit_dirty",
+        "description": "false",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "firmware_branch",
+        "full_command": "! firmware_branch",
+        "description": "1.4.3",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "firmware_branch_num",
+        "full_command": "! firmware_branch_num",
+        "description": "0",
+        "latency_ms": 4022,
+        "blocking": true
+      },
+      {
+        "name": "firmware_version",
+        "full_command": "! firmware_version",
+        "description": "1.4.3",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "firmware_build_date",
+        "full_command": "! firmware_build_date",
+        "description": "05-12-2025",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "firmware_target",
+        "full_command": "! firmware_target",
+        "description": "7",
+        "latency_ms": 4033,
+        "blocking": true
+      },
+      {
+        "name": "firmware_api_major",
+        "full_command": "! firmware_api_major",
+        "description": "87",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "firmware_api_minor",
+        "full_command": "! firmware_api_minor",
+        "description": "1",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "firmware_origin_fork",
+        "full_command": "! firmware_origin_fork",
+        "description": "Official",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "firmware_origin_git",
+        "full_command": "! firmware_origin_git",
+        "description": "https://github.com/flipperdevices/flipperzero-firmware",
+        "latency_ms": 4037,
+        "blocking": true
+      },
+      {
+        "name": "radio_alive",
+        "full_command": "! radio_alive",
+        "description": "true",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "radio_mode",
+        "full_command": "! radio_mode",
+        "description": "Stack",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_major",
+        "full_command": "! radio_fus_major",
+        "description": "1",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_minor",
+        "full_command": "! radio_fus_minor",
+        "description": "2",
+        "latency_ms": 4039,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_sub",
+        "full_command": "! radio_fus_sub",
+        "description": "0",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_sram2b",
+        "full_command": "! radio_fus_sram2b",
+        "description": "16K",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_sram2a",
+        "full_command": "! radio_fus_sram2a",
+        "description": "0K",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_flash",
+        "full_command": "! radio_fus_flash",
+        "description": "24K",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_type",
+        "full_command": "! radio_stack_type",
+        "description": "3",
+        "latency_ms": 4028,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_major",
+        "full_command": "! radio_stack_major",
+        "description": "1",
+        "latency_ms": 4039,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_minor",
+        "full_command": "! radio_stack_minor",
+        "description": "20",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sub",
+        "full_command": "! radio_stack_sub",
+        "description": "0",
+        "latency_ms": 4037,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_branch",
+        "full_command": "! radio_stack_branch",
+        "description": "0",
+        "latency_ms": 4037,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_release",
+        "full_command": "! radio_stack_release",
+        "description": "2",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sram2b",
+        "full_command": "! radio_stack_sram2b",
+        "description": "19K",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sram2a",
+        "full_command": "! radio_stack_sram2a",
+        "description": "14K",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sram1",
+        "full_command": "! radio_stack_sram1",
+        "description": "0K",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_flash",
+        "full_command": "! radio_stack_flash",
+        "description": "116K",
+        "latency_ms": 4021,
+        "blocking": true
+      },
+      {
+        "name": "radio_ble_mac",
+        "full_command": "! radio_ble_mac",
+        "description": "272BEF27E180",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "enclave_valid_keys",
+        "full_command": "! enclave_valid_keys",
+        "description": "10",
+        "latency_ms": 4021,
+        "blocking": true
+      },
+      {
+        "name": "enclave_valid",
+        "full_command": "! enclave_valid",
+        "description": "true",
+        "latency_ms": 4039,
+        "blocking": true
+      },
+      {
+        "name": "system_debug",
+        "full_command": "! system_debug",
+        "description": "0",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "system_lock",
+        "full_command": "! system_lock",
+        "description": "0",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "system_orient",
+        "full_command": "! system_orient",
+        "description": "0",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "system_sleep_legacy",
+        "full_command": "! system_sleep_legacy",
+        "description": "0",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "system_stealth",
+        "full_command": "! system_stealth",
+        "description": "0",
+        "latency_ms": 4032,
+        "blocking": true
+      },
+      {
+        "name": "system_heap_track",
+        "full_command": "! system_heap_track",
+        "description": "0",
+        "latency_ms": 4028,
+        "blocking": true
+      },
+      {
+        "name": "system_boot",
+        "full_command": "! system_boot",
+        "description": "0",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "system_locale_time",
+        "full_command": "! system_locale_time",
+        "description": "0",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "system_locale_date",
+        "full_command": "! system_locale_date",
+        "description": "0",
+        "latency_ms": 4038,
+        "blocking": true
+      },
+      {
+        "name": "system_locale_unit",
+        "full_command": "! system_locale_unit",
+        "description": "0",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "system_log_level",
+        "full_command": "! system_log_level",
+        "description": "0",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "protobuf_version_major",
+        "full_command": "! protobuf_version_major",
+        "description": "0",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "protobuf_version_minor",
+        "full_command": "! protobuf_version_minor",
+        "description": "25",
+        "latency_ms": 4038,
+        "blocking": true
+      }
+    ]
+  },
+  "Available": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "Available \u001b[31mcould",
+        "description": "not find command `Available`, try `help`\u001b[0m",
+        "latency_ms": 4023,
+        "blocking": true
+      }
+    ]
+  },
+  "Find": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "Find \u001b[31mcould",
+        "description": "not find command `Find`, try `help`\u001b[0m",
+        "latency_ms": 4031,
+        "blocking": true
+      }
+    ]
+  },
+  "If": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "If \u001b[31mcould",
+        "description": "not find command `If`, try `help`\u001b[0m",
+        "latency_ms": 4029,
+        "blocking": true
+      }
+    ]
+  },
+  "badusb": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "badusb \u001b[31mcould",
+        "description": "not find command `badusb`, try `help`\u001b[0m",
+        "latency_ms": 4030,
+        "blocking": true
+      }
+    ]
+  },
+  "bt": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mthis",
+        "full_command": "bt \u001b[31mthis",
+        "description": "command cannot be run while an application is open\u001b[0m",
+        "latency_ms": 4030,
+        "blocking": true
+      }
+    ]
+  },
+  "buzzer": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mthis",
+        "full_command": "buzzer \u001b[31mthis",
+        "description": "command cannot be run while an application is open\u001b[0m",
+        "latency_ms": 4021,
+        "blocking": true
+      }
+    ]
+  },
+  "crypto": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mthis",
+        "full_command": "crypto \u001b[31mthis",
+        "description": "command cannot be run while an application is open\u001b[0m",
+        "latency_ms": 4026,
+        "blocking": true
+      }
+    ]
+  },
+  "debug": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "debug \u001b[31mcould",
+        "description": "not find command `debug`, try `help`\u001b[0m",
+        "latency_ms": 4024,
+        "blocking": true
+      }
+    ]
+  },
+  "desktop": {
+    "available": true,
+    "commands": [
+      {
+        "name": "\u001b[31mcould",
+        "full_command": "desktop \u001b[31mcould",
+        "description": "not find command `desktop`, try `help`\u001b[0m",
+        "latency_ms": 4027,
+        "blocking": true
+      }
+    ]
+  },
+  "device_info": {
+    "available": true,
+    "commands": [
+      {
+        "name": "device_info_major",
+        "full_command": "device_info device_info_major",
+        "description": "2",
+        "latency_ms": 4023,
+        "blocking": true
+      },
+      {
+        "name": "device_info_minor",
+        "full_command": "device_info device_info_minor",
+        "description": "4",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "hardware_model",
+        "full_command": "device_info hardware_model",
+        "description": "Flipper Zero",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "hardware_uid",
+        "full_command": "device_info hardware_uid",
+        "description": "272BEF0027E18000",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "hardware_otp_ver",
+        "full_command": "device_info hardware_otp_ver",
+        "description": "2",
+        "latency_ms": 4033,
+        "blocking": true
+      },
+      {
+        "name": "hardware_timestamp",
+        "full_command": "device_info hardware_timestamp",
+        "description": "1684850676",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "hardware_ver",
+        "full_command": "device_info hardware_ver",
+        "description": "12",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "hardware_target",
+        "full_command": "device_info hardware_target",
+        "description": "7",
+        "latency_ms": 4031,
+        "blocking": true
+      },
+      {
+        "name": "hardware_body",
+        "full_command": "device_info hardware_body",
+        "description": "9",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "hardware_connect",
+        "full_command": "device_info hardware_connect",
+        "description": "6",
+        "latency_ms": 4031,
+        "blocking": true
+      },
+      {
+        "name": "hardware_display",
+        "full_command": "device_info hardware_display",
+        "description": "2",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "hardware_color",
+        "full_command": "device_info hardware_color",
+        "description": "2",
+        "latency_ms": 4032,
+        "blocking": true
+      },
+      {
+        "name": "hardware_region",
+        "full_command": "device_info hardware_region",
+        "description": "4",
+        "latency_ms": 4040,
+        "blocking": true
+      },
+      {
+        "name": "hardware_region_provisioned",
+        "full_command": "device_info hardware_region_provisioned",
+        "description": "CA",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "hardware_name",
+        "full_command": "device_info hardware_name",
+        "description": "Alaudisu",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "firmware_commit",
+        "full_command": "device_info firmware_commit",
+        "description": "8622f1a2",
+        "latency_ms": 4038,
+        "blocking": true
+      },
+      {
+        "name": "firmware_commit_dirty",
+        "full_command": "device_info firmware_commit_dirty",
+        "description": "false",
+        "latency_ms": 4031,
+        "blocking": true
+      },
+      {
+        "name": "firmware_branch",
+        "full_command": "device_info firmware_branch",
+        "description": "1.4.3",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "firmware_branch_num",
+        "full_command": "device_info firmware_branch_num",
+        "description": "0",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "firmware_version",
+        "full_command": "device_info firmware_version",
+        "description": "1.4.3",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "firmware_build_date",
+        "full_command": "device_info firmware_build_date",
+        "description": "05-12-2025",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "firmware_target",
+        "full_command": "device_info firmware_target",
+        "description": "7",
+        "latency_ms": 4026,
+        "blocking": true
+      },
+      {
+        "name": "firmware_api_major",
+        "full_command": "device_info firmware_api_major",
+        "description": "87",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "firmware_api_minor",
+        "full_command": "device_info firmware_api_minor",
+        "description": "1",
+        "latency_ms": 4036,
+        "blocking": true
+      },
+      {
+        "name": "firmware_origin_fork",
+        "full_command": "device_info firmware_origin_fork",
+        "description": "Official",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "firmware_origin_git",
+        "full_command": "device_info firmware_origin_git",
+        "description": "https://github.com/flipperdevices/flipperzero-firmware",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "radio_alive",
+        "full_command": "device_info radio_alive",
+        "description": "true",
+        "latency_ms": 4021,
+        "blocking": true
+      },
+      {
+        "name": "radio_mode",
+        "full_command": "device_info radio_mode",
+        "description": "Stack",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_major",
+        "full_command": "device_info radio_fus_major",
+        "description": "1",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_minor",
+        "full_command": "device_info radio_fus_minor",
+        "description": "2",
+        "latency_ms": 4007,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_sub",
+        "full_command": "device_info radio_fus_sub",
+        "description": "0",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_sram2b",
+        "full_command": "device_info radio_fus_sram2b",
+        "description": "16K",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_sram2a",
+        "full_command": "device_info radio_fus_sram2a",
+        "description": "0K",
+        "latency_ms": 4037,
+        "blocking": true
+      },
+      {
+        "name": "radio_fus_flash",
+        "full_command": "device_info radio_fus_flash",
+        "description": "24K",
+        "latency_ms": 4022,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_type",
+        "full_command": "device_info radio_stack_type",
+        "description": "3",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_major",
+        "full_command": "device_info radio_stack_major",
+        "description": "1",
+        "latency_ms": 4038,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_minor",
+        "full_command": "device_info radio_stack_minor",
+        "description": "20",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sub",
+        "full_command": "device_info radio_stack_sub",
+        "description": "0",
+        "latency_ms": 4032,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_branch",
+        "full_command": "device_info radio_stack_branch",
+        "description": "0",
+        "latency_ms": 4026,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_release",
+        "full_command": "device_info radio_stack_release",
+        "description": "2",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sram2b",
+        "full_command": "device_info radio_stack_sram2b",
+        "description": "19K",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sram2a",
+        "full_command": "device_info radio_stack_sram2a",
+        "description": "14K",
+        "latency_ms": 4028,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_sram1",
+        "full_command": "device_info radio_stack_sram1",
+        "description": "0K",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "radio_stack_flash",
+        "full_command": "device_info radio_stack_flash",
+        "description": "116K",
+        "latency_ms": 4035,
+        "blocking": true
+      },
+      {
+        "name": "radio_ble_mac",
+        "full_command": "device_info radio_ble_mac",
+        "description": "272BEF27E180",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "enclave_valid_keys",
+        "full_command": "device_info enclave_valid_keys",
+        "description": "10",
+        "latency_ms": 4034,
+        "blocking": true
+      },
+      {
+        "name": "enclave_valid",
+        "full_command": "device_info enclave_valid",
+        "description": "true",
+        "latency_ms": 4021,
+        "blocking": true
+      },
+      {
+        "name": "system_debug",
+        "full_command": "device_info system_debug",
+        "description": "0",
+        "latency_ms": 4026,
+        "blocking": true
+      },
+      {
+        "name": "system_lock",
+        "full_command": "device_info system_lock",
+        "description": "0",
+        "latency_ms": 4026,
+        "blocking": true
+      },
+      {
+        "name": "system_orient",
+        "full_command": "device_info system_orient",
+        "description": "0",
+        "latency_ms": 4031,
+        "blocking": true
+      },
+      {
+        "name": "system_sleep_legacy",
+        "full_command": "device_info system_sleep_legacy",
+        "description": "0",
+        "latency_ms": 4024,
+        "blocking": true
+      },
+      {
+        "name": "system_stealth",
+        "full_command": "device_info system_stealth",
+        "description": "0",
+        "latency_ms": 4023,
+        "blocking": true
+      },
+      {
+        "name": "system_heap_track",
+        "full_command": "device_info system_heap_track",
+        "description": "0",
+        "latency_ms": 4030,
+        "blocking": true
+      },
+      {
+        "name": "system_boot",
+        "full_command": "device_info system_boot",
+        "description": "0",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "system_locale_time",
+        "full_command": "device_info system_locale_time",
+        "description": "0",
+        "latency_ms": 4025,
+        "blocking": true
+      },
+      {
+        "name": "system_locale_date",
+        "full_command": "device_info system_locale_date",
+        "description": "0",
+        "latency_ms": 4029,
+        "blocking": true
+      },
+      {
+        "name": "system_locale_unit",
+        "full_command": "device_info system_locale_unit",
+        "description": "0",
+        "latency_ms": 4028,
+        "blocking": true
+      },
+      {
+        "name": "system_log_level",
+        "full_command": "device_info system_log_level",
+        "description": "0",
+        "latency_ms": 4028,
+        "blocking": true
+      },
+      {
+        "name": "protobuf_version_major",
+        "full_command": "device_info protobuf_version_major",
+        "description": "0",
+        "latency_ms": 4027,
+        "blocking": true
+      },
+      {
+        "name": "protobuf_version_minor",
+        "full_command": "device_info protobuf_version_minor",
+        "description": "25",
+        "latency_ms": 4022,
+        "blocking": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+# SSID Pool Archive — Operation Lay of the Land
+# Source: WiFi Pineapple Mark 7 PineAP SSID Pool
+# Captured: 2026-03-08 through 2026-03-10 (72hr passive collection)
+# Location: Operational area (see report for details)
+# Count: 131 valid SSIDs (8 corrupt/binary entries excluded)
+# Usage: Load into PineAP pool for future engagements in this area
+#
+# Format: one SSID per line. Lines starting with # are comments.
+# To load: scp this file to /etc/pineapple/ssid_pool.txt (remove comments first)
+
+Linksys03963
+MCSNET FREE
+BELL_WIFI
+SaskTel Select Wi-Fi 1
+5099251212
+PROJ0bb401
+ithurtswhenIP
+ramada
+OTA
+WiFi Hotspot 0628
+RD-ASSY AP
+Tater2021
+Pickle
+Daska
+TheMadHouse
+PROJ5704f3
+kylers hotspot
+Skynet
+steven1
+AHMOTA
+TELUS3074
+Sparky
+MAIN
+utah guest
+Veenstra
+Exploit
+TELUS3185
+bapple
+A1rWaue55
+Concession
+wolfs den
+sasktel 017
+PROJ2d952f
+CHOTA
+E1E9CC5DC32E
+BELL080
+NETGEAR-5G-HOME
+TELUS5434_RPT
+TELUS5150
+TELUS5297
+Library BYOD
+Public Library Wireless
+Library Staff
+gmamea
+PHONK9876
+Ynet25
+MCSnet-6c55b
+Swift-Net-01468233
+Starlink2.4
+BTPS Secure2
+MCSnet-b89f1
+M&M
+TELUS5105
+TELUS5822
+DIRECT-LE-Car_32ad
+CAR_CAM_CM753_3417
+DS100900618
+bTres
+lecomte
+BT_Secure25/26
+M&M Guest
+Kitscoty Curling
+Dalton's WiFi
+TELUS5434
+SHOELESSandCLUELESS
+HUAWEI-B612-078B
+Lecomte 5g
+Dannys Truck
+Open Access
+grahamrez79
+LAKELAND
+SEON
+MCSnet-a2505
+iPhone Char
+Xplore_62F0
+IPhone
+RiverGrove Guest
+bk1234567
+rasChal15
+2wire
+xbr-65x810c
+zack
+SELPHY CP1300
+TP-Link_B96D
+Linksyso2159
+jasper2019
+Harjeet singh 4g
+iPhone
+NETGEAR14
+2wiree448
+KCCKNet
+Guest Wired
+HUAWEI-B612-4697
+Lia Hotel WiFi
+Copper Cork Guest
+Cody
+SM-S926W4295
+DIRECT-
+shaw8000
+Koppang Wifi
+MCSnet-06e27
+myGMC cdb3
+AO_Honda_OTA
+myChevrolet 27F4
+Travelodgr
+EMEA-OTA
+9741550170
+DB GUEST
+moms phone
+Nintendo_3DS_continuous_scan_000
+myChevrolet 309B
+SwatForce
+telus2260
+DIRECT-42-HP OfficeJet Pro 8020
+WiFi Hotspot 3504
+myChevrolet 6C8E
+PROJ5962cb
+Genest Wifi 5
+Fraser16
+myChevrolet ad1b
+iphone
+wempefam
+AutoReconnection_A26aa
+TELUS3964
+TELUSWiFi0614
+The Peregryms
+Kappel Router
+KCCK
+LightleakCustom
+Southridge Camp
+telus5472

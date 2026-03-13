@@ -1,0 +1,34 @@
+{
+  "usb": {
+    "viable": true,
+    "connection": {
+      "vid": "0483",
+      "pid": "5740",
+      "baud_primary": 115200,
+      "baud_fallback": 230400,
+      "data_bits": 8,
+      "parity": "none",
+      "stop_bits": 1,
+      "prompt_sentinel": ">: ",
+      "command_delimiter": "\\r\\n",
+      "read_timeout_default_ms": 2000,
+      "read_timeout_slow_ms": 10000,
+      "read_timeout_storage_ms": 30000
+    },
+    "discovery": {
+      "linux": "/dev/ttyACM* or /dev/serial/by-id/*Flipper*",
+      "windows": "Get-PnPDevice -Class Ports | VID_0483&PID_5740"
+    }
+  },
+  "wifi": {
+    "viable": false,
+    "blocker": "ESP32-S2 devboard with Marauder firmware \u2014 no native CLI relay over WiFi",
+    "recommended_firmware": "ESP-AT firmware for TCP server CLI passthrough",
+    "notes": "Marauder provides offensive WiFi tools but cannot relay Flipper CLI commands over WiFi"
+  },
+  "bluetooth": {
+    "viable": "unknown",
+    "assessment": "BLE serial profile support depends on firmware \u2014 needs runtime probe",
+    "ble_mac": "272BEF27E180"
+  }
+}
